@@ -2,7 +2,7 @@ import { Sidebar } from "../sidebars/Sidebar"
 
 export function Home() {
     return (
-        <div className="flex min-h-screen bg-gray-100">
+        <div className="flex min-h-screen">
             <Sidebar />
             <main className="flex-1 ml-64 p-6 overflow-y-auto">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, numquam in! Nostrum quas, laborum ducimus ut nesciunt earum sed quasi amet nobis molestias vitae sint blanditiis, harum atque odio error.

@@ -7,6 +7,10 @@ import { RiFileHistoryLine, RiErrorWarningLine } from "react-icons/ri";
 import { FaRegUser, FaRegQuestionCircle } from "react-icons/fa";
 import { LuBrain } from "react-icons/lu";
 import { Link/* , useNavigate */ } from 'react-router-dom';
+import ButtonSingOut from '../buttons/ButtonSingOut';
+import { CardUserSidebar } from '../cards/CardUserSidebar';
+import { domain } from '../../config/domain';
+const image = `/images/${domain.toLowerCase()}/logoSideBar.png`
 
 interface NavItemProps {
     title: string;
@@ -19,16 +23,16 @@ const NavItem: React.FC<NavItemProps> = ({ title, icon, children, route }) => {
     /*  const [isOpen, setIsOpen] = useState(false); */
     /* const navigate = useNavigate() */
     return (
-        <li className="relative">
+        <li className="relative  border-b">
             <Link to={route}
-                className="flex items-center justify-between p-2 hover:bg-gray-700 cursor-pointer"
+                className="flex items-center justify-between p-2 hover:bg-black cursor-pointer"
             /* onClick={() => navigate({ route })} */
             >
-                <div className="flex items-center">
+                <div className="flex text-colorOrange items-center">
                     {icon}
-                    <span className="ml-2">{title}</span>
+                    <span className="ml-2 text-white">{title}</span>
                 </div>
-                <FaChevronDown className={`transition-transform duration-300 `} />{/* ${isOpen ? 'rotate-180' : ''} */}
+                {/*    <FaChevronDown className={`transition-transform duration-300 `} /> */}{/* ${isOpen ? 'rotate-180' : ''} */}
             </Link>
             {/*   <ul className={`ml-4 transition-max-height duration-300 overflow-hidden `}>
             </ul> */}
@@ -81,9 +85,12 @@ const links: LinksDTO[] = [
 export const Sidebar: React.FC = () => {
     return (
         <div className="flex relative">
-            <aside className="w-64 bg-white shadow-lg fixed  h-screen flex flex-col">{/* fixed */}
-                <div className="p-4 border-b">
+            <aside className="w-64 bg-colorGray shadow-lg fixed  h-screen flex flex-col">{/* fixed */}
+                {/* <div className="p-4 border-b">
                     <h1 className="text-xl font-bold text-teal-600">Dashboard</h1>
+                </div> */}
+                <div className="p-[1dvh] border-b">
+                    <img className='w-full h-full object-contain' src={image} alt="IMAGEN SIDEBAR" />
                 </div>
                 <nav className="p-4">
                     <ul>
@@ -94,9 +101,12 @@ export const Sidebar: React.FC = () => {
                         ))}
                     </ul>
                 </nav>
-                <button className="p-4  absolute bottom-4 left-0 w-full ">
-                    <h1 className="text-xl  text-center font-bold text-teal-600">Cerrar Sesion</h1>
-                </button>
+                {/* AGREGAMOS LA CARD DEL USUARIO EN CUESTION */}
+                <CardUserSidebar />
+                <div className="p-4  absolute bottom-4 left-0 w-full ">
+                    {/*  <h1 className="text-xl  text-center font-bold text-teal-600">Cerrar Sesion</h1> */}
+                    <ButtonSingOut />
+                </div>
             </aside>
         </div >
     );
