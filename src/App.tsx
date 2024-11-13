@@ -19,11 +19,11 @@ function App() {
           } />
           <Route path="/test"
             element={
-              <IsAuth route={"/test"}>
-                <LogicDesktopView>
-                  <TestingPage />
-                </LogicDesktopView>
-              </IsAuth>
+              /*     <IsAuth route={"/test"}> */
+          /*     <LogicDesktopView> */
+                <TestingPage />
+            /*   </LogicDesktopView> */
+              /*  </IsAuth> */
             } />
 
         </Routes>
