@@ -1,9 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { IsAuthLogin } from "./middleware/isAuthLogin";
 import { Login } from "./components/auth/Login";
-import { IsAuth } from "./middleware/isAuth";
 import { TestingPage } from "./components/test/TestingPage";
-import { LogicDesktopView } from "./components/logic/ContentDesktop";
 
 function App() {
 

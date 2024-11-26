@@ -1,5 +1,5 @@
 import { Fragment, ReactNode } from "react";
-import { SidebarDesktop } from "../sidebars/SidebarDesktop";
+import { Sidebar } from "../sidebars/Sidebar";
 
 interface logicDTO {
     children: ReactNode
@@ -9,7 +9,7 @@ export function LogicDesktopView({ children }: logicDTO) {
     return (
         <Fragment>
             <div>
-                <SidebarDesktop />
+                <Sidebar />
             </div>
             {children}
         </Fragment>
