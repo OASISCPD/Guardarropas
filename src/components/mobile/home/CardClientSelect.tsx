@@ -1,4 +1,4 @@
-import { ClientSelectDTO } from "../../../types/Client";
+import { ClientSelectDTO } from "../../../types/client";
 
 interface propCard {
     name: string

@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 import { BsUpcScan } from "react-icons/bs";
 import { FaSearch } from "react-icons/fa";
 import { ClientTable } from "./ClientTable";
-import { ClientSelectDTO } from "../../../types/Client";
 import { InfoColors } from "./InfoColors";
+import { ClientSelectDTO, ScanerDTO, sendDataClient, stringProccess } from "../../../types/client";
 
 type SearchDTO = {
     scan: string
@@ -15,10 +15,12 @@ interface propCard {
     setUserSelect: React.Dispatch<React.SetStateAction<ClientSelectDTO | undefined>>;
 }
 export function CardSearch({ setUserSelect }: propCard) {
-
+    //armar body de los datos que tomo el scanner
+    const [body, setBody] = useState<ScanerDTO>()
     const { register, setValue } = useForm<SearchDTO>()
     const [dniValue, setDniValue] = useState<string | number>("");
     const [scanValue, setScanValue] = useState<string>("");
+    const [debouncedScanValue, setDebouncedScanValue] = useState('');//variable que maneja el tiempo de timoeut y q no se mande hasta que se deje de tipear
 
     const handleDniChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setDniValue(e.target.value);
@@ -29,19 +31,76 @@ export function CardSearch({ setUserSelect }: propCard) {
     };
 
     //function que guarda el valor selecciono
-    function test(dni: number | string, lastName: string, name: string, phone: string | number) {
+    function getClient(dni: number | string, lastName: string, name: string, phone: string | number) {
         console.log(dni, lastName, name, phone)
         setUserSelect({ client: lastName + name, dni: dni, phone: phone })
         setDniValue('')
         setValue('dni', '')
+        setScanValue('')
+        setValue('scan', '')
     }
-    useEffect(() => {
 
-        if (dniValue !== undefined) {
-            console.log(dniValue); // Imprime el valor cada vez que cambia
-            console.log(scanValue); // Imprime el valor cada vez que cambia
+    //funcion que comprime mi valor de scanner y transforma la data recibida
+    function getDataScan() {
+        setTimeout(() => {
+            console.log('valores tomados del scanner', scanValue)
+            const data: sendDataClient | null = stringProccess(scanValue)
+            console.log('DATA OBTENIDA DEL DNI', data)
+            setDniValue(data?.dni || '')
+            setValue('dni', data?.dni || '')
+            if (data) {
+                setBody({ apellido: data.lastName, fecha_nacimiento: data.date, genero: data.gender, n_documento: data.dni, nombre: data.name })
+            }
+        }, 500);
+    }
+
+    //function que toma el valor del dni y 
+    /*    function getDataDni() {
+           setTimeout(() => {
+               console.log('valores tomados del scanner', dniValue)
+               const data: sendDataClient | null = stringProccess(dniValue)
+               console.log('DATA OBTENIDA DEL DNI', data)
+               setDniValue(data?.dni || '')
+               setValue('dni', data?.dni || '')
+               if (data) {
+                   setBody({ apellido: data.lastName, fecha_nacimiento: data.date, genero: data.gender, n_documento: data.dni, nombre: data.name })
+               }
+           }, 500);
+       } */
+    // Llamada a la función cada vez que el valor "debouncedScanValue" cambia
+    useEffect(() => {
+        if (debouncedScanValue) {
+            getDataScan();
         }
-    }, [dniValue]);
+    }, [debouncedScanValue]);
+
+
+    /*     useEffect(() => {
+            if (debouncedScanValue) {
+                getDataDni();
+            }
+        }, [debouncedScanValue]); */
+
+    // Este useEffect gestiona el debounce
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if (scanValue) {
+                setDebouncedScanValue(scanValue); // Usar el valor de scan si existe
+            } else if (dniValue) {
+                /* setDebouncedScanValue(dniValue.toString()); */ // Usar el valor de dni si no hay scanValue
+                setValue('dni', dniValue)
+                setBody({ apellido: '', fecha_nacimiento: '', genero: '', nombre: '', n_documento: dniValue })
+            }
+        }, 1000);
+
+        // Limpiar el timeout cuando cambie alguno de los valores antes de los 1000ms
+        return () => {
+            clearTimeout(timer);
+        };
+    }, [scanValue, dniValue]);
+
+
+
     return (
         <div className="p-4">
             <div className="bg-colorGray rounded-md p-4 ">
@@ -74,8 +133,8 @@ export function CardSearch({ setUserSelect }: propCard) {
                     </div>
                 </div>
                 {/* ACA IRIA LA LISTA  */}
-                {dniValue !== undefined && dniValue !== '' && (
-                    <ClientTable clickClient={test} />
+                {dniValue !== undefined && dniValue !== '' && body && (
+                    <ClientTable body={body} clickClient={getClient} />
                 )}
                 <InfoColors />
             </div>

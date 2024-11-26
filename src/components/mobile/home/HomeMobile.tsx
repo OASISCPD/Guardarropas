@@ -5,7 +5,7 @@ import { Navbar } from '../Navbar'
 import { ButtonSendForm } from './ButtonSendForm'
 import Registers from './Registers'
 import { useState } from 'react'
-import { ClientSelectDTO } from '../../../types/Client'
+import { ClientSelectDTO } from '../../../types/client'
 
 
 
@@ -14,7 +14,8 @@ export function HomeMobile() {
     const [userSelect, setUserSelect] = useState<ClientSelectDTO>()
 
     function send() {
-        if (userSelect?.dni !== '' && userSelect?.client !== '') {
+        console.log(userSelect)
+        if (userSelect && userSelect.dni !== '' && userSelect.client !== '') {
             console.log('entra a la funcio para enviar el send')
             return
         }
