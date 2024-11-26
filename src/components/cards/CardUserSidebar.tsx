@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { BaseUrl } from "../../logic/api";
-import { UserDTO } from "../../logic/dtos/UserDto";
+import { UserDTO } from "../../types/UserDto";
 
 export function CardUserSidebar() {
     const [user, setUser] = useState<UserDTO>()

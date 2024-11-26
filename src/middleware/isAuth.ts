@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BaseUrl } from "../logic/api";
-import { IsAuthDTO } from "../logic/dtos/IsAuthDto";
+import { IsAuthDTO } from "../types/IsAuthDto";
 
 export function IsAuth({ children, route }: IsAuthDTO) {
     const navigate = useNavigate();
