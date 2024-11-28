@@ -104,7 +104,7 @@ export function CardSearch({ setUserSelect }: propCard) {
     return (
         <div className="p-4">
             <div className="bg-colorGray rounded-md p-4 ">
-                <h1 className="text-xl font-semibold">Asignar cliente</h1>
+                <h1 className="text-xl ">Asignar cliente</h1>
                 <div className="flex justify-between gap-2 mt-3 mb-2 text-sm">
                     <div className="flex relative">
                         <input

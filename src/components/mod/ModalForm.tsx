@@ -2,19 +2,6 @@ import { useForm } from "react-hook-form";
 import { IoMdClose } from "react-icons/io";
 import { ScrollContainer } from "../logic/ScrollContainer";
 
-/* 
-
-n_documento: 12276521244
-tipo_documento: DNI
-apellido: DIAZ
-nombre: WALTER MARIANO
-genero: M
-fecha_nacimiento: 1958-03-17
-localidad: undefined
-provincia: 
-direccion:  
-celular: 
-*/
 export interface FormDataDTO {
     n_documento: number | string
     tipo_documento: string
@@ -41,6 +28,7 @@ export function ModalForm({ onClose, body }: propForm) {
     function onSubmit(data: FormDataDTO) {
         console.log(data); // Aquí se muestra el contenido del formulario cuando se envía
     }
+
     return (
         <section className="fixed top-0 left-0 w-full h-full flex items-center justify-center  z-500">
             <div className="rounded-xl shadow-xl max-w-md w-full mx-4 md:mx-auto ">
@@ -146,7 +134,6 @@ export function ModalForm({ onClose, body }: propForm) {
                             <div className="  mt-4 flex justify-center">
                                 <button type="submit" className="bg-colorBlue rounded-md mx-2 px-8 py-3 w-full text-center  shadow-xl  flex justify-center items-center text-white" >Enviar</button>
                             </div>
-
                         </form>
                     </div>
                 </div>

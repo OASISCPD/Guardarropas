@@ -6,6 +6,8 @@ import { ButtonSendForm } from './ButtonSendForm'
 import Registers from './Registers'
 import { useState } from 'react'
 import { ClientSelectDTO } from '../../../types/client'
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
+import { CardBoxes } from './CardBoxes'
 
 
 
@@ -33,14 +35,16 @@ export function HomeMobile() {
             )}
             {/* CARDS */}
             <div className="p-4">
-                <div className="mb-2 bg-colorGray rounded-md p-4">
+                <CardBoxes />
+
+                {/*   <div className="mb-2 bg-colorGray rounded-md p-4">
                     <h2 className="text-lg font-semibold mb-3">📦 BOXES</h2>
                     <ScrollContainer maxHeight='400px'>
-                        <div className="grid grid-cols-8 gap-2">
+                        <div className="grid grid-cols-6  gap-2">
                             {[...Array(90)].map((_, i) => (
                                 <button
                                     key={i}
-                                    className="aspect-square bg-colorGreen rounded flex items-center justify-center text-sm font-medium hover:bg-green-600 transition-colors"
+                                    className="aspect-square bg-colorGreen rounded flex items-center justify-center text-xl font-medium hover:bg-green-600 transition-colors"
                                 >
                                     {i + 1}
                                 </button>
@@ -51,11 +55,11 @@ export function HomeMobile() {
                 <div className='bg-colorGray rounded-md p-4 mb-2'>
                     <h2 className="text-lg font-semibold mb-3">👔 PERCHAS</h2>
                     <ScrollContainer maxHeight='400px'>
-                        <div className="grid grid-cols-8 gap-2">
+                        <div className="grid grid-cols-6  gap-2">
                             {[...Array(50)].map((_, i) => (
                                 <button
                                     key={i}
-                                    className="aspect-square bg-colorGreen rounded flex items-center justify-center text-sm font-medium hover:bg-green-600 transition-colors"
+                                    className="aspect-square bg-colorGreen rounded flex items-center justify-center text-xl font-medium hover:bg-green-600 transition-colors"
                                 >
                                     {i + 1}
                                 </button>
@@ -68,18 +72,18 @@ export function HomeMobile() {
                 <div className='bg-colorGray rounded-md p-4 mb-2'>
                     <h2 className="text-lg font-semibold mb-3">👔 PARAGUAS</h2>
                     <ScrollContainer maxHeight='400px'>
-                        <div className="grid grid-cols-8 gap-2">
+                        <div className="grid grid-cols-6  gap-2">
                             {[...Array(80)].map((_, i) => (
                                 <button
                                     key={i}
-                                    className="aspect-square bg-colorGreen rounded flex items-center justify-center text-sm font-medium hover:bg-green-600 transition-colors"
+                                    className="aspect-square bg-colorGreen rounded flex items-center justify-center text-xl font-medium hover:bg-green-600 transition-colors"
                                 >
                                     {i + 1}
                                 </button>
                             ))}
                         </div>
                     </ScrollContainer>
-                </div>
+                </div> */}
             </div>
             {/* BUTTON QUE ENVIA EL FORM CON TODOS LOS VALORES YA ESTABLECIDOS */}
             <ButtonSendForm send={send} />

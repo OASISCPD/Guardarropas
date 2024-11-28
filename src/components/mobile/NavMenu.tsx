@@ -124,7 +124,7 @@ export function NavMenu({ onClose }: propSideBar) {
     return (
         < aside className={`fixed top-0 right-0 transition-all duration-500 h-2/3 w-full text-xs  bg-colorGray z-50 shadow-2xl transform  textGothamMedium  flex flex-col  text-white `}
         >
-            <div className='flex justify-end textGothamMedium'>
+            <div className='flex justify-end textGothamMedium border-b border-gray-500 mb-2'>
                 <h1 className="p-4 sm:p-4" onClick={onClose}><MdOutlineReorder size={40} />
                 </h1>
             </div>
@@ -152,13 +152,13 @@ export function NavMenu({ onClose }: propSideBar) {
                     </ul>
                 </nav>
             </ScrollContainer>
-            <div className="w-full mt-auto p-4 text-xs">
+            <div className="w-full  p-4 text-xs">
                 <div className="p-4 flex gap-2 items-center text-center bg-colorCardUser bg-opacity-20 rounded-md shadow-md text-colorGrayLight">
                     <h1>{user.nombre}</h1>
                     <h1>LEGAJO: {user.legajo}</h1>
                 </div>
             </div>
-            <div className="w-full mt-auto p-4">
+            <div className="w-full  p-4">
                 <button
                     onClick={logoutSession}
                     className="bg-colorRed hover:scale-105 duration-100 px-4 py-3 2xl:py-2.5 w-full rounded-md text-xs sm:text-lg lg:text-xs xl:text-sm shadow-xl"
