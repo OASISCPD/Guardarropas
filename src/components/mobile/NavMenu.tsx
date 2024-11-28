@@ -34,7 +34,7 @@ const menuOwner = [
     {
         title: "ABM Clientes",
         icon: <RiExchangeLine />,
-        route: "/amb_clientes",
+        route: "/abm_clientes",
     },
     {
         title: "Obj. Perdidos",

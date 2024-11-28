@@ -5,6 +5,7 @@ import { ListRegister } from "./ListRegister";
 import { ExportHistorial } from "../../buttons/ExportHistorial";
 import { useState } from "react";
 import { sendDataClient, stringProccess } from "../../../types/client";
+import { RiFileHistoryLine } from "react-icons/ri";
 
 export function HistoryMobile() {
     const [dni, setDni] = useState<string | number>('')
@@ -36,9 +37,12 @@ export function HistoryMobile() {
     return (
         <div>
             <Navbar />
-            <div className=" p-4 ">
-                <h1 className="text-xl tracking-widest">HISTORIAL</h1>
-                <div className="flex justify-between gap-2 mt-3 mb-2 text-sm">
+            <div className=" p-4 text-sm">
+                <div className="flex items-center gap-2">
+                    <RiFileHistoryLine className="text-colorOragen" size={20} />
+                    <h1 className="text-xl uppercase tracking-widest">HISTORIAL</h1>
+                </div>
+                <div className="flex justify-between  gap-2 mt-3 mb-2 ">
                     <div className="flex relative">
                         <input
                             autoComplete="off"

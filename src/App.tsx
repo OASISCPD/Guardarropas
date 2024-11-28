@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import { RedirectScreen } from "./components/logic/RedirectScreen";
 import { HistoryMobile } from "./components/mobile/history/HistoryMobile";
 import { HomeMobile } from "./components/mobile/home/HomeMobile";
+import { ClientsMobile } from "./components/mobile/clients/ClientsMobile";
 function App() {
 
   return (
@@ -21,6 +22,8 @@ function App() {
               element={<RedirectScreen MobileComponent={HomeMobile} TabletComponent={HomeMobile} DesktopComponent={HomeMobile} />} />
             <Route path="/historial"
               element={<RedirectScreen MobileComponent={HistoryMobile} TabletComponent={HistoryMobile} DesktopComponent={HistoryMobile} />} />
+            <Route path="/abm_clientes"
+              element={<RedirectScreen MobileComponent={ClientsMobile} TabletComponent={ClientsMobile} DesktopComponent={ClientsMobile} />} />
           </Routes>
         </Router>
       </SideBarContex>

@@ -27,3 +27,15 @@ export async function getClientsByDni(dni: number | string) {
         console.error(error)
     }
 }
+
+//function que me trae los registros de los clientes agregados
+export async function getClientRegister() {
+    try {
+        /* const response = await fetch(`${BaseUrl}/traer_cliente_x_dni?dni=${dni}`, { credentials: 'include' as RequestCredentials }) */
+        const response = await fetch(`${BaseUrl}/traer_clientes`, { credentials: 'include' as RequestCredentials })
+        const data = await response.json()
+        return data
+    } catch (error) {
+        console.error(error)
+    }
+}
