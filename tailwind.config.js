@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        colorOragen:'#FF4200',
+        colorOrange: '#FF4200',
         colorGray: '#393838',
         colorGreen: '#2e8c36',
         colorBlue: '#183DFF',

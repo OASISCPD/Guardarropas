@@ -64,8 +64,8 @@ export function CardBoxes() {
         <div className='mb-2 bg-colorGray rounded-md p-4'>
             <div className=' flex justify-between mb-4 items-center '>
                 <div className="flex justify-center items-center mx-auto">
-                    <BsBox className="text-colorOragen" size={32} />
-                    <h2 className="text-lg mx-2 font-semibold "> BOXES</h2>
+                    <BsBox className="text-colorOrange" size={32} />
+                    <h2 className="text-lg mx-2  "> BOXES</h2>
                 </div>
                 {!isOpen ? (
 
@@ -84,7 +84,7 @@ export function CardBoxes() {
                             {[...Array(50)].map((_, i) => (
                                 <button
                                     key={i}
-                                    className="aspect-square animate-pulse bg-colorGrayLight rounded flex items-center justify-center text-xl font-medium text-black  transition-colors"
+                                    className="aspect-square animate-pulse bg-colorGrayLight rounded flex items-center justify-center text-xl  text-black  transition-colors"
                                 >
                                     <LuLoader2 size={20} className="animate-spin" />
                                 </button>
@@ -98,7 +98,7 @@ export function CardBoxes() {
                                 <button
                                     onClick={() => openModal(box.id_lugar, box.estado)}
                                     key={box.id_lugar}
-                                    className={`${getPlacesClass(box.estado)}  aspect-square  rounded flex items-center justify-center text-lg font-medium  transition-colors`}
+                                    className={`${getPlacesClass(box.estado)}  aspect-square  rounded flex items-center justify-center text-lg   transition-colors`}
                                 >
                                     {i + 1}
                                 </button>

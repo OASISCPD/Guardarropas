@@ -95,7 +95,7 @@ export default function Registers() {
             {/* Header */}
             <header className=" p-4">
                 <div className="flex items-center gap-2 text-white mb-4">
-                    <LuLock size={16} className=" text-colorOragen" />
+                    <LuLock size={16} className=" text-colorOrange" />
                     <h1 className="text-sm tracking-widest">REGISTROS</h1>
                 </div>
                 <div className="flex justify-between gap-2 my-3 text-sm">

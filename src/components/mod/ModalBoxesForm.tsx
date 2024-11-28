@@ -70,7 +70,6 @@ export function ModalBoxes({ onClose, id }: propForm) {
                                 />
                                 
                                 <div className="mb-4">
-                                  {/*   <label className="block  font-medium text-white">Celular</label> */}
                                     <input
                                         {...register('prenda')}
                                         type="text"

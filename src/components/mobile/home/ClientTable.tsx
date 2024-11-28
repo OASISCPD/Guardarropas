@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { ScrollContainer } from "../../logic/ScrollContainer";
-import { GetClientDTO, getClientsByDni } from "../../../logic/clients";
+import { getClientsByDni } from "../../../logic/clients";
 import { Modal } from "../../logic/Modal";
 import { FormDataDTO, ModalForm } from "../../mod/ModalForm";
-import { RiH1 } from "react-icons/ri";
 import { LuLoader2 } from "react-icons/lu";
-import { ScanerDTO } from "../../../types/client";
+import { GetClientDTO, ScanerDTO } from "../../../types/client";
 import { BaseUrl } from "../../../logic/api";
 
 
@@ -40,59 +39,6 @@ export function ClientTable({ clickClient, body }: propTable) {
             getDataByDni(body.n_documento);
         }
     }, [debouncedScanValue]);
-
-
-    /* 
-    sync function getDataNosis(documento) {
-        console.log('dni a mandar para nosis', documento)
-        console.log('dni', documento)
-        setLoading(true)
-    
-        try {
-          const res = await fetch(`http://127.0.0.1:5000/traer_datos_nosis?dni=${documento}`, { credentials: 'include' })
-          const data = await res.json()
-    
-          // Verificar si el objeto data está vacío
-          const isDataEmpty = Object.keys(data).length === 0;
-    
-          console.log(data)
-    
-          // Si data está vacío, usamos los valores crudos por defecto
-          setFormData({
-            n_documento: documento,
-            tipo_documento: "DNI",
-            apellido: !isDataEmpty ? data.VI_Apellido || apellido : apellido,
-            nombre: !isDataEmpty ? data.VI_Nombre || nombre : nombre,
-            genero: !isDataEmpty ? data.VI_Sexo || genero : genero,
-            fecha_nacimiento: !isDataEmpty ? data.VI_FecNacimiento || nacimiento : nacimiento,
-            localidad: !isDataEmpty ? data.VI_DomAF_Loc || localidad : localidad,
-            provincia: !isDataEmpty ? data.VI_DomAF_Prov || provincia : provincia || "",
-            direccion: !isDataEmpty ? (data.VI_DomAF_Calle + data.VI_DomAF_Nro || direccion) : direccion || "",
-            celular: celular || "", // Este parece que siempre es crudo
-          });
-    
-        } catch (error) {
-          console.error(error)
-          // Si hay error, usa los valores crudos como fallback
-          setFormData({
-            n_documento: documento,
-            tipo_documento: "DNI",
-            apellido: apellido,
-            nombre: nombre,
-            genero: genero,
-            fecha_nacimiento: nacimiento,
-            localidad: localidad,
-            provincia: provincia || "",
-            direccion: direccion || "",
-            celular: celular || "",
-          })
-        }
-        finally {
-          setLoading(false)
-        }
-      }
-    */
-
 
     //funcion inizializa la busqueda de datos mediante el dni
     async function getValuesByDni() {
@@ -246,7 +192,7 @@ export function ClientTable({ clickClient, body }: propTable) {
                                                         className="sr-only peer"
                                                     />
                                                     <div className="w-12 h-6 sm:w-14 sm:h-8 bg-gray-300 peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer peer-checked:after:translate-x-5 sm:peer-checked:after:translate-x-6 peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border after:border-gray-300 after:rounded-full after:h-5 sm:after:h-7 after:w-5 sm:after:w-7 after:transition-all peer-checked:bg-blue-600"></div>
-                                                    <span className="ml-2 text-sm font-medium text-gray-900">
+                                                    <span className="ml-2 text-sm  text-gray-900">
                                                         {isForeign ? 'Si' : 'No'}
                                                     </span>
                                                 </label>

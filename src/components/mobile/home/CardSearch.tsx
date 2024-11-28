@@ -4,7 +4,8 @@ import { BsUpcScan } from "react-icons/bs";
 import { FaSearch } from "react-icons/fa";
 import { ClientTable } from "./ClientTable";
 import { InfoColors } from "./InfoColors";
-import { ClientSelectDTO, ScanerDTO, sendDataClient, stringProccess } from "../../../types/client";
+import { ClientSelectDTO, ScanerDTO, sendDataClient } from "../../../types/client";
+import { stringProccess } from "../../../logic/clients";
 
 type SearchDTO = {
     scan: string

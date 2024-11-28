@@ -25,7 +25,7 @@ export function ClientsMobile() {
             <div className="p-4">
                 {/* HEADER */}
                 <div className="flex items-center gap-2">
-                    <FaRegUser className="text-colorOragen" size={20} />
+                    <FaRegUser className="text-colorOrange" size={20} />
                     <h1 className="text-xl uppercase tracking-widest">ABM CLIENTES</h1>
                 </div>
                 {/* INPUTS */}

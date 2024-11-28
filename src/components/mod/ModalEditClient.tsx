@@ -1,33 +1,94 @@
 import { useForm } from "react-hook-form";
 import { IoMdClose } from "react-icons/io";
 import { ScrollContainer } from "../logic/ScrollContainer";
+import { formatClientDataUpdate } from "../../logic/clients";
+import { formatDate } from "../../logic/date";
+import { useEffect } from "react";
+import { BaseUrl } from "../../logic/api";
+import { toast } from "react-toastify";
+import { ClientDataUpdateDTO, GetClientDTO } from "../../types/client";
 
-export interface FormDataDTO {
-    n_documento: number | string
-    tipo_documento: string
-    apellido: string
-    nombre: string
-    genero: string
-    fecha_nacimiento: string
-    localidad: string
-    direccion: string
-    celular: string | number
-    provincia: string
-}
+
 
 export interface propForm {
-    body: FormDataDTO
+    body: GetClientDTO
     onClose: () => void
+    success: () => void
 }
+/* DTO PARA EL ENVIO DEL UPDATE
 
+id_cliente: 53
+n_documento: 44392765
+tipo_documento: Pasaporte
+nombre: FLORENCIA MAGALI
+apellido: CEPEDA
+celular: 1126445577
+fecha_nacimiento: 2002-09-12
+genero: F
+provincia: Buenos Aires
+localidad: LAFERRERE
+direccion: TEUCO 3900
+*/
 
-export function ModalForm({ onClose, body }: propForm) {
-    const { register, setValue, getValues, handleSubmit } = useForm<FormDataDTO>()
-
+export function ModalEditClient({ success, onClose, body }: propForm) {
+    const { register, setValue, handleSubmit } = useForm<GetClientDTO>()
     // Función que maneja el envío del formulario
-    function onSubmit(data: FormDataDTO) {
-        console.log(data); // Aquí se muestra el contenido del formulario cuando se envía
+    async function onSubmit(data: GetClientDTO) {
+        /*  console.log(data); */ // Aquí se muestra el contenido del formulario cuando se envía
+        try {
+            // Crear un objeto con los datos del formulario
+            const dataFinal: ClientDataUpdateDTO = formatClientDataUpdate(data)
+            console.log(dataFinal)
+            const formData = new URLSearchParams();
+            //aca abajo es donde se rompe
+
+            // Agregar los valores del formulario al URLSearchParams
+            Object.keys(dataFinal).forEach((key) => {
+                const value = dataFinal[key as keyof ClientDataUpdateDTO]; // Asegúrate de que el valor se ajusta al tipo correcto
+                if (value !== undefined) {
+                    formData.append(key, String(value)); // Convertimos el valor a string antes de agregarlo
+                }
+            });
+
+            // Realizar la solicitud POST al servidor
+            const res = await fetch(`${BaseUrl}/update_cliente`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: formData,
+                credentials: 'include',  // Añadir las credenciales (si las necesitas)
+                redirect: 'follow',  // Si es necesario para tu flujo
+            });
+            await res.text();
+            if (res.ok) {
+                toast.success('Cambios guardados correctamente')
+                success()
+
+            } else {
+                // Manejo de errores si la respuesta del servidor no es OK
+                toast.error('Hubo un error, inténtalo nuevamente ')
+            }
+        } catch (error) {
+            console.error('Error en la actualización del cliente:', error);
+            toast.error('Hubo un error, inténtalo nuevamente ')
+        }
     }
+
+    // Inicializar campos en useEffect con tipos y lógica para campos vacíos
+    useEffect(() => {
+        Object.keys(body).forEach((key) => {
+            const typedKey = key as keyof GetClientDTO; // Aseguramos que la clave es del tipo correcto
+
+            // Si la clave es 'date_nacimiento', usa formatDate
+            if (typedKey === "date_nacimiento") {
+                setValue(typedKey, formatDate(body[typedKey])); // Formatea solo la fecha de nacimiento
+            } else {
+                // Para los otros campos, asignamos el valor solo si no está vacío o undefined
+                setValue(typedKey, body[typedKey] ?? ""); // Asigna una cadena vacía solo si es undefined o null
+            }
+        });
+    }, [body, setValue]);
 
     return (
         <section className="fixed top-0 left-0 w-full h-full flex items-center justify-center  z-500">
@@ -40,6 +101,7 @@ export function ModalForm({ onClose, body }: propForm) {
                         </button>
                     </div>
                     <div className="p-4">
+                        <h1 className="text-center mb-2 uppercase text-sm">Editar cliente N° <span className="text-colorMsjYellow">{body.id_cliente}</span></h1>
                         <form className="text-black text-xs uppercase" onSubmit={handleSubmit(onSubmit)}>
                             <ScrollContainer maxHeight="400px">
                                 <div className="mb-4">
@@ -80,7 +142,7 @@ export function ModalForm({ onClose, body }: propForm) {
                                 </div>
                                 <div className="mb-4">
                                     <label className="block mb-2   text-white ">Fecha de nacimiento</label>
-                                    <input {...register('fecha_nacimiento')} type="date" name="fecha_nacimiento" id="fecha_nacimiento" defaultValue={body.fecha_nacimiento} placeholder="Desde DD-MM-AAAA" className="bg-gray-50 border border-gray-300 text-gray-900  rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
+                                    <input {...register('date_nacimiento')} type="date" name="date_nacimiento" id="date_nacimiento" defaultValue={formatDate(body.date_nacimiento)} placeholder="Desde DD-MM-AAAA" className="bg-gray-50 border border-gray-300 text-gray-900  rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
                                 </div>
                                 <div className="mb-4">
                                     <label className="block   text-white">Provincia</label>
@@ -132,7 +194,7 @@ export function ModalForm({ onClose, body }: propForm) {
                                 </div>
                             </ScrollContainer>
                             <div className="  mt-4 flex justify-center">
-                                <button type="submit" className="bg-colorBlue rounded-md mx-2 px-8 py-3 w-full text-center  shadow-xl  flex justify-center items-center text-white" >Enviar</button>
+                                <button type="submit" className="bg-colorRed rounded-md mx-2 px-8 py-3 w-full text-center  shadow-xl  flex justify-center items-center text-white" >Guardar</button>
                             </div>
                         </form>
                     </div>

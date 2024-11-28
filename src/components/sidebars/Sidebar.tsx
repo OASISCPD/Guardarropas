@@ -86,9 +86,7 @@ export const Sidebar: React.FC = () => {
     return (
         <div className="flex relative">
             <aside className="w-64 bg-colorGray shadow-lg fixed  h-screen flex flex-col">{/* fixed */}
-                {/* <div className="p-4 border-b">
-                    <h1 className="text-xl font-bold text-teal-600">Dashboard</h1>
-                </div> */}
+
                 <div className="p-[1dvh] border-b">
                     <img className='w-full h-full object-contain' src={image} alt="IMAGEN SIDEBAR" />
                 </div>
@@ -104,7 +102,6 @@ export const Sidebar: React.FC = () => {
                 {/* AGREGAMOS LA CARD DEL USUARIO EN CUESTION */}
                 <CardUserSidebar />
                 <div className="p-4  absolute bottom-4 left-0 w-full ">
-                    {/*  <h1 className="text-xl  text-center font-bold text-teal-600">Cerrar Sesion</h1> */}
                     <ButtonSingOut />
                 </div>
             </aside>

@@ -22,63 +22,37 @@ export interface ScanerDTO {
     genero: string
 }
 
-
-//function que desgloza el campo de cadena de dni para separar los valores uno por uno para su validacion y demas
-export function stringProccess(string: any) {
-    try {
-        string = string.replaceAll('"', "@");
-        let codigo = string.split("@");
-        if (codigo[2].length === 1) {
-            let fecha = codigo[7]
-                .replaceAll("-", "/")
-                .split("/")
-                .reverse()
-                .join("-");
-            /*   return (codigo[1], codigo[4], codigo[5], codigo[8], fecha); */
-            // Retornamos un objeto con las variables
-            return {
-                dni: codigo[1],
-                lastName: codigo[4],
-                name: codigo[5],
-                gender: codigo[8],
-                date: fecha,
-            };
-        }
-        else {
-            if (codigo[1].length === 1) {
-                let fecha = codigo[10]
-                    .replaceAll("-", "/")
-                    .split("/")
-                    .reverse()
-                    .join("-");
-
-                /*  return (codigo[8], codigo[5], codigo[6], codigo[7], fecha); */
-                return {
-                    dni: codigo[8],
-                    lastName: codigo[5],
-                    name: codigo[6],
-                    gender: codigo[7],
-                    date: fecha,
-                };
-            }
-            else {
-                let fecha = codigo[6]
-                    .replaceAll("-", "/")
-                    .split("/")
-                    .reverse()
-                    .join("-");
-                /*   return (codigo[4], codigo[1], codigo[2], codigo[3], fecha); */
-                return {
-                    dni: codigo[4],
-                    lastName: codigo[1],
-                    name: codigo[2],
-                    gender: codigo[3],
-                    date: fecha,
-                };
-            }
-        }
-    } catch (error) {
-        console.error(error)
-        return null
-    }
+export interface GetClientDTO {
+    id_cliente: number;
+    id_usuario: number;
+    nombre: string;
+    apellido: string;
+    tipo_documento: string;
+    n_documento: string;
+    genero: string;
+    date_nacimiento: string; // Se puede mantener como string o convertirlo a Date si prefieres manipular las fechas de manera más específica
+    celular: string;
+    direccion: string;
+    localidad: string;
+    provincia: string;
+    estado: string; // Puede ser un valor como 'A' para activo
+    fecha_creacion: string; // Fecha en formato string o Date si prefieres un tipo Date
+    fecha_actualizacion: string; // Igual que `fecha_creacion`
 }
+
+//DTO PARA EL ENVIO DE LA DATA EN MI UPDATE CLIENT
+export interface ClientDataUpdateDTO {
+    id_cliente: number;
+    n_documento: string;
+    tipo_documento: string;
+    nombre: string;
+    apellido: string;
+    celular: string;
+    fecha_nacimiento: string;
+    genero: string;
+    provincia: string;
+    localidad: string;
+    direccion: string;
+}
+
+

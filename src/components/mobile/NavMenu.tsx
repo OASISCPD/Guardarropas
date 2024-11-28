@@ -64,7 +64,7 @@ const NavItem: React.FC<NavItemProps> = ({ title, icon, route }) => {
                 className={`flex items-center p-2 space-y-1 hover:bg-sideBarBackgroundRed ${selectedLink === route ? "bg-onClickBGSideBar bg-opacity-45" : ""} cursor-pointer`}
                 onClick={() => { navigate(route), setSelectedLink(route) }} // Cambia esta línea si usas otra solución de enrutamiento
             >
-                <div className={` mr-2 ${selectedLink === route ? "text-colorOragen" : "text-colorOragen"}`}>
+                <div className={` mr-2 ${selectedLink === route ? "text-colorOrange" : "text-colorOrange"}`}>
                     {icon} {/* Aquí aplica el color condicional */}
                 </div>
                 <span className="ml-2 text-sm sm:text-xl lg:text-xs xl:text-sm 2xl:text-base">{title}</span>
