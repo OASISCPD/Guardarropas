@@ -32,9 +32,9 @@ export function CardSearch({ setUserSelect }: propCard) {
     };
 
     //function que guarda el valor selecciono
-    function getClient(dni: number | string, lastName: string, name: string, phone: string | number) {
+    function getClient(dni: number | string, lastName: string, name: string, phone: string | number, id_cliente: number,id_usuario:number) {
         console.log(dni, lastName, name, phone)
-        setUserSelect({ client: lastName + name, dni: dni, phone: phone })
+        setUserSelect({ client: lastName + name, dni: dni, phone: phone, id_cliente: id_cliente ,id_usuario:id_usuario})
         setDniValue('')
         setValue('dni', '')
         setScanValue('')

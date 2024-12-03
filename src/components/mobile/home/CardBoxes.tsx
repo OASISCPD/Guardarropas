@@ -7,11 +7,20 @@ import { getPlacesClass } from "../../../logic/places";
 import { LuLoader2 } from "react-icons/lu";
 import { toast } from "react-toastify";
 import { Modal } from "../../logic/Modal";
-import { ModalBoxes } from "../../mod/ModalBoxesForm";
+import { ModalBoxes, transformDataStorage } from "../../mod/ModalBoxesForm";
 import { TypeModal } from "../../../types/modal";
+import { FaTrash } from "react-icons/fa";
+import { typeStorage } from "./HomeMobile";
 
 
-export function CardBoxes() {
+interface CardBoxesProps {
+    setDataBox: React.Dispatch<React.SetStateAction<typeStorage[]>>;
+
+}
+
+export function CardBoxes({ setDataBox }: CardBoxesProps) {
+    //constate que almacena la data del box que se agrego
+    const [arrayDataBox, setArrayDataBox] = useState<transformDataStorage[]>()
     //booleano
     const [isOpen, setIsOpen] = useState<boolean>(false)
     //constante que almacena la data de los boxes
@@ -38,7 +47,7 @@ export function CardBoxes() {
     }
 
     //function que valida el estado del box para ver si abir o no el modal
-    function openModal(id: number, state: string) {
+    function openModal(id: number, state: string, index: number) {
         /* toast(`${id} estado: ${state}`) */
         if (state.toUpperCase() === "OCUPADO") {
             toast.error(`Box ${state}, retirar el registro para utilizar este BOX `)
@@ -48,7 +57,7 @@ export function CardBoxes() {
             toast.warning(`Box ${state}, Pasar el registro a OLVIDADO para utilizar este BOX `)
             return
         }
-        setModal({ id: id, state: true })
+        setModal({ id: id, state: true, id_front: index })
 
     }
     function closeModal() {
@@ -56,6 +65,27 @@ export function CardBoxes() {
             id: 0, state: false
         })
     }
+    //funtion qu eme printea los valores que creo el formulario
+    function transformDataToBox(data: transformDataStorage[]) {
+        console.log("DATA A ENVIAR DESDE EL FORMULARIO", data)
+        /*   setArrayDataBox(data)
+          setDataBox(data) */
+        setArrayDataBox((prevData = []) => [...prevData, ...data]);
+        setDataBox((prevData = []) => [...prevData, ...data])
+        setModal({ id: 0, state: false, id_front: 0 })
+    }
+
+    // Función para eliminar un elemento por su índice
+    const deleteByIndex = (indexToDelete: number) => {
+        if (!arrayDataBox) {
+            console.log('No hay Data')
+            return
+        }
+        const updatedArray = arrayDataBox.filter((_, index) => index !== indexToDelete);
+        setArrayDataBox(updatedArray);
+        setDataBox(updatedArray)
+    };
+
     useEffect(() => {
         getData()
     }, [])
@@ -96,7 +126,7 @@ export function CardBoxes() {
                         <div className="grid grid-cols-6 gap-2 pt-4 ">
                             {boxs.map((box, i) => (
                                 <button
-                                    onClick={() => openModal(box.id_lugar, box.estado)}
+                                    onClick={() => openModal(box.id_lugar, box.estado, (i + 1))}
                                     key={box.id_lugar}
                                     className={`${getPlacesClass(box.estado)}  aspect-square  rounded flex items-center justify-center text-lg   transition-colors`}
                                 >
@@ -108,16 +138,21 @@ export function CardBoxes() {
                 )
                 }
             </div >
-            {/* <div className="p-4  ">
-                <div className="border rounded-sm border-colorWhiteShadow border-opacity-50  flex items-center justify-center  gap-4">
-                    <h1>BOX: 22 </h1>
-                    <h1 >MOCHILA</h1>
-                    <FaTrash />
+            {arrayDataBox && (
+                <div className="p-4 ">
+                    {arrayDataBox.map((data, index) => (
+                        <div key={index} className="border text-sm my-2 rounded-sm border-colorWhiteShadow border-opacity-50  flex items-center justify-around  gap-4">
+                            <h1>BOX: {data.id_front} </h1>
+                            <h1 >{data.prenda}</h1>
+                            <FaTrash onClick={() => deleteByIndex(index)} className="cursor-pointer text-colorRed hover:text-red-600" />
+                        </div>
+                    ))
+                    }
                 </div>
-            </div> */}
+            )}
             {modal && modal.state && (
                 <Modal isOpen={true} onClose={closeModal}>
-                    <ModalBoxes id={modal.id} onClose={closeModal} />
+                    <ModalBoxes index={modal.id_front} onSuccess={transformDataToBox} id={modal.id} onClose={closeModal} />
                 </Modal>
             )}
         </div >

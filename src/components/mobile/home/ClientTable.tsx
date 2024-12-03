@@ -9,7 +9,7 @@ import { BaseUrl } from "../../../logic/api";
 
 
 interface propTable {
-    clickClient: (dni: number | string, lastName: string, name: string, phone: string | number) => void
+    clickClient: (dni: number | string, lastName: string, name: string, phone: string | number, id_cliente: number, id_usuario: number) => void
     body: ScanerDTO
 }
 export function ClientTable({ clickClient, body }: propTable) {
@@ -151,7 +151,7 @@ export function ClientTable({ clickClient, body }: propTable) {
                                 </thead >
                                 <tbody>
                                     {clients?.map((client, index) => (
-                                        <tr onClick={() => clickClient(client.n_documento, client.apellido, client.nombre, client.celular)}
+                                        <tr onClick={() => clickClient(client.n_documento, client.apellido, client.nombre, client.celular, client.id_cliente, client.id_usuario)}
                                             key={index}
                                             className="bg-zinc-100 border-b cursor-pointer border-blue-500 hover:bg-zinc-200"
                                         >

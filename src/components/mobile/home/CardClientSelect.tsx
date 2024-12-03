@@ -10,8 +10,9 @@ interface propCard {
 export function CardClientSelect({ dni, name, phone, setUserSelect }: propCard) {
 
     function deleteUser() {
-        setUserSelect({ client: '', dni: '', phone: '' })
+        setUserSelect({ client: '', dni: '', phone: '', id_cliente: 0, id_usuario: 0 })
     }
+    
     return (
         <div className="p-4">
             <div className=" bg-colorGray rounded-md  p-4 text-xs ">

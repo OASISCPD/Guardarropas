@@ -8,6 +8,8 @@ import { HistoryMobile } from "./components/mobile/history/HistoryMobile";
 import { HomeMobile } from "./components/mobile/home/HomeMobile";
 import { ClientsMobile } from "./components/mobile/clients/ClientsMobile";
 import { NewsMobile } from "./components/mobile/news/NewsMobile";
+import { ObjectsLost } from "./components/mobile/lost/ObjectsLost";
+import { ObjectsForgotten } from "./components/mobile/forgotten/ObjectsForgotten";
 function App() {
 
   return (
@@ -27,6 +29,8 @@ function App() {
               element={<RedirectScreen MobileComponent={ClientsMobile} TabletComponent={ClientsMobile} DesktopComponent={ClientsMobile} />} />
             <Route path="/novedades"
               element={<RedirectScreen MobileComponent={NewsMobile} TabletComponent={NewsMobile} DesktopComponent={NewsMobile} />} />
+            <Route path="/objetos_perdidos" element={<RedirectScreen MobileComponent={ObjectsLost} TabletComponent={ObjectsLost} DesktopComponent={ObjectsLost} />} />
+            <Route path="/objetos_olvidados" element={<RedirectScreen MobileComponent={ObjectsForgotten} TabletComponent={ObjectsForgotten} DesktopComponent={ObjectsForgotten} />} />
           </Routes>
         </Router>
       </SideBarContex>

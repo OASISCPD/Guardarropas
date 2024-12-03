@@ -3,92 +3,57 @@ import { ScrollContainer } from "../../logic/ScrollContainer"
 import { BsUpcScan } from "react-icons/bs"
 import { FaSearch } from "react-icons/fa"
 import { GetRegisterDTO } from "../../../types/registers"
+import { useEffect, useState } from "react"
+import { getRegisters } from "../../../logic/register"
+import { sendDataClient } from "../../../types/client"
+import { stringProccess } from "../../../logic/clients"
 
 
 
 export default function Registers() {
-    const register: GetRegisterDTO[] = [
-        {
-            id_registro: 38106,
-            datetime_ingreso: "26/11/2024 08:52:01",
-            datetime_egreso: null,
-            n_documento: "F4090821",
-            apellido_nombre: "FISTER, BLANCA ZULEMA",
-            lugares_ocupados: "paraguas 30",
-        },
-        {
-            id_registro: 38107,
-            datetime_ingreso: "26/11/2024 09:10:45",
-            datetime_egreso: null,
-            n_documento: "G5012391",
-            apellido_nombre: "PEREZ, JUAN CARLOS",
-            lugares_ocupados: "sala 2",
-        },
-        {
-            id_registro: 38108,
-            datetime_ingreso: "26/11/2024 09:45:30",
-            datetime_egreso: null,
-            n_documento: "H3049182",
-            apellido_nombre: "GOMEZ, ANA MARIA",
-            lugares_ocupados: "paraguas 15",
-        },
-        {
-            id_registro: 38109,
-            datetime_ingreso: "26/11/2024 10:12:20",
-            datetime_egreso: null,
-            n_documento: "J6038491",
-            apellido_nombre: "LOPEZ, CARLOS",
-            lugares_ocupados: "vestuario A",
-        },
-        {
-            id_registro: 38110,
-            datetime_ingreso: "26/11/2024 10:35:45",
-            datetime_egreso: null,
-            n_documento: "K2018394",
-            apellido_nombre: "MARTINEZ, ELENA",
-            lugares_ocupados: "casillero 3",
-        },
-        {
-            id_registro: 38111,
-            datetime_ingreso: "26/11/2024 11:00:00",
-            datetime_egreso: null,
-            n_documento: "L9052817",
-            apellido_nombre: "RODRIGUEZ, MIGUEL",
-            lugares_ocupados: "paraguas 5",
-        },
-        {
-            id_registro: 38112,
-            datetime_ingreso: "26/11/2024 11:25:18",
-            datetime_egreso: null,
-            n_documento: "M8392054",
-            apellido_nombre: "FERNANDEZ, LUIS",
-            lugares_ocupados: "sala 1",
-        },
-        {
-            id_registro: 38113,
-            datetime_ingreso: "26/11/2024 11:50:00",
-            datetime_egreso: null,
-            n_documento: "N5038291",
-            apellido_nombre: "TORRES, JULIA",
-            lugares_ocupados: "sala 3",
-        },
-        {
-            id_registro: 38114,
-            datetime_ingreso: "26/11/2024 12:10:33",
-            datetime_egreso: null,
-            n_documento: "P4075821",
-            apellido_nombre: "SANCHEZ, PEDRO",
-            lugares_ocupados: "casillero 1",
-        },
-        {
-            id_registro: 38115,
-            datetime_ingreso: "26/11/2024 12:30:15",
-            datetime_egreso: null,
-            n_documento: "Q5019283",
-            apellido_nombre: "RAMIREZ, MARIA",
-            lugares_ocupados: "vestuario B",
-        },
-    ]
+    const [dni, setDni] = useState<string | number>('')
+
+    //constante que almacena los valores de la ruta traer_registros
+    const [registers, setRegisters] = useState<GetRegisterDTO[]>()
+
+    async function getData() {
+        const data = await getRegisters();
+        if (!data) {
+            setRegisters([])
+            return
+        }
+        setRegisters(data)
+    }
+
+    function handleScanChange(e: React.ChangeEvent<HTMLInputElement>) {
+        console.log(e.target.value)
+        //llamamos a la funcion que retorna el value de la cadena del dni 
+        const data: sendDataClient | null = stringProccess(e.target.value)
+        if (!data) {
+            setDni('')
+            return
+        }
+        setDni(data.dni)
+        console.log(data)
+    }
+
+    function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+        const trimmedValue = e.target.value.trim(); // Elimina espacios innecesarios
+        console.log('DNI CAMPO DEL INPUT:', trimmedValue);
+        // Actualiza siempre el estado, incluso si está vacío
+        setDni(trimmedValue);
+
+        // Opcional: Mensaje para depuración
+        if (trimmedValue === "") {
+            console.log("DNI VACÍO desde el padre.");
+            setDni('')
+        }
+    }
+
+
+    useEffect(() => {
+        getData()
+    }, [])
 
     return (
         <div className="mt-4  text-xs sm:text-sm">
@@ -102,7 +67,10 @@ export default function Registers() {
 
                     <div className="flex relative">
                         <input
+                            onChange={handleScanChange}
                             type="text"
+                            id="scan"
+                            name="scan"
                             placeholder="Escanear DNI"
                             className="w-full px-4 py-2 placeholder:text-white  rounded-md flex items-center gap-2 bg-colorBlue "
                         />
@@ -110,6 +78,10 @@ export default function Registers() {
                     </div>
                     <div className="flex relative">
                         <input
+                            onChange={handleInputChange}
+                            value={dni}
+                            id="dni"
+                            name="dni"
                             type="text"
                             placeholder="Buscar DNI"
                             className="w-full px-4 py-2 rounded-md flex items-center gap-2 bg-white text-gray-900 "
@@ -136,47 +108,55 @@ export default function Registers() {
                                 <td className="py-4 px-4 whitespace-nowrap"></td>
                             </tr>
                         </thead>
-                        {register.map((register) => (
-                            <tbody
-                                key={register.id_registro}
-                                className="bg-colorGray rounded-md text-xs"
-                            >
-                                <tr>
-                                    <td className="py-2 px-4">{register.id_registro}</td>
-                                    <td className="py-2 px-4">
-                                        {register.datetime_ingreso}
-                                    </td>
-                                    <td className="py-2 px-4">{register.n_documento}</td>
-                                    <td className="py-2 px-4">
-                                        {register.apellido_nombre}
-                                    </td>
-                                    <td className="py-2 px-4 uppercase">
-                                        {register.lugares_ocupados}
-                                    </td>
-                                    <td className="py-2 px-4 flex">
-                                        <button
-                                            /*  onClick={() => openModal(registro.id_registro)} */
-                                            className="bg-colorBlue hover:bg-blue-800 hover:scale-105 duration-300 text-white px-6 py-1 rounded-md"
-                                        >
-                                            EDITAR
-                                        </button>
-                                        <button
+                        {registers && registers.length > 0 ? (
+                            registers.map((register) => (
+                                <tbody
+                                    key={register.id_registro}
+                                    className="bg-colorGray rounded-md text-xs"
+                                >
+                                    <tr>
+                                        <td className="py-2 px-4">{register.id_registro}</td>
+                                        <td className="py-2 px-4">
+                                            {register.datetime_ingreso}
+                                        </td>
+                                        <td className="py-2 px-4">{register.n_documento}</td>
+                                        <td className="py-2 px-4">
+                                            {register.apellido_nombre}
+                                        </td>
+                                        <td className="py-2 px-4 uppercase">
+                                            {register.lugares_ocupados}
+                                        </td>
+                                        <td className="py-2 px-4 flex">
+                                            <button
+                                                /*  onClick={() => openModal(registro.id_registro)} */
+                                                className="bg-colorBlue hover:bg-blue-800 hover:scale-105 duration-300 text-white px-6 py-1 rounded-md"
+                                            >
+                                                EDITAR
+                                            </button>
+                                            <button
 
-                                            className="bg-colorRed hover:bg-red-600 hover:scale-105 duration-300 text-white px-6 py-1 rounded-md mx-2"
-                                        >
-                                            RETIRAR
-                                        </button>
-                                        <button
+                                                className="bg-colorRed hover:bg-red-600 hover:scale-105 duration-300 text-white px-6 py-1 rounded-md mx-2"
+                                            >
+                                                RETIRAR
+                                            </button>
+                                            <button
 
-                                            className="bg-colorYellow hover:bg-yellow-600 hover:scale-105 duration-300 text-white px-3 py-1 rounded-md"
-                                        >
-                                            OLVIDADO
-                                        </button>
+                                                className="bg-colorYellow hover:bg-yellow-600 hover:scale-105 duration-300 text-white px-3 py-1 rounded-md"
+                                            >
+                                                OLVIDADO
+                                            </button>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        ))}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            ))
+
+                        ) : (
+                            <div>
+
+                            </div>
+                        )}
+
                     </table>
                 </ScrollContainer>
             </div>
