@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { domain } from "../../config/domain";
 const image = `../images/${domain.toLowerCase()}/logoImprimir.png`;
 

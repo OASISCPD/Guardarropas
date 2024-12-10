@@ -123,7 +123,7 @@ export function ListRegister({ dni }: propList) {
 
                     </table>
                 ) : (
-                    <CardNoData/>
+                    <CardNoData type="history"/>
                 )}
             </div>
             {modal && modal.state && (

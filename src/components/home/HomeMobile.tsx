@@ -13,7 +13,6 @@ import { CardHangers } from './CardHangers'
 import { CardUmbrellas } from './CardUmbrellas'
 import { useMediaQuery } from 'react-responsive'
 import { LoaderRegisterHoverMobile } from '../loaders/LoaderRegister'
-import { FaSlack } from 'react-icons/fa'
 
 export interface typeStorage {
     id_lugar: number

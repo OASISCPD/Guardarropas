@@ -3,11 +3,13 @@ import { getNewsByDate } from "../../logic/news"
 import { GetNewsDTO } from "../../types/news"
 import { ScrollContainer } from "../logic/ScrollContainer"
 import { CardLoading } from "./CardLoading"
+import { CardNoData } from "../cards/CardNoData"
 
 interface propComponent {
     date: string
+    boolean: boolean
 }
-export function ListNewsRegister({ date }: propComponent) {
+export function ListNewsRegister({ date, boolean }: propComponent) {
     //loading para mientras busca la data
     const [loading, setLoading] = useState<boolean>(false)
     const [news, setNews] = useState<GetNewsDTO[]>()
@@ -31,6 +33,11 @@ export function ListNewsRegister({ date }: propComponent) {
     useEffect(() => {
         getData(date)
     }, [date])
+
+    useEffect(() => {
+        console.log(boolean)
+        getData('')
+    }, [boolean])
 
     return (
         <div className="text-xs">
@@ -61,20 +68,7 @@ export function ListNewsRegister({ date }: propComponent) {
                             </div>
                         ))
                     ) : (
-                        <div className="p-4 my-2 bg-colorGray rounded-md shadow-sm flex flex-col items-center justify-center">
-                            <h1 className="text-lg text-colorRed">Sin datos disponibles</h1>
-                            <p className="text-white mt-2">No se encontraron novedades para la fecha seleccionada.</p>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth="1.5"
-                                stroke="currentColor"
-                                className="w-12 h-12 text-white mt-4"
-                            >
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3m0 3h.01M21 12c0 4.97-4.03 9-9 9S3 16.97 3 12 7.03 3 12 3s9 4.03 9 9z" />
-                            </svg>
-                        </div>
+                        <CardNoData  type="news"/>
                     )
                 }
             </ScrollContainer >

@@ -4,8 +4,11 @@ import { FaRegQuestionCircle, FaSearch } from "react-icons/fa";
 import { ListRegisterObjects } from "./ListRegisterObjects";
 import { useEffect, useState } from "react";
 import { ReloadPageButton } from "../buttons/ReloadPage";
+import { useMediaQuery } from "react-responsive";
 
 export function ObjectsLost() {
+    //resolution
+    const isDesktop = useMediaQuery({ minWidth: 1024 })
     const [name, setName] = useState<string>('')
     const [filter, setFilter] = useState<boolean>(true)
     function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -26,7 +29,9 @@ export function ObjectsLost() {
 
     return (
         <div>
-            <Navbar />
+            {!isDesktop && (
+                <Navbar />
+            )}
             <div className="p-4 text-xs">
                 {/*  HEADER*/}
                 <div className="flex items-center gap-2 my-2">

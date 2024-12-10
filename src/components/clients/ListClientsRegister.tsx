@@ -201,7 +201,7 @@ export function ListClientsRegister({ dni }: propList) {
                         </table>
                     </ScrollContainer>
                 ) : (
-                    <CardNoData />
+                    <CardNoData type="clients" />
                 )}
 
             {modal && client !== null && (

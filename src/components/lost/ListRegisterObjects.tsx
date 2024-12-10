@@ -125,7 +125,7 @@ export function ListRegisterObjects({ name, state }: propList) {
 
                     </table>
                 ) : (
-                    <CardNoData />
+                    <CardNoData type="lost"/>
                 )
                 }
             </div>

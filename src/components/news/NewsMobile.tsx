@@ -4,23 +4,31 @@ import { ListNewsRegister } from "./ListNewsRegister";
 import { useState } from "react";
 import { ButtonAddNew } from "./ButtonAddNew";
 import { ReloadPageButton } from "../buttons/ReloadPage";
+import { useMediaQuery } from "react-responsive";
 
 export function NewsMobile() {
-
+    //resolution
+    const isDesktop = useMediaQuery({ minWidth: 1024 })
+    //booleano que maneja el fetch en caso de que se agrege un mensaje nuevo par que actualize el array
+    const [booleanFetch, setBooleanFetch] = useState<boolean>(false)
     const [date, setDate] = useState<string>('')
     function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
         setDate(e.target.value) // Elimina espacios innecesarios
     }
 
     function successMsj() {
-        setTimeout(() => {
+        /* setTimeout(() => {
             window.location.reload()
-        }, 2000);
+        }, 2000); */
+        setBooleanFetch(!booleanFetch)
     }
+
     return (
         <div className="">
             {/* NAVBAR */}
-            <Navbar />
+            {!isDesktop && (
+                <Navbar />
+            )}
             <div className="p-4 text-xs">
                 {/*  HEADER*/}
                 <div className="flex items-center gap-2 my-2">
@@ -44,7 +52,7 @@ export function NewsMobile() {
                 </div>
                 <ReloadPageButton />
                 {/* LIST */}
-                <ListNewsRegister date={date} />
+                <ListNewsRegister boolean={booleanFetch} date={date} />
             </div>
         </div>
     )

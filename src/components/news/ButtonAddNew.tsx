@@ -23,7 +23,7 @@ export function ButtonAddNew({ success }: propButton) {
     return (
         <div className="col-span-1 ">
             <button onClick={openModal} className="bg-colorBlue px-8 sm:px-16 py-3  rounded-md">
-                Nueva Novedad
+                Añadir Novedad
             </button>
             {modal && (
                 <Modal isOpen={true} onClose={closeModal}>

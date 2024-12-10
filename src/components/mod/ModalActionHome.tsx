@@ -1,8 +1,8 @@
 import { IoMdClose } from "react-icons/io";
 import { ScrollContainer } from "../logic/ScrollContainer";
 import { useEffect, useState } from "react";
-import { getRegisterById, getRegisterObjectForgottenById } from "../../logic/register";
-import { GetRegisterByIdRegisterDTO, RegisterMovement } from "../../types/registers";
+import { getRegisterById } from "../../logic/register";
+import {  RegisterMovement } from "../../types/registers";
 import { ModalLoadingTemplate } from "../news/CardLoading";
 import { getTextColorForStateForgotten } from "../../logic/colors";
 import { toast } from "react-toastify";

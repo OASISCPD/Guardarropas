@@ -4,8 +4,11 @@ import { FaSearch } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { ListRegisterObjectsForgotten } from "./ListRegisterObjectsForgotten";
 import { ReloadPageButton } from "../buttons/ReloadPage";
+import { useMediaQuery } from "react-responsive";
 
 export function ObjectsForgotten() {
+    //resolution
+    const isDesktop = useMediaQuery({ minWidth: 1024 })
     const [dni, setDni] = useState<string>('')
     const [filter, setFilter] = useState<boolean>(true)
 
@@ -27,7 +30,9 @@ export function ObjectsForgotten() {
 
     return (
         <div>
-            <Navbar />
+            {!isDesktop && (
+                <Navbar />
+            )}
             <div className="p-4 text-xs">
                 {/* HEADER */}
                 <div className="flex items-center gap-2 my-2">

@@ -130,7 +130,7 @@ export function ListRegisterObjectsForgotten({ dni, state }: propList) {
                         </tbody>
                     </table>
                 ) : (
-                    <CardNoData />
+                    <CardNoData type="forgotten" />
                 )
                 }
             </div>
