@@ -30,7 +30,7 @@ export function CardUserSidebar() {
     return (
         <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 bg-colorGrayWhite  text-white text-sm mx-auto  items-center text-center justify-center shadow-sm rounded-md flex flex-col">
             {user ? (
-                <div className="py-2 px-4 text-xs">
+                <div className="py-2 px-4 uppercase bg-colorCardUser/20 rounded-md text-xs">
                     <p>{user.nombre}</p>
                     <p>Legajo: {user.legajo}</p>
                 </div>

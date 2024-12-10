@@ -13,6 +13,8 @@ export function getTextColorForState(estado: string): string {
 
 export function getTextColorForStateForgotten(estado: string) {
     switch (estado) {
+        case 'GUARDADO':
+            return 'text-green-500';
         case 'OLVIDADO':
             return 'text-colorYellow';
         case 'DONADO':

@@ -1,4 +1,3 @@
-import { GiEarrings } from "react-icons/gi";
 import { GetRegisterByIdRegisterDTO, GetRegisterDTO, RegisterHistoricalDTO, RegisterMovement, RegisterObjectForgottenDTO, RegisterObjectLostDTO } from "../types/registers";
 import { BaseUrl } from "./api";
 
@@ -8,6 +7,18 @@ import { BaseUrl } from "./api";
 export async function getRegisters(): Promise<GetRegisterDTO[] | null> {
     try {
         const response = await fetch(`${BaseUrl}/traer_registros`, { credentials: 'include' as RequestCredentials })
+        const data = await response.json()
+        return data
+    } catch (error) {
+        console.error(error)
+        return null
+    }
+}
+
+//function que trae los registros actuales activos en el home dni
+export async function getRegisterByDni(dni: string | number): Promise<GetRegisterDTO[] | null> {
+    try {
+        const response = await fetch(`${BaseUrl}/traer_registro_x_dni?dni=${dni}`, { credentials: 'include' as RequestCredentials })
         const data = await response.json()
         return data
     } catch (error) {
@@ -78,7 +89,6 @@ export async function getRegisterObjectForgottenByName(type: boolean, name: stri
     }
 }
 
-
 //funcion que me trae el registro en particular por id_registro 
 export async function getRegisterById(id_registro: number): Promise<RegisterMovement | null> {
     try {
@@ -102,5 +112,6 @@ export async function getRegisterObjectForgottenById(id: number): Promise<GetReg
         return null
     }
 }
+
 
 

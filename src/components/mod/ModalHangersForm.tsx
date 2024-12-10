@@ -23,8 +23,8 @@ export interface propForm {
     onSuccess: (data: transformDataStorage[]) => void;
 }
 
-export function ModalBoxes({ onClose, onSuccess, id, index }: propForm) {
-    const { register,  handleSubmit, control } = useForm<FormDataDTO>({
+export function ModalHangers({ onClose, onSuccess, id, index }: propForm) {
+    const { register, handleSubmit, control } = useForm<FormDataDTO>({
         defaultValues: { prendas: [{ prenda: "" }] }, // Array inicial con un elemento vacío
     });
 
@@ -88,7 +88,7 @@ export function ModalBoxes({ onClose, onSuccess, id, index }: propForm) {
                         </button>
                     </div>
                     <div className="p-4">
-                        <h1 className="text-center">BOX N° {id}</h1>
+                        <h1 className="text-center uppercase">Percha N° {id}</h1>
                         <form className="text-black text-xs uppercase" onSubmit={handleSubmit(onSubmit)}>
                             <ScrollContainer maxHeight="400px">
                                 {fields.map((field, index) => (
@@ -105,29 +105,20 @@ export function ModalBoxes({ onClose, onSuccess, id, index }: propForm) {
                                             <option value="" disabled>
                                                 ELEGIR UNA OPCIÓN
                                             </option>
-                                            <option value="MOCHILA">MOCHILA</option>
-                                            <option value="CASCO">CASCO</option>
                                             <option value="CAMPERA">CAMPERA</option>
-                                            <option value="BOTELLA">BOTELLA</option>
-                                            <option value="BOLSA">BOLSA</option>
-                                            <option value="BOLSO">BOLSO</option>
-                                            <option value="PARAGUAS CHICO">PARAGUAS CHICO</option>
-                                            <option value="ALIMENTOS">ALIMENTOS</option>
                                             <option value="PARKA O CAMPERÓN">PARKA O CAMPERÓN</option>
                                             <option value="SACO">SACO</option>
                                             <option value="TAPADO">TAPADO</option>
                                             <option value="REMERA">REMERA</option>
                                             <option value="CAMISA">CAMISA</option>
                                             <option value="BUFANDA">BUFANDA</option>
-                                            <option value="GORRO">GORRO</option>
-                                            <option value="SOMBRERO">SOMBRERO</option>
                                             <option value="CHALECO">CHALECO</option>
                                             <option value="OTROS">OTROS</option>
                                         </select>
                                         {/* ACA DEBERIA MOSTRARSE UN INPUT PARA EL VALOR DE OTROS  */}
                                         {isOtherSelected[index] && (
                                             <input
-                                            autoComplete="off"
+                                                autoComplete="off"
                                                 {...register(`prendas.${index}.prenda` as const)}
                                                 placeholder="Ingrese el valor de la prenda/objeto"
                                                 className="my-1 p-2 w-full border rounded-md text-black"

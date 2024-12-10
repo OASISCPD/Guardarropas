@@ -1,0 +1,51 @@
+import { RiErrorWarningLine } from "react-icons/ri";
+import { Navbar } from "../Navbar";
+import { ListNewsRegister } from "./ListNewsRegister";
+import { useState } from "react";
+import { ButtonAddNew } from "./ButtonAddNew";
+import { ReloadPageButton } from "../buttons/ReloadPage";
+
+export function NewsMobile() {
+
+    const [date, setDate] = useState<string>('')
+    function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+        setDate(e.target.value) // Elimina espacios innecesarios
+    }
+
+    function successMsj() {
+        setTimeout(() => {
+            window.location.reload()
+        }, 2000);
+    }
+    return (
+        <div className="">
+            {/* NAVBAR */}
+            <Navbar />
+            <div className="p-4 text-xs">
+                {/*  HEADER*/}
+                <div className="flex items-center gap-2 my-2">
+                    <RiErrorWarningLine className="text-colorOrange" size={20} />
+                    <h1 className="text-xl uppercase tracking-widest">NOVEDADES</h1>
+                </div>
+                {/* SEARCH BY DATE AND LOAD NEW NEWS */}
+                <h1 className="mb-2 text-sm">Buscar por fecha</h1>
+                <div className="grid grid-cols-3 gap-3 mb-4">
+                    <input
+                        autoComplete="off"
+                        id="dni"
+                        name="dni"
+
+                        type="date"
+                        placeholder="Buscar DNI"
+                        className="px-4 col-span-2 lg:col-span-1 py-3 rounded-md flex items-center gap-2 bg-white text-gray-900 "
+                        onChange={handleInputChange}
+                    />
+                    <ButtonAddNew success={successMsj} />
+                </div>
+                <ReloadPageButton />
+                {/* LIST */}
+                <ListNewsRegister date={date} />
+            </div>
+        </div>
+    )
+}

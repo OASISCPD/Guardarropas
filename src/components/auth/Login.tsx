@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react';
+import { FormEvent, useState } from 'react';
 /* import LogoBingo from '../img/LogoLoginNew.png'; */
 import { useNavigate } from 'react-router-dom';
 import { BaseUrl } from '../../logic/api';
@@ -35,7 +35,7 @@ export function Login() {
                 const result = await response.json();
                 console.log(result.message)
                 //aca mandar un message por asi decirlo
-                /* navigate("/home") */
+                navigate("/home")
             } catch (error) {
                 console.error('Error:', error);
             }

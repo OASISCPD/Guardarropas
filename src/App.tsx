@@ -4,14 +4,14 @@ import { SideBarContex } from "./context/SideBarContex";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
 import { RedirectScreen } from "./components/logic/RedirectScreen";
-import { HistoryMobile } from "./components/mobile/history/HistoryMobile";
-import { HomeMobile } from "./components/mobile/home/HomeMobile";
-import { ClientsMobile } from "./components/mobile/clients/ClientsMobile";
-import { NewsMobile } from "./components/mobile/news/NewsMobile";
-import { ObjectsLost } from "./components/mobile/lost/ObjectsLost";
-import { ObjectsForgotten } from "./components/mobile/forgotten/ObjectsForgotten";
+import { HistoryMobile } from "./components/history/HistoryMobile";
+import { HomeMobile } from "./components/home/HomeMobile";
+import { ClientsMobile } from "./components/clients/ClientsMobile";
+import { NewsMobile } from "./components/news/NewsMobile";
+import { ObjectsLost } from "./components/lost/ObjectsLost";
+import { ObjectsForgotten } from "./components/forgotten/ObjectsForgotten";
+import { PrintTicket } from "./components/ticket/PrintTicket";
 function App() {
-
   return (
     <main className="textGothamMedium">
       <ToastContainer />
@@ -31,6 +31,7 @@ function App() {
               element={<RedirectScreen MobileComponent={NewsMobile} TabletComponent={NewsMobile} DesktopComponent={NewsMobile} />} />
             <Route path="/objetos_perdidos" element={<RedirectScreen MobileComponent={ObjectsLost} TabletComponent={ObjectsLost} DesktopComponent={ObjectsLost} />} />
             <Route path="/objetos_olvidados" element={<RedirectScreen MobileComponent={ObjectsForgotten} TabletComponent={ObjectsForgotten} DesktopComponent={ObjectsForgotten} />} />
+            <Route path="/printTicket" element={<PrintTicket />} />
           </Routes>
         </Router>
       </SideBarContex>

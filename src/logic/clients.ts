@@ -31,6 +31,18 @@ export async function getClientsByDni(dni: number | string) {
     }
 }
 
+//get client by id client 
+export async function getClientById(id: number): Promise<GetClientDTO[] | null> {
+    try {
+        const response = await fetch(`${BaseUrl}/traer_cliente_x_id?id=${id}`, { credentials: 'include' as RequestCredentials })
+        const data = await response.json()
+        return data
+    } catch (error) {
+        console.error(error)
+        return null
+    }
+}
+
 //function que me trae los registros de los clientes agregados
 export async function getClientRegister() {
     try {
@@ -114,3 +126,4 @@ export function stringProccess(string: any) {
         return null
     }
 }
+

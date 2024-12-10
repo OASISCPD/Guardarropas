@@ -1,7 +1,5 @@
-import { useForm } from "react-hook-form";
-import { IoMdAddCircle, IoMdClose } from "react-icons/io";
+import { IoMdClose } from "react-icons/io";
 import { ScrollContainer } from "../logic/ScrollContainer";
-import { TiDeleteOutline } from "react-icons/ti";
 import { useEffect, useState } from "react";
 import { getRegisterById } from "../../logic/register";
 import { RegisterMovement } from "../../types/registers";
@@ -19,6 +17,7 @@ export interface propForm {
 export function ModalMovementRegister({ onClose, id }: propForm) {
     //el loading se inizializa en false para que cargue siempre le modal primero caregando y despues printee la data
     const [loading, setLoading] = useState<boolean>(false)
+    console.log(loading)
     //constante q2ue almacena los valores a mostrar
     const [client, setClient] = useState<RegisterMovement>()
     //function que me trae la data del registro en particular

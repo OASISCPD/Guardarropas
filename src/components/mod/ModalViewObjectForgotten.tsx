@@ -1,14 +1,10 @@
-import { useForm } from "react-hook-form";
-import { IoMdAddCircle, IoMdClose } from "react-icons/io";
+import { IoMdClose } from "react-icons/io";
 import { ScrollContainer } from "../logic/ScrollContainer";
-import { TiDeleteOutline } from "react-icons/ti";
 import { useEffect, useState } from "react";
-import { getRegisterById, getRegisterObjectForgottenById } from "../../logic/register";
-import { GetRegisterByIdRegisterDTO, RegisterMovement } from "../../types/registers";
-import { FaS } from "react-icons/fa6";
-import { CardLoading, ModalLoadingTemplate } from "../mobile/news/CardLoading";
-import { getTextColorForState, getTextColorForStateForgotten } from "../../logic/colors";
-import Registers from "../mobile/home/Registers";
+import { getRegisterObjectForgottenById } from "../../logic/register";
+import { GetRegisterByIdRegisterDTO } from "../../types/registers";
+import { ModalLoadingTemplate } from "../news/CardLoading";
+import { getTextColorForStateForgotten } from "../../logic/colors";
 
 export interface FormDataDTO {
     prenda: string

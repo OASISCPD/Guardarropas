@@ -1,6 +1,5 @@
 // src/components/Sidebar.tsx
 import React from 'react';
-import { FaChevronDown } from 'react-icons/fa';
 // Importando los iconos desde react-icons
 import { GiHanger } from "react-icons/gi";
 import { RiFileHistoryLine, RiErrorWarningLine } from "react-icons/ri";
@@ -10,6 +9,7 @@ import { Link/* , useNavigate */ } from 'react-router-dom';
 import ButtonSingOut from '../buttons/ButtonSingOut';
 import { CardUserSidebar } from '../cards/CardUserSidebar';
 import { domain } from '../../config/domain';
+import { ScrollContainer } from '../logic/ScrollContainer';
 const image = `/images/${domain.toLowerCase()}/logoSideBar.png`
 
 interface NavItemProps {
@@ -19,7 +19,7 @@ interface NavItemProps {
     route: string
 }
 
-const NavItem: React.FC<NavItemProps> = ({ title, icon, children, route }) => {
+const NavItem: React.FC<NavItemProps> = ({ title, icon, route }) => {
     /*  const [isOpen, setIsOpen] = useState(false); */
     /* const navigate = useNavigate() */
     return (
@@ -60,7 +60,7 @@ const links: LinksDTO[] = [
         title: "Historial",
     },
     {
-        path: "/amb_clientes",
+        path: "/abm_clientes",
         icon: <FaRegUser />,
         title: "ABM Clientes",
     },
@@ -84,13 +84,13 @@ const links: LinksDTO[] = [
 //constante que almacena los links en la app
 export const Sidebar: React.FC = () => {
     return (
-        <div className="flex relative">
-            <aside className="w-64 bg-colorGray shadow-lg fixed  h-screen flex flex-col">{/* fixed */}
+        <aside className="w-64 bg-colorGray shadow-lg z-50 h-full flex flex-col fixed">{/* fixed */}
 
-                <div className="p-[1dvh] border-b">
-                    <img className='w-full h-full object-contain' src={image} alt="IMAGEN SIDEBAR" />
-                </div>
-                <nav className="p-4">
+            <div className=" border-b">
+                <img className='w-full h-full object-contain' src={image} alt="IMAGEN SIDEBAR" />
+            </div>
+            <nav className="p-4">
+                <ScrollContainer maxHeight='400px'>
                     <ul>
                         {links.map((link) => (
                             <NavItem route={link.path} title={link.title} icon={link.icon}>
@@ -98,14 +98,14 @@ export const Sidebar: React.FC = () => {
                             </NavItem>
                         ))}
                     </ul>
-                </nav>
-                {/* AGREGAMOS LA CARD DEL USUARIO EN CUESTION */}
-                <CardUserSidebar />
-                <div className="p-4  absolute bottom-4 left-0 w-full ">
-                    <ButtonSingOut />
-                </div>
-            </aside>
-        </div >
+                </ScrollContainer>
+            </nav>
+            {/* AGREGAMOS LA CARD DEL USUARIO EN CUESTION */}
+            <CardUserSidebar />
+            <div className="p-4  absolute bottom-4 left-0 w-full ">
+                <ButtonSingOut />
+            </div>
+        </aside>
     );
 };
 

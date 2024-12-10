@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { IoMdClose } from "react-icons/io";
 import { ScrollContainer } from "../logic/ScrollContainer";
 import { formatClientDataUpdate } from "../../logic/clients";
-import { formatDate } from "../../logic/date";
+import { formatDate, isAdult } from "../../logic/date";
 import { useEffect } from "react";
 import { BaseUrl } from "../../logic/api";
 import { toast } from "react-toastify";
@@ -35,6 +35,12 @@ export function ModalEditClient({ success, onClose, body }: propForm) {
     // Función que maneja el envío del formulario
     async function onSubmit(data: GetClientDTO) {
         /*  console.log(data); */ // Aquí se muestra el contenido del formulario cuando se envía
+        const valid = isAdult(data.date_nacimiento)
+        if (!valid) {
+            console.log('NO VALIDO')
+            toast.error('La fecha de nacimiento es erronea, el cliente no puede ser menor de edad')
+            return
+        }
         try {
             // Crear un objeto con los datos del formulario
             const dataFinal: ClientDataUpdateDTO = formatClientDataUpdate(data)
@@ -111,6 +117,7 @@ export function ModalEditClient({ success, onClose, body }: propForm) {
                                         type="text"
                                         autoComplete='off'
                                         name="n_documento"
+                                        required
                                         id='n_documento'
                                         defaultValue={body.n_documento}
                                         className="w-full px-4 py-2 border border-gray-300  rounded-md"
@@ -120,6 +127,7 @@ export function ModalEditClient({ success, onClose, body }: propForm) {
                                     <label className="block   text-white">Nombre</label>
                                     <input
                                         {...register('nombre')}
+                                        required
                                         type="text"
                                         autoComplete='off'
                                         name="nombre"
@@ -132,6 +140,7 @@ export function ModalEditClient({ success, onClose, body }: propForm) {
                                     <label className="block   text-white">Apellido</label>
                                     <input
                                         {...register('apellido')}
+                                        required
                                         type="text"
                                         autoComplete='off'
                                         name="apellido"

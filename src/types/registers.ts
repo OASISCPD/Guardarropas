@@ -22,8 +22,9 @@ export interface RegisterObjectLostDTO {
     detalle: string; // Detalle de los anteojos, en este caso "anteojos sin marcos de aumento con patitas de fierrito y mitad goma"
     estado: string; // El estado de los objetos, en este caso "ACTIVO"
     fecha_hora_encuentro: string; // Fecha y hora del encuentro en formato ISO 8601
+    id_cliente: number
     id_objeto_perdido: number; // ID único del objeto perdido
-    lugar_de_encuentro: string; // El lugar donde se encontró el objeto, en este caso "SALA 3"
+    lugars_de_encuentro: string; // El lugar donde se encontró el objeto, en este caso "SALA 3"
     marca: string; // Marca de los anteojos, en este caso "OTRO"
     persona_que_encontro: string; // Persona que encontró el objeto, en este caso "limpieza"
     sector: string; // El sector donde se encontró el objeto, en este caso "ATC"
@@ -39,7 +40,6 @@ export interface RegisterObjectForgottenDTO {
     n_documento: string
     usuario: string
 }
-
 
 // Define the DTO for the "Prenda"
 interface Garment {

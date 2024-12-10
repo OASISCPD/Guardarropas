@@ -2,7 +2,6 @@ import { IoMdClose } from "react-icons/io";
 import { ScrollContainer } from "../logic/ScrollContainer";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
-import { getUserSession } from "../../logic/user";
 import { LoaderRegisterHoverMobile } from "../loaders/LoaderRegister";
 import { toast } from "react-toastify";
 import { ObjectSendDTO } from "../../types/object";
@@ -13,7 +12,7 @@ interface propModal {
     success: () => void
 }
 
-export function ModalAddObjectLost({ onClose, success }: propModal) {
+export function ModalAddObjectLost({ onClose }: propModal) {
     ///loading al mandar el mensaje al fetch
     const [loading, setLoading] = useState<boolean>(false)
     const { register, setValue, handleSubmit, watch, getValues } = useForm<ObjectSendDTO>()
@@ -58,16 +57,7 @@ export function ModalAddObjectLost({ onClose, success }: propModal) {
       console.error('Error:', error);
       swal("ERROR AL CARGAR EL FORMULARIO", "Por favor vuelva a cargarlo", "error")
     } */
-            const objetoEjemplo = {
-                marca: "TESTEO LOREM",
-                color: "AZUL",
-                detalle: "SUBE PARAGUAYA",
-                fecha_hora_encuentro: "2024-12-02T12:33",
-                lugar_de_encuentro: "BAÑO FEMENINO",
-                persona_que_encontro: "PEPE EL ESCAMOSO 2",
-                sector: "MANTENIMIENTO",
-                tipo_objeto: "SUBE"
-            };
+
 
             /* toast.success('Nueva novedad agregada')
             success() */
@@ -82,8 +72,8 @@ export function ModalAddObjectLost({ onClose, success }: propModal) {
     function onChangeColor(color: string) {
         // Ahora se pasa el nombre del color al setValue
         setValue('color', color);
-        let colorName = '';
-
+        var colorName = '';
+        console.log(colorName)
         switch (color) {
             case '#ff0000':
                 colorName = 'ROJO';

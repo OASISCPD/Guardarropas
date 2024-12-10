@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { BaseUrl } from "../logic/api";
 
 
-export function IsAuthLogin({ children, route }: any) {
+export function IsAuthLogin({ children }: any) {
     const navigate = useNavigate();
 
     useEffect(() => {
