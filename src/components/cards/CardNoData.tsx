@@ -8,7 +8,8 @@ export function CardNoData({ type }: CardNoDataProps) {
         lost: 'objetos perdidos',
         forgotten: 'objetos olvidados',
         history: 'registros históricos',
-        clients: 'clientes'
+        clients: 'clientes',
+        home: 'registros por el momento'
     }
 
     //obtenemos el texto basado en el tipo; si no esta definido usamos un valor por defecto

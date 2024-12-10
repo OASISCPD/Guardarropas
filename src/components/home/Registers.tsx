@@ -210,7 +210,7 @@ export default function Registers() {
                             </tbody>
                         </table>
                     ) : (
-                        <CardNoData />
+                        <CardNoData type="home" />
                     )}
                 </ScrollContainer>
             </div>
