@@ -17,3 +17,9 @@ export interface typeModalHome {
     id: number
     state: boolean
 }
+//dto para el tipo de modal de objetos olvidados para pasar uno unico por prenda el estado
+export interface typeModalGarmentChangedState {
+    id_register: number
+    state: boolean
+    id_garment: number
+}

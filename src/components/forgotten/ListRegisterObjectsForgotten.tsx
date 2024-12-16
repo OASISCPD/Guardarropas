@@ -7,6 +7,7 @@ import { getTextColorForStateForgotten } from "../../logic/colors";
 import { Modal } from "../logic/Modal";
 import { ModalViewObjectForgotten } from "../mod/ModalViewObjectForgotten";
 import { CardNoData } from "../cards/CardNoData";
+import { ModalChangedStateObjectForgotten } from "../mod/ModalChangedStateObjectForgotten";
 
 interface propList {
     dni: string
@@ -121,7 +122,7 @@ export function ListRegisterObjectsForgotten({ dni, state }: propList) {
                                     <td className="py-2 px-4 ">
                                         {register.usuario}
                                     </td>
-                                    <td className="py-2 px-4 text-green-500" onClick={() => openModalView(register.id_registro_olvidado)}>Ver</td>
+                                    <td className="py-2 px-4 text-green-500 cursor-pointer" onClick={() => openModalView(register.id_registro_olvidado)}>Ver</td>
                                     <td className="py-2 px-4">
                                         <button onClick={() => openModal(register.id_registro_olvidado, register.estado_registro)} className={`${getTextColorForStateForgotten(register.estado_registro)}  cursor-pointer `}>{register.estado_registro}</button>
                                     </td>
@@ -137,6 +138,11 @@ export function ListRegisterObjectsForgotten({ dni, state }: propList) {
             {modalView && modalView.state && (
                 <Modal isOpen={true} onClose={closeModal}>
                     <ModalViewObjectForgotten onClose={closeModal} id={modalView.id} />
+                </Modal>
+            )}
+            {modal && modal.state && (
+                <Modal isOpen={true} onClose={closeModal}>
+                    <ModalChangedStateObjectForgotten state={modal.stateObject} success={() => { closeModal(), getData('') }} onClose={closeModal} id={modal.id} />
                 </Modal>
             )}
         </div>

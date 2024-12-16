@@ -60,8 +60,8 @@ export function CardBoxes({ setDataBox }: CardBoxesProps) {
             return
         }
         setModal({ id: id, state: true, id_front: index })
-
     }
+
     function closeModal() {
         setModal({
             id: 0, state: false
@@ -103,7 +103,6 @@ export function CardBoxes({ setDataBox }: CardBoxesProps) {
                     <h2 className="text-lg mx-2 tracking-widest"> BOXES</h2>
                 </div>
                 {!isOpen ? (
-
                     <IoIosArrowDown className="cursor-pointer" onClick={() => setIsOpen(!isOpen)} size={32} />
                 ) : (
                     <IoIosArrowUp className="cursor-pointer" onClick={() => setIsOpen(!isOpen)} size={32} />
@@ -128,7 +127,7 @@ export function CardBoxes({ setDataBox }: CardBoxesProps) {
                     </ScrollContainer>
                 ) : (
                     <ScrollContainer maxHeight="400px">
-                        <div className="grid grid-cols-6 sm:grid-cols-12 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-12 gap-2 pt-4">
+                        <div className="grid grid-cols-6 sm:grid-cols-12 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-12 gap-2 pt-4 lg:overflow-x-hidden">
                             {boxs.map((box, i) => (
                                 <button
                                     onClick={() => openModal(box.id_lugar, box.estado, (i + 1))}

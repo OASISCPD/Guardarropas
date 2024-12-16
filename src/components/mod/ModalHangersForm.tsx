@@ -133,12 +133,12 @@ export function ModalHangers({ onClose, onSuccess, id, index }: propForm) {
                                         )}
                                     </div>
                                 ))}
-                                <IoMdAddCircle
-                                    onClick={() => append({ prenda: "" })}
-                                    className="text-zinc-200 cursor-pointer hover:text-green-500"
-                                    size={32}
-                                />
                             </ScrollContainer>
+                            <IoMdAddCircle
+                                onClick={() => append({ prenda: "" })}
+                                className="text-zinc-200 cursor-pointer mt-2 hover:text-green-500"
+                                size={32}
+                            />
                             <div className="  mt-4 flex justify-center">
                                 <button
                                     type="submit"

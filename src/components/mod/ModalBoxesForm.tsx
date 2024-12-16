@@ -24,7 +24,7 @@ export interface propForm {
 }
 
 export function ModalBoxes({ onClose, onSuccess, id, index }: propForm) {
-    const { register,  handleSubmit, control } = useForm<FormDataDTO>({
+    const { register, handleSubmit, control } = useForm<FormDataDTO>({
         defaultValues: { prendas: [{ prenda: "" }] }, // Array inicial con un elemento vacío
     });
 
@@ -127,7 +127,7 @@ export function ModalBoxes({ onClose, onSuccess, id, index }: propForm) {
                                         {/* ACA DEBERIA MOSTRARSE UN INPUT PARA EL VALOR DE OTROS  */}
                                         {isOtherSelected[index] && (
                                             <input
-                                            autoComplete="off"
+                                                autoComplete="off"
                                                 {...register(`prendas.${index}.prenda` as const)}
                                                 placeholder="Ingrese el valor de la prenda/objeto"
                                                 className="my-1 p-2 w-full border rounded-md text-black"
@@ -142,12 +142,12 @@ export function ModalBoxes({ onClose, onSuccess, id, index }: propForm) {
                                         )}
                                     </div>
                                 ))}
-                                <IoMdAddCircle
-                                    onClick={() => append({ prenda: "" })}
-                                    className="text-zinc-200 cursor-pointer hover:text-green-500"
-                                    size={32}
-                                />
                             </ScrollContainer>
+                            <IoMdAddCircle
+                                onClick={() => append({ prenda: "" })}
+                                className="text-zinc-200 cursor-pointer mt-2 hover:text-green-500"
+                                size={32}
+                            />
                             <div className="  mt-4 flex justify-center">
                                 <button
                                     type="submit"

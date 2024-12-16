@@ -1,3 +1,6 @@
+import { typeFetch } from "../types/box";
+import { BaseUrl } from "./api";
+
 export function getPlacesClass(state: string): string {
     switch (state.toUpperCase()) {
         case 'LIBRE':
@@ -8,5 +11,16 @@ export function getPlacesClass(state: string): string {
             return 'bg-colorYellow hover:bg-yellow-600';
         default:
             return '';
+    }
+}
+
+
+export async function getPlacesByType({ type }: typeFetch) {
+    try {
+        const response = await fetch(`${BaseUrl}/traer_lugares?tipo=${type}`, { credentials: 'include' as RequestCredentials })
+        const data = await response.json();
+        return data
+    } catch (error) {
+        console.error(error)
     }
 }

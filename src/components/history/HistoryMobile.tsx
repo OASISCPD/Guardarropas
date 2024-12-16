@@ -55,7 +55,7 @@ export function HistoryMobile() {
                             name="scan"
                             type="text"
                             placeholder="Escanear DNI"
-                            className="w-full px-4 py-2 placeholder:text-white  rounded-md flex items-center gap-2 bg-colorBlue "
+                            className="w-full px-4 py-2 lg:py-1 placeholder:text-white  rounded-md flex items-center gap-2 bg-colorBlue "
                             onChange={handleScanChange}
                         />
                         <BsUpcScan size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-white" />
@@ -68,7 +68,7 @@ export function HistoryMobile() {
                             value={dni}
                             type="text"
                             placeholder="Buscar DNI"
-                            className="w-full px-4 py-2 rounded-md flex items-center gap-2 bg-white text-gray-900 "
+                            className="w-full px-4 py-2 lg:py-1 rounded-md flex items-center gap-2 bg-white text-gray-900 "
                             onChange={handleInputChange}
                         />
                         <FaSearch size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500" />

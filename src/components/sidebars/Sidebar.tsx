@@ -20,27 +20,19 @@ interface NavItemProps {
 }
 
 const NavItem: React.FC<NavItemProps> = ({ title, icon, route }) => {
-    /*  const [isOpen, setIsOpen] = useState(false); */
-    /* const navigate = useNavigate() */
     return (
         <li className="relative  border-b">
             <Link to={route}
-                className="flex items-center justify-between p-2 hover:bg-black cursor-pointer"
-            /* onClick={() => navigate({ route })} */
+                className="flex items-center justify-between p-2 hover:bg-black/40 duration-100 cursor-pointer"
             >
                 <div className="flex text-colorOrange items-center">
                     {icon}
                     <span className="ml-2 text-white">{title}</span>
                 </div>
-                {/*    <FaChevronDown className={`transition-transform duration-300 `} /> */}{/* ${isOpen ? 'rotate-180' : ''} */}
             </Link>
-            {/*   <ul className={`ml-4 transition-max-height duration-300 overflow-hidden `}>
-            </ul> */}
         </li>
     );
 };
-
-
 
 interface LinksDTO {
     icon: JSX.Element; // El tipo JSX.Element es adecuado para componentes JSX

@@ -5,6 +5,9 @@ import { getRegisterObjectForgottenById } from "../../logic/register";
 import { GetRegisterByIdRegisterDTO } from "../../types/registers";
 import { ModalLoadingTemplate } from "../news/CardLoading";
 import { getTextColorForStateForgotten } from "../../logic/colors";
+import { typeModalGarmentChangedState } from "../../types/modal";
+import { Modal } from "../logic/Modal";
+import { ModalChangedStateGarment } from "./ModalChangedStateGarment";
 
 export interface FormDataDTO {
     prenda: string
@@ -17,6 +20,8 @@ export interface propForm {
 
 /* traer_registro_x_id?id_registro=1771 */
 export function ModalViewObjectForgotten({ onClose, id }: propForm) {
+    //modal que permite cambiar el estado de las prendas una por una 
+    const [modal, setModal] = useState<typeModalGarmentChangedState>()
     //el loading se inizializa en false para que cargue siempre le modal primero caregando y despues printee la data
     const [loading, setLoading] = useState<boolean>(false)
     //constante q2ue almacena los valores a mostrar
@@ -33,6 +38,16 @@ export function ModalViewObjectForgotten({ onClose, id }: propForm) {
         setClient(data)
         setLoading(false)
     }
+
+    //function que habilita el modal para pasar por unica prena el estado
+    function openModal(id_garment: number) {
+        setModal({ id_garment: id_garment, state: true, id_register: id })
+    }
+    //funcion que cierra el modal
+    function closeModal() {
+        setModal({ id_garment: 0, state: false, id_register: 0 })
+    }
+
     //use effect iniizaliza la funcion que me trae el movimiento del registro de ese id
     useEffect(() => {
         getData()
@@ -76,7 +91,7 @@ export function ModalViewObjectForgotten({ onClose, id }: propForm) {
                                                             <h1 className={`my-1 `}>ESTADO: <span className={`${getTextColorForStateForgotten(garment.estado_prenda)}`}>{garment.estado_prenda}</span></h1>
                                                             <h1 className="my-1">DETALLE: {garment.detalle ? garment.detalle : 'No hay Detalles en esta prenda'}</h1>
                                                             {garment.estado_prenda === 'OLVIDADO' && (
-                                                                <button className="bg-colorRed my-3 w-1/2 flex justify-center items-center text-center py-2 rounded-md mx-auto text-white shadow-xl hover:scale-105 duration-150">EDITAR</button>
+                                                                <button onClick={() => openModal(garment.id_prenda_olvidada)} className="bg-colorBlue my-3 w-1/2 flex justify-center items-center text-center py-2 rounded-md mx-auto text-white shadow-xl hover:scale-105 duration-100">EDITAR</button>
                                                             )}
                                                         </div>
                                                     ))}
@@ -96,6 +111,11 @@ export function ModalViewObjectForgotten({ onClose, id }: propForm) {
                     </div>
                 )}
             </div>
+            {modal && modal.state && (
+                <Modal isOpen={true} onClose={closeModal}>
+                    <ModalChangedStateGarment id_garment={modal.id_garment} id_register={modal.id_register} onClose={closeModal} success={() => { closeModal(), getData() }} />
+                </Modal>
+            )}
         </section>
     )
 }   

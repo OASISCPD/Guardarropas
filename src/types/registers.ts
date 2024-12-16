@@ -24,7 +24,7 @@ export interface RegisterObjectLostDTO {
     fecha_hora_encuentro: string; // Fecha y hora del encuentro en formato ISO 8601
     id_cliente: number
     id_objeto_perdido: number; // ID único del objeto perdido
-    lugars_de_encuentro: string; // El lugar donde se encontró el objeto, en este caso "SALA 3"
+    lugar_de_encuentro: string; // El lugar donde se encontró el objeto, en este caso "SALA 3"
     marca: string; // Marca de los anteojos, en este caso "OTRO"
     persona_que_encontro: string; // Persona que encontró el objeto, en este caso "limpieza"
     sector: string; // El sector donde se encontró el objeto, en este caso "ATC"

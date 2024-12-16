@@ -22,7 +22,7 @@ export function ButtonAddObject({ success }: propButton) {
     }
     return (
         <div className="col-span-1 ">
-            <button onClick={openModal} className="bg-colorBlue px-8 sm:px-16 py-3  rounded-md">
+            <button onClick={openModal} className="bg-colorBlue px-8 sm:px-16 py-2 hover:scale-105 duration-100  rounded-md">
                 Agregar
             </button>
             {modal && (

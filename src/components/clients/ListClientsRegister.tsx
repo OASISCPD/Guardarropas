@@ -188,12 +188,12 @@ export function ListClientsRegister({ dni }: propList) {
                                         <td className="py-2 px-4">
                                             {client.direccion && client.direccion !== undefined && client.direccion.toLowerCase() !== 'undefined' ? client.direccion : <h1 className="text-colorYellow">No hay direccion asociada</h1>}
                                         </td>
-                                        <td className="py-2 px-4 text-colorBlue">
+                                        <td className="py-2 px-4 text-colorBlue    ">
 
-                                            <TbUserEdit onClick={() => openModal(client)} size={25} className=' mx-auto' />
+                                            <TbUserEdit onClick={() => openModal(client)} size={25} className='cursor-pointer mx-auto duration-100 hover:scale-105 hover:text-blue-800 ' />
                                         </td>
-                                        <td className="py-2 px-4 text-colorRed">
-                                            <MdDelete onClick={() => openModalDelete(client.id_cliente)} size={25} className=' mx-auto' />
+                                        <td className="py-2 px-4 text-colorRed ">
+                                            <MdDelete onClick={() => openModalDelete(client.id_cliente)} size={25} className=' cursor-pointer mx-auto duration-100 hover:scale-105 hover:text-red-800' />
                                         </td>
                                     </tr>
                                 ))}

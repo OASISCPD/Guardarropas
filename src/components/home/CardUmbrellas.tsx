@@ -100,9 +100,9 @@ export function CardUmbrellas({ setDataUmbrella }: CardHangersProps) {
                     <h2 className="text-lg mx-2 tracking-widest  "> PARAGUAS</h2>
                 </div>
                 {!isOpen ? (
-                    <IoIosArrowDown onClick={() => setIsOpen(!isOpen)} size={32} />
+                    <IoIosArrowDown className={"cursor-pointer"} onClick={() => setIsOpen(!isOpen)} size={32} />
                 ) : (
-                    <IoIosArrowUp onClick={() => setIsOpen(!isOpen)} size={32} />
+                    <IoIosArrowUp className={"cursor-pointer"} onClick={() => setIsOpen(!isOpen)} size={32} />
                 )}
             </div>
             <div
@@ -124,7 +124,7 @@ export function CardUmbrellas({ setDataUmbrella }: CardHangersProps) {
                     </ScrollContainer>
                 ) : (
                     <ScrollContainer maxHeight="400px">
-                        <div className="grid grid-cols-6 sm:grid-cols-12 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-12 gap-2 pt-4 ">
+                        <div className="grid grid-cols-6 sm:grid-cols-12 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-12 gap-2 pt-4 lg:overflow-x-hidden">
                             {umbrellas.map((umbrella, i) => (
                                 <button
                                     onClick={() => openModal(umbrella.id_lugar, umbrella.estado, (i + 1))}

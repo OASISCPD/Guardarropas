@@ -102,9 +102,9 @@ export function CardHangers({ setDataHanger }: CardHangersProps) {
                 </div>
                 {!isOpen ? (
 
-                    <IoIosArrowDown onClick={() => setIsOpen(!isOpen)} size={32} />
+                    <IoIosArrowDown className="cursor-pointer" onClick={() => setIsOpen(!isOpen)} size={32} />
                 ) : (
-                    <IoIosArrowUp onClick={() => setIsOpen(!isOpen)} size={32} />
+                    <IoIosArrowUp className="cursor-pointer" onClick={() => setIsOpen(!isOpen)} size={32} />
                 )}
             </div>
             <div
@@ -126,7 +126,7 @@ export function CardHangers({ setDataHanger }: CardHangersProps) {
                     </ScrollContainer>
                 ) : (
                     <ScrollContainer maxHeight="400px">
-                        <div className="grid grid-cols-6 sm:grid-cols-12 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-12 gap-2 pt-4">
+                        <div className="grid grid-cols-6 sm:grid-cols-12 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-12 gap-2 pt-4 lg:overflow-x-hidden">
                             {hangers.map((hanger, i) => (
                                 <button
                                     onClick={() => openModal(hanger.id_lugar, hanger.estado, (i + 1))}

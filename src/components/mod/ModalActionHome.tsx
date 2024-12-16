@@ -2,12 +2,15 @@ import { IoMdClose } from "react-icons/io";
 import { ScrollContainer } from "../logic/ScrollContainer";
 import { useEffect, useState } from "react";
 import { getRegisterById } from "../../logic/register";
-import {  RegisterMovement } from "../../types/registers";
+import { RegisterMovement } from "../../types/registers";
 import { ModalLoadingTemplate } from "../news/CardLoading";
 import { getTextColorForStateForgotten } from "../../logic/colors";
 import { toast } from "react-toastify";
 import { BaseUrl } from "../../logic/api";
 import { LoaderRegisterHoverMobile } from "../loaders/LoaderRegister";
+import { Modal } from "../logic/Modal";
+import { ModalConfirm } from "./ModalConfirm";
+import { TypeModal } from "../../types/modal";
 
 export interface FormDataDTO {
     prenda: string
@@ -22,6 +25,8 @@ export interface propForm {
 
 /* traer_registro_x_id?id_registro=1771 */
 export function ModalActionHome({ onClose, id, action, onSuccess }: propForm) {
+    //boleano que maneja el modal de confirmacion
+    const [modal, setModal] = useState<TypeModal>({ id: 0, state: false, id_front: 0 })
     //loading del fetch
     const [loadingFetch, setLoadingFetch] = useState<boolean>(false)
     //input que maneja el estado nuevo para el detalle
@@ -153,6 +158,7 @@ export function ModalActionHome({ onClose, id, action, onSuccess }: propForm) {
             }
             toast.success("Se ha retirado la prenda/objeto con exito")
             getData()
+            closeModal()
             /*  onSuccess() */
         } catch (error) {
             console.error(error)
@@ -161,8 +167,18 @@ export function ModalActionHome({ onClose, id, action, onSuccess }: propForm) {
             setLoadingFetch(false)
         }
     }
+    //funcion que me habilita un modal para la confirmacion del retiro por cada uno de los objetos en  particular para el estado de action que sea edit
+    function openModal(id: number) {
+        setModal({ id: id, state: true })
+    }
+    function closeModal() {
+        setModal({ id: 0, state: false })
+    }
+    async function closeModalSuccess() {
+        await removeGarmentById(modal.id)
 
 
+    }
     //use effect iniizaliza la funcion que me trae el movimiento del registro de ese id
     useEffect(() => {
         getData()
@@ -223,7 +239,7 @@ export function ModalActionHome({ onClose, id, action, onSuccess }: propForm) {
                                                                 <input onChange={handleInputChange} placeholder="Ingresar el detalle del objeto/prenda" className="w-full px-4 py-2 border border-gray-300 text-black  rounded-md" type="text" />
                                                                 <div className="w-full flex items-center ml-auto">
                                                                     <button onClick={() => changedDetailsInGarment(inputValue, garment.id_prenda)} className="bg-colorBlue my-3 w-1/3 flex justify-center items-center text-center py-2 rounded-md ml-auto text-white shadow-xl hover:scale-105 duration-150">Guardar</button>
-                                                                    <button onClick={() => removeGarmentById(garment.id_prenda)} className="bg-colorRed my-3 w-1/3 flex justify-center items-center text-center py-2 rounded-md mx-2 text-white shadow-xl hover:scale-105 duration-150">Retirar</button>
+                                                                    <button onClick={() => openModal(garment.id_prenda)} className="bg-colorRed my-3 w-1/3 flex justify-center items-center text-center py-2 rounded-md mx-2 text-white shadow-xl hover:scale-105 duration-150">Retirar</button>
                                                                 </div>
                                                             </div>
                                                         ))
@@ -249,6 +265,11 @@ export function ModalActionHome({ onClose, id, action, onSuccess }: propForm) {
                     </div>
                 )}
             </div>
+            {modal.state && (
+                <Modal isOpen={true} onClose={closeModal}>
+                    <ModalConfirm onClose={closeModal} onCloseOk={closeModalSuccess} text="" />
+                </Modal>
+            )}
         </section>
     )
 }

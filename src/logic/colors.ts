@@ -18,7 +18,7 @@ export function getTextColorForStateForgotten(estado: string) {
         case 'OLVIDADO':
             return 'text-colorYellow';
         case 'DONADO':
-            return 'text-colorOrange';
+            return 'text-orange-500';
         case "RETIRADO":
             return 'text-colorRed';
         default:

@@ -32,6 +32,7 @@ function App() {
             <Route path="/objetos_perdidos" element={<RedirectScreen MobileComponent={ObjectsLost} TabletComponent={ObjectsLost} DesktopComponent={ObjectsLost} />} />
             <Route path="/objetos_olvidados" element={<RedirectScreen MobileComponent={ObjectsForgotten} TabletComponent={ObjectsForgotten} DesktopComponent={ObjectsForgotten} />} />
             <Route path="/printTicket" element={<PrintTicket />} />
+            <Route path="/test" element={<div>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt, consequuntur, cum atque eos reprehenderit nam necessitatibus numquam assumenda voluptates fuga, culpa laborum autem reiciendis rem voluptas at ducimus sapiente cupiditate.</div>} />
           </Routes>
         </Router>
       </SideBarContex>

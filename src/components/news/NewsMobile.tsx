@@ -45,7 +45,7 @@ export function NewsMobile() {
 
                         type="date"
                         placeholder="Buscar DNI"
-                        className="px-4 col-span-2 lg:col-span-1 py-3 rounded-md flex items-center gap-2 bg-white text-gray-900 "
+                        className="px-4 py-2 lg:py-1 col-span-2 lg:col-span-1  rounded-md flex items-center gap-2 bg-white text-gray-900 "
                         onChange={handleInputChange}
                     />
                     <ButtonAddNew success={successMsj} />

@@ -113,7 +113,7 @@ export function ListRegisterObjects({ name, state }: propList) {
                                     <td className="py-2 px-4">
                                         {register.fecha_hora_encuentro}
                                     </td>
-                                    <td className="py-2 px-4">{register.lugars_de_encuentro}</td>
+                                    <td className="py-2 px-4">{register.lugar_de_encuentro}</td>
                                     <td className="py-2 px-4">{register.persona_que_encontro}</td>
                                     <td className="py-2 px-4">{register.sector}</td>
                                     <td className="py-2 px-4">

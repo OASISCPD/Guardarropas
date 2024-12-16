@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { domain } from "../../config/domain";
+import { BaseUrl } from "../../logic/api";
 const image = `../images/${domain.toLowerCase()}/logoImprimir.png`;
 
 interface getLastRegisterDTO {
@@ -44,7 +45,7 @@ export function PrintTicket() {
     const fetchDataRegister = async () => {
         try {
             const res = await fetch(
-                `http://127.0.0.1:2000/traer_ultimo_registro`,
+                `${BaseUrl}/traer_ultimo_registro`,
                 {
                     credentials: 'include' as RequestCredentials,
                 }
@@ -57,7 +58,7 @@ export function PrintTicket() {
     const fetchData = async (id_registro: number) => {
         try {
             const res: any = await fetch(
-                `http://127.0.0.1:2000/generar_ticket?id_registro=${id_registro}`,
+                `${BaseUrl}/generar_ticket?id_registro=${id_registro}`,
                 {
                     credentials: 'include' as RequestCredentials,
                 }

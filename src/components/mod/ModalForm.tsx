@@ -113,127 +113,129 @@ export function ModalForm({ onClose, body, onSuccess }: propForm) {
                     <div className="p-4">
                         <form className="text-black text-xs uppercase" onSubmit={handleSubmit(onSubmit)}>
                             <ScrollContainer maxHeight="400px">
-                                <div className="mb-4">
-                                    <label className="block   text-white">N° De Documento</label>
-                                    <input
-                                        {...register('n_documento')}
-                                        type="text"
-                                        autoComplete='off'
-                                        name="n_documento"
-                                        id='n_documento'
-                                        required
-                                        defaultValue={body.n_documento}
-                                        className="w-full px-4 py-2 border border-gray-300  rounded-md"
-                                    />
-                                </div>
-                                <div className="mb-4">
-                                    <label className="block text-white">Tipo de Documento</label>
-                                    <select
-                                        {...register('tipo_documento')}
-                                        autoComplete='off'
-                                        name="tipo_documento"
-                                        id='tipo_documento'
-                                        defaultValue={body.tipo_documento || ""}
-                                        className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                                    >
-                                        <option value="" disabled>Elegir Opción</option>
-                                        <option value="DNI">DNI</option>
-                                        <option value="PASAPORTE">PASAPORTE</option>
-                                        <option value="CUIL">CUIL</option>
-                                    </select>
-                                </div>
-                                <div className="mb-4">
-                                    <label className="block   text-white">Nombre</label>
-                                    <input
-                                        {...register('nombre')}
-                                        type="text"
-                                        autoComplete='off'
-                                        name="nombre"
-                                        id='nombre'
-                                        required
-                                        defaultValue={body.nombre}
-                                        className="w-full px-4 py-2 border border-gray-300  rounded-md"
-                                    />
-                                </div>
-                                <div className="mb-4">
-                                    <label className="block   text-white">Apellido</label>
-                                    <input
-                                        {...register('apellido')}
-                                        type="text"
-                                        autoComplete='off'
-                                        name="apellido"
-                                        id='apellido'
-                                        required
-                                        defaultValue={body.apellido}
-                                        className="w-full px-4 py-2 border border-gray-300  rounded-md"
-                                    />
-                                </div>
-                                <div className="mb-4">
-                                    <label className="block mb-2   text-white ">Fecha de nacimiento</label>
-                                    <input {...register('fecha_nacimiento')} type="date" name="fecha_nacimiento" id="fecha_nacimiento" defaultValue={body.fecha_nacimiento} placeholder="Desde DD-MM-AAAA" className="bg-gray-50 border border-gray-300 text-gray-900  rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
-                                </div>
-                                <div className="mb-4">
-                                    <label className="block text-white">Genero</label>
-                                    <select
-                                        {...register('genero')}
-                                        autoComplete='off'
-                                        name="genero"
-                                        id='genero'
-                                        defaultValue={body.genero || ""}
-                                        className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                                    >
-                                        <option value="" disabled>Elegir Opción</option>
-                                        <option value="F">FEMENINO</option>
-                                        <option value="M">MASCULINO</option>
-                                    </select>
-                                </div>
-                                <div className="mb-4">
-                                    <label className="block   text-white">Provincia</label>
-                                    <input
-                                        {...register('provincia')}
-                                        type="text"
-                                        autoComplete='off'
-                                        name="provincia"
-                                        id='provincia'
-                                        defaultValue={body.provincia}
-                                        className="w-full px-4 py-2 border border-gray-300  rounded-md"
-                                    />
-                                </div>
-                                <div className="mb-4">
-                                    <label className="block   text-white">Localidad</label>
-                                    <input
-                                        {...register('localidad')}
-                                        type="text"
-                                        autoComplete='off'
-                                        name="localidad"
-                                        id='localidad'
-                                        defaultValue={body.localidad}
-                                        className="w-full px-4 py-2 border border-gray-300  rounded-md"
-                                    />
-                                </div>
-                                <div className="mb-4">
-                                    <label className="block   text-white">Direccion</label>
-                                    <input
-                                        {...register('direccion')}
-                                        type="text"
-                                        autoComplete='off'
-                                        name="direccion"
-                                        id='direccion'
-                                        defaultValue={body.direccion}
-                                        className="w-full px-4 py-2 border border-gray-300  rounded-md"
-                                    />
-                                </div>
-                                <div className="mb-4">
-                                    <label className="block   text-white">Celular</label>
-                                    <input
-                                        {...register('celular')}
-                                        type="text"
-                                        autoComplete='off'
-                                        name="celular"
-                                        id='celular'
-                                        defaultValue={''}
-                                        className="w-full px-4 py-2 border border-gray-300  rounded-md"
-                                    />
+                                <div className="border border-stone-400 p-4 m-4 rounded-md">
+                                    <div className="mb-4">
+                                        <label className="block   text-white">N° De Documento</label>
+                                        <input
+                                            {...register('n_documento')}
+                                            type="text"
+                                            autoComplete='off'
+                                            name="n_documento"
+                                            id='n_documento'
+                                            required
+                                            defaultValue={body.n_documento}
+                                            className="w-full px-4 py-2 border border-gray-300  rounded-md"
+                                        />
+                                    </div>
+                                    <div className="mb-4">
+                                        <label className="block text-white">Tipo de Documento</label>
+                                        <select
+                                            {...register('tipo_documento')}
+                                            autoComplete='off'
+                                            name="tipo_documento"
+                                            id='tipo_documento'
+                                            defaultValue={body.tipo_documento || ""}
+                                            className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                                        >
+                                            <option value="" disabled>Elegir Opción</option>
+                                            <option value="DNI">DNI</option>
+                                            <option value="PASAPORTE">PASAPORTE</option>
+                                            <option value="CUIL">CUIL</option>
+                                        </select>
+                                    </div>
+                                    <div className="mb-4">
+                                        <label className="block   text-white">Nombre</label>
+                                        <input
+                                            {...register('nombre')}
+                                            type="text"
+                                            autoComplete='off'
+                                            name="nombre"
+                                            id='nombre'
+                                            required
+                                            defaultValue={body.nombre}
+                                            className="w-full px-4 py-2 border border-gray-300  rounded-md"
+                                        />
+                                    </div>
+                                    <div className="mb-4">
+                                        <label className="block   text-white">Apellido</label>
+                                        <input
+                                            {...register('apellido')}
+                                            type="text"
+                                            autoComplete='off'
+                                            name="apellido"
+                                            id='apellido'
+                                            required
+                                            defaultValue={body.apellido}
+                                            className="w-full px-4 py-2 border border-gray-300  rounded-md"
+                                        />
+                                    </div>
+                                    <div className="mb-4">
+                                        <label className="block mb-2   text-white ">Fecha de nacimiento</label>
+                                        <input {...register('fecha_nacimiento')} type="date" name="fecha_nacimiento" id="fecha_nacimiento" defaultValue={body.fecha_nacimiento} placeholder="Desde DD-MM-AAAA" className="bg-gray-50 border border-gray-300 text-gray-900  rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
+                                    </div>
+                                    <div className="mb-4">
+                                        <label className="block text-white">Genero</label>
+                                        <select
+                                            {...register('genero')}
+                                            autoComplete='off'
+                                            name="genero"
+                                            id='genero'
+                                            defaultValue={body.genero || ""}
+                                            className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                                        >
+                                            <option value="" disabled>Elegir Opción</option>
+                                            <option value="F">FEMENINO</option>
+                                            <option value="M">MASCULINO</option>
+                                        </select>
+                                    </div>
+                                    <div className="mb-4">
+                                        <label className="block   text-white">Provincia</label>
+                                        <input
+                                            {...register('provincia')}
+                                            type="text"
+                                            autoComplete='off'
+                                            name="provincia"
+                                            id='provincia'
+                                            defaultValue={body.provincia}
+                                            className="w-full px-4 py-2 border border-gray-300  rounded-md"
+                                        />
+                                    </div>
+                                    <div className="mb-4">
+                                        <label className="block   text-white">Localidad</label>
+                                        <input
+                                            {...register('localidad')}
+                                            type="text"
+                                            autoComplete='off'
+                                            name="localidad"
+                                            id='localidad'
+                                            defaultValue={body.localidad}
+                                            className="w-full px-4 py-2 border border-gray-300  rounded-md"
+                                        />
+                                    </div>
+                                    <div className="mb-4">
+                                        <label className="block   text-white">Direccion</label>
+                                        <input
+                                            {...register('direccion')}
+                                            type="text"
+                                            autoComplete='off'
+                                            name="direccion"
+                                            id='direccion'
+                                            defaultValue={body.direccion}
+                                            className="w-full px-4 py-2 border border-gray-300  rounded-md"
+                                        />
+                                    </div>
+                                    <div className="mb-4">
+                                        <label className="block   text-white">Celular</label>
+                                        <input
+                                            {...register('celular')}
+                                            type="text"
+                                            autoComplete='off'
+                                            name="celular"
+                                            id='celular'
+                                            defaultValue={''}
+                                            className="w-full px-4 py-2 border border-gray-300  rounded-md"
+                                        />
+                                    </div>
                                 </div>
                             </ScrollContainer>
                             <div className="  mt-4 flex justify-center">

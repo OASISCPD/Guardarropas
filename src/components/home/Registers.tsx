@@ -141,7 +141,7 @@ export default function Registers() {
                             name="scan"
                             autoComplete="off"
                             placeholder="Escanear DNI"
-                            className="w-full px-4 py-2 placeholder:text-white  rounded-md flex items-center gap-2 bg-colorBlue "
+                            className="w-full px-4 py-2 lg:py-1 placeholder:text-white  rounded-md flex items-center gap-2 bg-colorBlue "
                         />
                         <BsUpcScan size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-white" />
                     </div>
@@ -154,7 +154,7 @@ export default function Registers() {
                             type="text"
                             autoComplete="off"
                             placeholder="Buscar DNI"
-                            className="w-full px-4 py-2 rounded-md flex items-center gap-2 bg-white text-gray-900 "
+                            className="w-full px-4 py-2 lg:py-1 rounded-md flex items-center gap-2 bg-white text-gray-900 "
                         />
                         <FaSearch size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500" />
                     </div>
@@ -185,7 +185,7 @@ export default function Registers() {
                                         <td className="py-2 px-4">{register.n_documento}</td>
                                         <td className="py-2 px-4">{register.apellido_nombre}</td>
                                         <td className="py-2 px-4 uppercase">{register.lugares_ocupados}</td>
-                                        <td className="py-2 px-4 flex">
+                                        <td className="py-2 px-4 flex items-center justify-between">
                                             <button
                                                 onClick={() => openModal({ action: 'edit', id: register.id_registro, state: true })}
                                                 className="bg-colorBlue hover:bg-blue-800 hover:scale-105 duration-100 text-white px-6 py-1 rounded-md"

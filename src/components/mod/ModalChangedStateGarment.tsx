@@ -1,25 +1,21 @@
 import { useEffect, useState } from "react";
 import { LoaderRegisterHoverMobile } from "../loaders/LoaderRegister";
 import { IoMdClose } from "react-icons/io";
-import { ChangedValueOfObjectLost } from "../../logic/objects";
+import { ChangedValueOfGarment } from "../../logic/objects";
 import { toast } from "react-toastify";
-import { Modal } from "../logic/Modal";
-import { ModalAddClientObjectLost } from "./ModalAddClientObjectLost";
 
 interface propModal {
     onClose: () => void
-    id: number
+    id_garment: number
     success: () => void
-    state: string
+    id_register: number
 }
 
-export function ModalChangedStateObjectLost({ onClose, success, id, state }: propModal) {
+export function ModalChangedStateGarment({ onClose, success, id_garment, id_register }: propModal) {
     ///loading al mandar el mensaje al fetch
     const [loading, setLoading] = useState<boolean>(false)
     //valor del select
     const [typeState, setTypeState] = useState<string>('')
-    //modal para trackear al cliente en caso que quiera retirar el objeto/prenda perdida
-    const [modal, setModal] = useState<boolean>(false)
     async function onSubmit() {
         setLoading(true)
         console.log(typeState)
@@ -27,14 +23,8 @@ export function ModalChangedStateObjectLost({ onClose, success, id, state }: pro
             console.log('no tiene el valor esperado')
             return
         }
-        if (typeState.toUpperCase() === "RETIRADO") {
-            setLoading(false)
-            //habilitar modal para el trackeo de las personas
-            openModal()
-            return
-        }
         try {
-            const res = await ChangedValueOfObjectLost(id, typeState);
+            const res = await ChangedValueOfGarment(id_register, typeState, id_garment);
             if (res && !res.ok) {
                 console.log('error en el fetch aplicar toast')
                 return
@@ -49,12 +39,7 @@ export function ModalChangedStateObjectLost({ onClose, success, id, state }: pro
         }
     }
 
-    function openModal() {
-        setModal(true)
-    }
-    function closeModal() {
-        setModal(false)
-    }
+
 
     useEffect(() => {
         console.log('tipo', typeState)
@@ -74,7 +59,7 @@ export function ModalChangedStateObjectLost({ onClose, success, id, state }: pro
                     </div>
                     <h3 className="text-base uppercase strokeWidth text-center text-white ">Actualizar Estado</h3>
                     <div className="my-2">
-                        <h3 className=" uppercase strokeWidth text-center text-white text-base">Registro N° {id}</h3>
+                        <h3 className=" uppercase strokeWidth text-center text-white text-base">Objeto/Prenda N° {id_register}</h3>
                         <div className="flex justify-center my-4 items-center">
                             <h1 className="uppercase">Estado:</h1>
                             <select
@@ -82,9 +67,6 @@ export function ModalChangedStateObjectLost({ onClose, success, id, state }: pro
                                 onChange={(e) => setTypeState(e.target.value)}
                             >
                                 <option value="" disabled selected>Seleccionar una Opcion</option>
-                                {state.toUpperCase() !== 'EN DONACION' && (
-                                    <option value="EN DONACION">En donacion</option>
-                                )}
                                 <option value="DONADO">Donado</option>
                                 <option value="RETIRADO">Retirado</option>
                             </select>
@@ -95,11 +77,6 @@ export function ModalChangedStateObjectLost({ onClose, success, id, state }: pro
                     </div>
                 </div>
             </div>
-            {modal && (
-                <Modal isOpen={true} onClose={closeModal}>
-                    <ModalAddClientObjectLost id_objeto_perdido={id} onClose={closeModal} />
-                </Modal>
-            )}
         </section>
 
     )

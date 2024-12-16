@@ -73,7 +73,6 @@ export function ModalUmbrellas({ onClose, onSuccess, id, index }: propForm) {
         onSuccess(transformedData);
     }
 
-
     return (
         <section className="fixed top-0 left-0 w-full h-full flex items-center justify-center  z-500">
             <div className="rounded-xl shadow-xl max-w-md w-full mx-4 md:mx-auto ">
@@ -127,12 +126,12 @@ export function ModalUmbrellas({ onClose, onSuccess, id, index }: propForm) {
                                         )}
                                     </div>
                                 ))}
-                                <IoMdAddCircle
-                                    onClick={() => append({ prenda: "" })}
-                                    className="text-zinc-200 cursor-pointer hover:text-green-500"
-                                    size={32}
-                                />
                             </ScrollContainer>
+                            <IoMdAddCircle
+                                onClick={() => append({ prenda: "" })}
+                                className="text-zinc-200 cursor-pointer mt-2 hover:text-green-500"
+                                size={32}
+                            />
                             <div className="  mt-4 flex justify-center">
                                 <button
                                     type="submit"

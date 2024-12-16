@@ -59,7 +59,7 @@ export function CardClientSelect({ dni, name, phone, setUserSelect }: propCard) 
                                 <div className="flex justify-center items-center mx-auto col-span-2">
                                     <button
                                         onClick={deleteUser}
-                                        className="w-full  bg-colorRed hover:bg-red-700 hover:scale-105 duration-100 text-white font-medium py-2.5 px-8 rounded-md transition-colors"
+                                        className="w-full  bg-colorRed hover:scale-105 duration-100 text-white font-medium py-2.5 px-8 rounded-md transition-colors"
                                     >
                                         Eliminar
                                     </button>

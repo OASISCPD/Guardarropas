@@ -52,7 +52,7 @@ export function ClientTable({ clickClient, body }: propTable) {
         console.log('Buscando datos de ', body)
 
         try {
-            const response = await fetch(`${BaseUrl}/traer_datos_nosis?dni=${body.n_documento}`, { credentials: 'include' as RequestCredentials })
+            const response = await fetch(`${BaseUrl}/traer_datos_nosis2?dni=${body.n_documento}`, { credentials: 'include' as RequestCredentials })
             if (!response.ok) {
                 //contemplar q no pudo obtener por alguna razon y completar con lo del scaner
                 await autoCompleteByScaner()
@@ -143,7 +143,7 @@ export function ClientTable({ clickClient, body }: propTable) {
                 ) : (
                     clients && clients.length > 0 ? (
                         <ScrollContainer maxHeight="400px">
-                            < table className="w-full border-collapse lg:border border-colorBlue  lg:max-w-full mx-auto">
+                            < table className="w-full border-collapse lg:border border-colorBlue  lg:max-w-full mx-auto ">
                                 <thead>
                                     <tr className="bg-slate-800 text-center text-white">
                                         <td className="py-2 px-2 border">Nombre</td>
@@ -168,17 +168,17 @@ export function ClientTable({ clickClient, body }: propTable) {
                             </table >
                         </ScrollContainer >
                     ) : (
-                        <div className="w-full overflow-x-auto bg-white">
-                            <table className="w-full border border-blue-600">
+                        <div className="w-full overflow-x-auto border border-blue-600 rounded-md shadow-xl bg-white">
+                            <table className="w-full ">
                                 <ScrollContainer maxHeight="400px">
                                     <div className="bg-slate-800 text-white">
-                                        <h1 className="py-2 px-4  ">DNI no encontrado: <span className="border-2 p-1 border-colorMsjYellow text-colorRed"> {body.n_documento}</span></h1>
+                                        <h1 className="py-2 px-4 flex justify-center items-center lg:flex-col 2xl:flex-row ">DNI no encontrado: <span className="border-2 p-1 mx-2 border-colorMsjYellow text-colorRed"> {body.n_documento}</span></h1>
                                     </div>
-                                    <div className="flex items-center h-24 justify-center gap-4">
+                                    <div className="flex lg:flex-col 2xl:flex-row  items-center h-24 justify-center gap-4">
                                         <button
                                             disabled={loadingFetch}
                                             onClick={getValuesByDni}
-                                            className={`${!loadingFetch ? 'bg-colorBlue' : 'bg-colorGray'} text-white p-2 text-md rounded-md  cursor-pointer hover:scale-105 duration-300 px-4 py-2 my-4   hover:text-white shadow-2xl mx-auto`}
+                                            className={`${!loadingFetch ? 'bg-colorBlue' : 'bg-colorGray'} text-white p-2  rounded-md lg:mt-8 2xl:mt-4  cursor-pointer hover:scale-105 duration-300 px-4 py-2 my-4   hover:text-white shadow-2xl mx-auto`}
                                         >
                                             {!loadingFetch ? <h1>Agregar Cliente</h1> : <h1 className="flex items-center">Cargando <span className="animate-spin ml-4 duration-100"><LuLoader2 size={20} /></span>
                                             </h1>}
@@ -194,7 +194,7 @@ export function ClientTable({ clickClient, body }: propTable) {
                                                         className="sr-only peer"
                                                     />
                                                     <div className="w-12 h-6 sm:w-14 sm:h-8 bg-gray-300 peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer peer-checked:after:translate-x-5 sm:peer-checked:after:translate-x-6 peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border after:border-gray-300 after:rounded-full after:h-5 sm:after:h-7 after:w-5 sm:after:w-7 after:transition-all peer-checked:bg-blue-600"></div>
-                                                    <span className="ml-2 text-sm  text-gray-900">
+                                                    <span className="ml-2   text-gray-900">
                                                         {isForeign ? 'Si' : 'No'}
                                                     </span>
                                                 </label>
