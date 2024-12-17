@@ -2,8 +2,8 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { ScrollContainer } from "../logic/ScrollContainer";
 import { useEffect, useState } from "react";
 import { SlUmbrella } from "react-icons/sl";
-import { getPlacesByType, GetTypeDTO } from "../../types/box";
-import { getPlacesClass } from "../../logic/places";
+import { GetTypeDTO } from "../../types/places";
+import { getPlacesByType, getPlacesClass } from "../../logic/places";
 import { LuLoader2 } from "react-icons/lu";
 import { toast } from "react-toastify";
 import { Modal } from "../logic/Modal";
@@ -129,7 +129,7 @@ export function CardUmbrellas({ setDataUmbrella }: CardHangersProps) {
                                 <button
                                     onClick={() => openModal(umbrella.id_lugar, umbrella.estado, (i + 1))}
                                     key={umbrella.id_lugar}
-                                    className={`${getPlacesClass(umbrella.estado)}  aspect-square lg:aspect-video  rounded flex items-center justify-center text-lg    transition-colors`}
+                                    className={`${getPlacesClass(umbrella.estado)}  aspect-square lg:aspect-video  rounded flex items-center justify-center text-lg lg:text-base    transition-colors`}
                                 >
                                     {i + 1}
                                 </button>

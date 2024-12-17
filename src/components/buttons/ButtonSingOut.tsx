@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { BaseUrl } from "../../logic/api";
+import { toast } from "react-toastify";
 
 function ButtonSingOut() {
     const navigate = useNavigate();
@@ -16,12 +17,11 @@ function ButtonSingOut() {
                 alert('Error al intentar cerrar sesión.')
                 throw new Error("Error al intentar cerrar sesión.");
                 /*   swal("ERROR  AL REALIZAR EL LOGOUT", error.message, "error") */
-
             }
             //alerta de testeo
             const data = await response.json()
-            alert(data.message)
-
+            /* alert(data.message) */
+            toast.success(`${data.message}`)
             // Limpiar las cookies u otros datos de sesión
             localStorage.removeItem("cookies");
 
@@ -29,6 +29,7 @@ function ButtonSingOut() {
             navigate("/");
         } catch (error) {
             console.error("Error al intentar cerrar sesión:", error);
+            toast.error(`Error al intentar cerrar sesión: ${error}`)
         }
     };
     return (

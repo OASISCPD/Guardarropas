@@ -7,11 +7,11 @@ import { LuLoader2 } from "react-icons/lu";
 import { GetClientDTO, ScanerDTO } from "../../types/client";
 import { BaseUrl } from "../../logic/api";
 
-
 interface propTable {
     clickClient: (dni: number | string, lastName: string, name: string, phone: string | number, id_cliente: number, id_usuario: number) => void
     body: ScanerDTO
 }
+
 export function ClientTable({ clickClient, body }: propTable) {
     //variable que almacena la data del cliente que se va a nutrir de las funciones de este componente
     const [bodyClient, setBodyClient] = useState<FormDataDTO>()
@@ -87,9 +87,6 @@ export function ClientTable({ clickClient, body }: propTable) {
 
     }
 
-    /*  function openForm() {
-         setModalForm(true)
-     } */
     function closeForm() {
         setModalForm(false)
     }
@@ -111,9 +108,6 @@ export function ClientTable({ clickClient, body }: propTable) {
 
     }, [bodyClient])
 
-    /*     useEffect(() => {
-            getDataByDni(dni)
-        }, [dni]) */
     return (
         <>
             <ul className={`z-20 text-xs lg:absolute lg:top-8 w-full text-black  rounded-md shadow-2xl`}>
@@ -161,7 +155,7 @@ export function ClientTable({ clickClient, body }: propTable) {
                                                 {client.apellido}, {client.nombre}
                                             </td>
                                             <td className="py-2 border px-4">{client.n_documento}</td>
-                                            <td className="py-2 border px-4">{client.celular}</td>
+                                            <td className="py-2 border px-4">{client.celular ? client.celular : <h1 className="text-colorRed">{'-----------'}</h1>}</td>
                                         </tr>
                                     ))}
                                 </tbody>

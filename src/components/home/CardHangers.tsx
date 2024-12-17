@@ -2,8 +2,8 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { ScrollContainer } from "../logic/ScrollContainer";
 import { useEffect, useState } from "react";
 import { PiCoatHanger } from "react-icons/pi";
-import { getPlacesByType, GetTypeDTO } from "../../types/box";
-import { getPlacesClass } from "../../logic/places";
+import { GetTypeDTO } from "../../types/places";
+import { getPlacesByType, getPlacesClass } from "../../logic/places";
 import { LuLoader2 } from "react-icons/lu";
 import { toast } from "react-toastify";
 import { Modal } from "../logic/Modal";
@@ -131,7 +131,7 @@ export function CardHangers({ setDataHanger }: CardHangersProps) {
                                 <button
                                     onClick={() => openModal(hanger.id_lugar, hanger.estado, (i + 1))}
                                     key={hanger.id_lugar}
-                                    className={`${getPlacesClass(hanger.estado)}  aspect-square lg:aspect-video  rounded flex items-center justify-center text-lg    transition-colors`}
+                                    className={`${getPlacesClass(hanger.estado)}  aspect-square lg:aspect-video  rounded flex items-center justify-center text-lg lg:text-base    transition-colors`}
                                 >
                                     {i + 1}
                                 </button>

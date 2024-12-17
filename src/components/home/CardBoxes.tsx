@@ -2,8 +2,8 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { ScrollContainer } from "../logic/ScrollContainer";
 import { useEffect, useState } from "react";
 import { BsBox } from "react-icons/bs";
-import { getPlacesByType, GetTypeDTO } from "../../types/box";
-import { getPlacesClass } from "../../logic/places";
+import { GetTypeDTO } from "../../types/places";
+import { getPlacesByType, getPlacesClass } from "../../logic/places";
 import { LuLoader2 } from "react-icons/lu";
 import { toast } from "react-toastify";
 import { Modal } from "../logic/Modal";
@@ -132,7 +132,7 @@ export function CardBoxes({ setDataBox }: CardBoxesProps) {
                                 <button
                                     onClick={() => openModal(box.id_lugar, box.estado, (i + 1))}
                                     key={box.id_lugar}
-                                    className={`${getPlacesClass(box.estado)}  aspect-square lg:aspect-video  rounded flex items-center justify-center text-lg   transition-colors`}
+                                    className={`${getPlacesClass(box.estado)}  aspect-square  lg:aspect-video  rounded flex items-center justify-center text-lg lg:text-base   transition-colors`}
                                 >
                                     {i + 1}
                                 </button>

@@ -1,4 +1,4 @@
-import { typeFetch } from "../types/box";
+import { typeFetch } from "../types/places";
 import { BaseUrl } from "./api";
 
 export function getPlacesClass(state: string): string {

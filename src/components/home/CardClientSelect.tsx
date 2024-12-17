@@ -54,7 +54,7 @@ export function CardClientSelect({ dni, name, phone, setUserSelect }: propCard) 
 
                                 <div className="col-span-2">
                                     <label className="block text-gray-400 text-xs mb-1">TELÉFONO</label>
-                                    <p className="text-white font-medium">{phone || '-'}</p>
+                                    <p className="text-white font-medium">{phone || 'No se ha asociado un número de teléfono'}</p>
                                 </div>
                                 <div className="flex justify-center items-center mx-auto col-span-2">
                                     <button

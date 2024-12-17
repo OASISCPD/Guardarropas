@@ -3,6 +3,7 @@ import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BaseUrl } from '../../logic/api';
 import { domain } from '../../config/domain.ts';
+import { toast } from 'react-toastify';
 
 const image = `/images/${domain.toLowerCase()}/logoLogin.png`
 export function Login() {
@@ -34,6 +35,7 @@ export function Login() {
                 localStorage.setItem('cookies', cookies);
                 const result = await response.json();
                 console.log(result.message)
+                toast.success(result.message)
                 //aca mandar un message por asi decirlo
                 navigate("/home")
             } catch (error) {
