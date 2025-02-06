@@ -4,7 +4,7 @@ import React from 'react';
 import { GiHanger } from "react-icons/gi";
 import { RiFileHistoryLine, RiErrorWarningLine } from "react-icons/ri";
 import { FaRegUser, FaRegQuestionCircle } from "react-icons/fa";
-import { LuBrain } from "react-icons/lu";
+import { LuBrain, LuFileSpreadsheet } from "react-icons/lu";
 import { Link/* , useNavigate */ } from 'react-router-dom';
 import ButtonSingOut from '../buttons/ButtonSingOut';
 import { CardUserSidebar } from '../cards/CardUserSidebar';
@@ -65,6 +65,11 @@ const links: LinksDTO[] = [
         path: "/objetos_olvidados",
         icon: <LuBrain />,
         title: "Obj. Olvidados",
+    },
+    {
+        title: "Instructivo",
+        icon: <LuFileSpreadsheet />,
+        path: "/instructivo",
     },
     {
         path: "/novedades",

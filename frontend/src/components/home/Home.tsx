@@ -19,7 +19,7 @@ export interface typeStorage {
     prenda: string
 }
 
-export function HomeMobile() {
+export function Home() {
     //loading hover para los fetching
     const [loading, setLoading] = useState<boolean>(false);
     const isDesktop = useMediaQuery({ minWidth: 1024 })

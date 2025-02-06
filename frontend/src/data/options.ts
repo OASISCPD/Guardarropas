@@ -121,3 +121,4 @@ export const excludedTypes = [
     "BUZO",
     "DNI",
 ];
+

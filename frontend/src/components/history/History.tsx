@@ -9,7 +9,7 @@ import { RiFileHistoryLine } from "react-icons/ri";
 import { stringProccess } from "../../logic/clients";
 import { useMediaQuery } from "react-responsive";
 
-export function HistoryMobile() {
+export function History() {
     const isDesktop = useMediaQuery({ minWidth: 1024 })
     const [dni, setDni] = useState<string | number>('')
 
@@ -48,7 +48,7 @@ export function HistoryMobile() {
                     <h1 className="text-xl uppercase tracking-widest">HISTORIAL</h1>
                 </div>
                 <div className="flex justify-between lg:justify-start  gap-2 mt-3 mb-2 ">
-                    <div className="flex relative lg:w-1/4">
+                    <div className="flex relative sm:w-1/2 lg:w-1/4">
                         <input
                             autoComplete="off"
                             id="scan"
@@ -60,7 +60,7 @@ export function HistoryMobile() {
                         />
                         <BsUpcScan size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-white" />
                     </div>
-                    <div className="flex relative lg:w-1/4">
+                    <div className="flex relative sm:w-1/2 lg:w-1/4">
                         <input
                             autoComplete="off"
                             id="dni"

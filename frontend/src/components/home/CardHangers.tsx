@@ -1,32 +1,33 @@
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { ScrollContainer } from "../logic/ScrollContainer";
 import { useEffect, useState } from "react";
-import { BsBox } from "react-icons/bs";
+import { PiCoatHanger } from "react-icons/pi";
 import { GetTypeDTO } from "../../types/places";
 import { getPlacesByType, getPlacesClass } from "../../logic/places";
 import { LuLoader2 } from "react-icons/lu";
 import { toast } from "react-toastify";
 import { Modal } from "../logic/Modal";
-import { ModalBoxes, transformDataStorage } from "../mod/ModalBoxesForm";
+import { transformDataStorage } from "../mod/ModalBoxesForm";
 import { TypeModal } from "../../types/modal";
 import { FaTrash } from "react-icons/fa";
-import { typeStorage } from "./HomeMobile";
+import { typeStorage } from "./Home";
+import { ModalHangers } from "../mod/ModalHangersForm";
 import { useMediaQuery } from "react-responsive";
 
 
-interface CardBoxesProps {
-    setDataBox: React.Dispatch<React.SetStateAction<typeStorage[]>>;
+interface CardHangersProps {
+    setDataHanger: React.Dispatch<React.SetStateAction<typeStorage[]>>;
 
 }
 
-export function CardBoxes({ setDataBox }: CardBoxesProps) {
+export function CardHangers({ setDataHanger }: CardHangersProps) {
     const isDesktop = useMediaQuery({ minWidth: 1024 })
     //constate que almacena la data del box que se agrego
-    const [arrayDataBox, setArrayDataBox] = useState<transformDataStorage[]>()
+    const [arrayDataHanger, setArrayDataHanger] = useState<transformDataStorage[]>()
     //booleano
     const [isOpen, setIsOpen] = useState<boolean>(isDesktop ? true : false)
     //constante que almacena la data de los boxes
-    const [boxs, setBoxs] = useState<GetTypeDTO[]>([]);
+    const [hangers, setHangers] = useState<GetTypeDTO[]>([]);
     //loading para la carga de datos
     const [loading, setLoading] = useState<boolean>(true); // Estado para indicar si la carga está en progreso
     //modal que maneja el formulario para agregar 
@@ -37,9 +38,9 @@ export function CardBoxes({ setDataBox }: CardBoxesProps) {
         setLoading(true)
         try {
             // Realizar la solicitud Fetch
-            const data = await getPlacesByType({ type: 'box' })
+            const data = await getPlacesByType({ type: 'percha' })
             // Actualizar el estado con los datos recibidos
-            setBoxs(data);
+            setHangers(data);
         } catch (error) {
             console.error(error);
         } finally {
@@ -52,42 +53,39 @@ export function CardBoxes({ setDataBox }: CardBoxesProps) {
     function openModal(id: number, state: string, index: number) {
         /* toast(`${id} estado: ${state}`) */
         if (state.toUpperCase() === "OCUPADO") {
-            toast.error(`Box ${state}, retirar el registro para utilizar este BOX `)
+            toast.error(`Percha ${state}, retirar el registro para utilizar esta Percha `)
             return
         }
         if (state.toUpperCase() === "OLVIDADO") {
-            toast.warning(`Box ${state}, Pasar el registro a OLVIDADO para utilizar este BOX `)
+            toast.warning(`Percha ${state}, Pasar el registro a OLVIDADO para utilizar esta Percha `)
             return
         }
         setModal({ id: id, state: true, id_front: index })
-    }
 
+    }
     function closeModal() {
         setModal({
             id: 0, state: false
         })
     }
     //funtion qu eme printea los valores que creo el formulario
-    function transformDataToBox(data: transformDataStorage[]) {
+    function transformDataToHanger(data: transformDataStorage[]) {
         console.log("DATA A ENVIAR DESDE EL FORMULARIO", data)
-        /*   setArrayDataBox(data)
-          setDataBox(data) */
-        setArrayDataBox((prevData = []) => [...prevData, ...data]);
-        setDataBox((prevData = []) => [...prevData, ...data])
+        setArrayDataHanger((prevData = []) => [...prevData, ...data]);
+        setDataHanger((prevData = []) => [...prevData, ...data])
         setModal({ id: 0, state: false, id_front: 0 })
         toast.success('Se agrego el objeto correctamente')
     }
 
     // Función para eliminar un elemento por su índice
     const deleteByIndex = (indexToDelete: number) => {
-        if (!arrayDataBox) {
+        if (!arrayDataHanger) {
             console.log('No hay Data')
             return
         }
-
-        const updatedArray = arrayDataBox.filter((_, index) => index !== indexToDelete);
-        setArrayDataBox(updatedArray);
-        setDataBox(updatedArray)
+        const updatedArray = arrayDataHanger.filter((_, index) => index !== indexToDelete);
+        setArrayDataHanger(updatedArray);
+        setDataHanger(updatedArray)
         toast.success('Se elimino correctamente')
     };
 
@@ -99,10 +97,11 @@ export function CardBoxes({ setDataBox }: CardBoxesProps) {
         <div className='mb-2 bg-colorGray rounded-md p-4'>
             <div className=' flex justify-between mb-4 items-center '>
                 <div className="flex justify-center items-center mr-auto">
-                    <BsBox className="text-colorOrange" size={32} />
-                    <h2 className="text-lg mx-2 tracking-widest"> BOXES</h2>
+                    <PiCoatHanger className="text-colorOrange" size={32} />
+                    <h2 className="text-lg mx-2 tracking-widest  "> PERCHA</h2>
                 </div>
                 {!isOpen ? (
+
                     <IoIosArrowDown className="cursor-pointer" onClick={() => setIsOpen(!isOpen)} size={32} />
                 ) : (
                     <IoIosArrowUp className="cursor-pointer" onClick={() => setIsOpen(!isOpen)} size={32} />
@@ -128,11 +127,11 @@ export function CardBoxes({ setDataBox }: CardBoxesProps) {
                 ) : (
                     <ScrollContainer maxHeight="400px">
                         <div className="grid grid-cols-6 sm:grid-cols-12 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-12 gap-2 pt-4 lg:overflow-x-hidden">
-                            {boxs.map((box, i) => (
+                            {hangers.map((hanger, i) => (
                                 <button
-                                    onClick={() => openModal(box.id_lugar, box.estado, (i + 1))}
-                                    key={box.id_lugar}
-                                    className={`${getPlacesClass(box.estado)}  aspect-square  lg:aspect-video  rounded flex items-center justify-center text-lg lg:text-base   transition-colors`}
+                                    onClick={() => openModal(hanger.id_lugar, hanger.estado, (i + 1))}
+                                    key={hanger.id_lugar}
+                                    className={`${getPlacesClass(hanger.estado)}  aspect-square lg:aspect-video  rounded flex items-center justify-center text-lg lg:text-base    transition-colors`}
                                 >
                                     {i + 1}
                                 </button>
@@ -142,11 +141,11 @@ export function CardBoxes({ setDataBox }: CardBoxesProps) {
                 )
                 }
             </div >
-            {arrayDataBox && (
+            {arrayDataHanger && (
                 <div className="p-4 ">
-                    {arrayDataBox.map((data, index) => (
+                    {arrayDataHanger.map((data, index) => (
                         <div key={index} className="border text-sm my-2 rounded-sm border-colorWhiteShadow border-opacity-50  flex items-center justify-around  gap-4">
-                            <h1>BOX: {data.id_front} </h1>
+                            <h1>Percha: {data.id_front} </h1>
                             <h1 >{data.prenda}</h1>
                             <FaTrash onClick={() => deleteByIndex(index)} className="cursor-pointer text-colorRed hover:text-red-600" />
                         </div>
@@ -156,7 +155,7 @@ export function CardBoxes({ setDataBox }: CardBoxesProps) {
             )}
             {modal && modal.state && (
                 <Modal isOpen={true} onClose={closeModal}>
-                    <ModalBoxes index={modal.id_front} onSuccess={transformDataToBox} id={modal.id} onClose={closeModal} />
+                    <ModalHangers index={modal.id_front} onSuccess={transformDataToHanger} id={modal.id} onClose={closeModal} />
                 </Modal>
             )}
         </div >

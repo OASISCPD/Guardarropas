@@ -1,32 +1,32 @@
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { ScrollContainer } from "../logic/ScrollContainer";
 import { useEffect, useState } from "react";
-import { SlUmbrella } from "react-icons/sl";
+import { BsBox } from "react-icons/bs";
 import { GetTypeDTO } from "../../types/places";
 import { getPlacesByType, getPlacesClass } from "../../logic/places";
 import { LuLoader2 } from "react-icons/lu";
 import { toast } from "react-toastify";
 import { Modal } from "../logic/Modal";
-import { transformDataStorage } from "../mod/ModalBoxesForm";
+import { ModalBoxes, transformDataStorage } from "../mod/ModalBoxesForm";
 import { TypeModal } from "../../types/modal";
 import { FaTrash } from "react-icons/fa";
-import { typeStorage } from "./HomeMobile";
-import { ModalUmbrellas } from "../mod/ModalUmbrellasForm";
+import { typeStorage } from "./Home";
 import { useMediaQuery } from "react-responsive";
 
-interface CardHangersProps {
-    setDataUmbrella: React.Dispatch<React.SetStateAction<typeStorage[]>>;
+
+interface CardBoxesProps {
+    setDataBox: React.Dispatch<React.SetStateAction<typeStorage[]>>;
 
 }
 
-export function CardUmbrellas({ setDataUmbrella }: CardHangersProps) {
+export function CardBoxes({ setDataBox }: CardBoxesProps) {
     const isDesktop = useMediaQuery({ minWidth: 1024 })
     //constate que almacena la data del box que se agrego
-    const [arrayDataHanger, setArrayDataHanger] = useState<transformDataStorage[]>()
+    const [arrayDataBox, setArrayDataBox] = useState<transformDataStorage[]>()
     //booleano
     const [isOpen, setIsOpen] = useState<boolean>(isDesktop ? true : false)
     //constante que almacena la data de los boxes
-    const [umbrellas, setUmbrellas] = useState<GetTypeDTO[]>([]);
+    const [boxs, setBoxs] = useState<GetTypeDTO[]>([]);
     //loading para la carga de datos
     const [loading, setLoading] = useState<boolean>(true); // Estado para indicar si la carga está en progreso
     //modal que maneja el formulario para agregar 
@@ -37,9 +37,9 @@ export function CardUmbrellas({ setDataUmbrella }: CardHangersProps) {
         setLoading(true)
         try {
             // Realizar la solicitud Fetch
-            const data = await getPlacesByType({ type: 'paraguas' })
+            const data = await getPlacesByType({ type: 'box' })
             // Actualizar el estado con los datos recibidos
-            setUmbrellas(data);
+            setBoxs(data);
         } catch (error) {
             console.error(error);
         } finally {
@@ -52,39 +52,42 @@ export function CardUmbrellas({ setDataUmbrella }: CardHangersProps) {
     function openModal(id: number, state: string, index: number) {
         /* toast(`${id} estado: ${state}`) */
         if (state.toUpperCase() === "OCUPADO") {
-            toast.error(`Paraguas ${state}, retirar el registro para utilizar esta Paraguas `)
+            toast.error(`Box ${state}, retirar el registro para utilizar este BOX `)
             return
         }
         if (state.toUpperCase() === "OLVIDADO") {
-            toast.warning(`Paraguas ${state}, Pasar el registro a OLVIDADO para utilizar esta Paraguas `)
+            toast.warning(`Box ${state}, Pasar el registro a OLVIDADO para utilizar este BOX `)
             return
         }
         setModal({ id: id, state: true, id_front: index })
-
     }
+
     function closeModal() {
         setModal({
             id: 0, state: false
         })
     }
     //funtion qu eme printea los valores que creo el formulario
-    function transformDataToHanger(data: transformDataStorage[]) {
+    function transformDataToBox(data: transformDataStorage[]) {
         console.log("DATA A ENVIAR DESDE EL FORMULARIO", data)
-        setArrayDataHanger((prevData = []) => [...prevData, ...data]);
-        setDataUmbrella((prevData = []) => [...prevData, ...data])
+        /*   setArrayDataBox(data)
+          setDataBox(data) */
+        setArrayDataBox((prevData = []) => [...prevData, ...data]);
+        setDataBox((prevData = []) => [...prevData, ...data])
         setModal({ id: 0, state: false, id_front: 0 })
         toast.success('Se agrego el objeto correctamente')
     }
 
     // Función para eliminar un elemento por su índice
     const deleteByIndex = (indexToDelete: number) => {
-        if (!arrayDataHanger) {
+        if (!arrayDataBox) {
             console.log('No hay Data')
             return
         }
-        const updatedArray = arrayDataHanger.filter((_, index) => index !== indexToDelete);
-        setArrayDataHanger(updatedArray);
-        setDataUmbrella(updatedArray)
+
+        const updatedArray = arrayDataBox.filter((_, index) => index !== indexToDelete);
+        setArrayDataBox(updatedArray);
+        setDataBox(updatedArray)
         toast.success('Se elimino correctamente')
     };
 
@@ -96,13 +99,13 @@ export function CardUmbrellas({ setDataUmbrella }: CardHangersProps) {
         <div className='mb-2 bg-colorGray rounded-md p-4'>
             <div className=' flex justify-between mb-4 items-center '>
                 <div className="flex justify-center items-center mr-auto">
-                    <SlUmbrella className="text-colorOrange" size={32} />
-                    <h2 className="text-lg mx-2 tracking-widest  "> PARAGUAS</h2>
+                    <BsBox className="text-colorOrange" size={32} />
+                    <h2 className="text-lg mx-2 tracking-widest"> BOXES</h2>
                 </div>
                 {!isOpen ? (
-                    <IoIosArrowDown className={"cursor-pointer"} onClick={() => setIsOpen(!isOpen)} size={32} />
+                    <IoIosArrowDown className="cursor-pointer" onClick={() => setIsOpen(!isOpen)} size={32} />
                 ) : (
-                    <IoIosArrowUp className={"cursor-pointer"} onClick={() => setIsOpen(!isOpen)} size={32} />
+                    <IoIosArrowUp className="cursor-pointer" onClick={() => setIsOpen(!isOpen)} size={32} />
                 )}
             </div>
             <div
@@ -125,11 +128,11 @@ export function CardUmbrellas({ setDataUmbrella }: CardHangersProps) {
                 ) : (
                     <ScrollContainer maxHeight="400px">
                         <div className="grid grid-cols-6 sm:grid-cols-12 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-12 gap-2 pt-4 lg:overflow-x-hidden">
-                            {umbrellas.map((umbrella, i) => (
+                            {boxs.map((box, i) => (
                                 <button
-                                    onClick={() => openModal(umbrella.id_lugar, umbrella.estado, (i + 1))}
-                                    key={umbrella.id_lugar}
-                                    className={`${getPlacesClass(umbrella.estado)}  aspect-square lg:aspect-video  rounded flex items-center justify-center text-lg lg:text-base    transition-colors`}
+                                    onClick={() => openModal(box.id_lugar, box.estado, (i + 1))}
+                                    key={box.id_lugar}
+                                    className={`${getPlacesClass(box.estado)}  aspect-square  lg:aspect-video  rounded flex items-center justify-center text-lg lg:text-base   transition-colors`}
                                 >
                                     {i + 1}
                                 </button>
@@ -139,11 +142,11 @@ export function CardUmbrellas({ setDataUmbrella }: CardHangersProps) {
                 )
                 }
             </div >
-            {arrayDataHanger && (
+            {arrayDataBox && (
                 <div className="p-4 ">
-                    {arrayDataHanger.map((data, index) => (
+                    {arrayDataBox.map((data, index) => (
                         <div key={index} className="border text-sm my-2 rounded-sm border-colorWhiteShadow border-opacity-50  flex items-center justify-around  gap-4">
-                            <h1>Paraguas: {data.id_front} </h1>
+                            <h1>BOX: {data.id_front} </h1>
                             <h1 >{data.prenda}</h1>
                             <FaTrash onClick={() => deleteByIndex(index)} className="cursor-pointer text-colorRed hover:text-red-600" />
                         </div>
@@ -153,7 +156,7 @@ export function CardUmbrellas({ setDataUmbrella }: CardHangersProps) {
             )}
             {modal && modal.state && (
                 <Modal isOpen={true} onClose={closeModal}>
-                    <ModalUmbrellas index={modal.id_front} onSuccess={transformDataToHanger} id={modal.id} onClose={closeModal} />
+                    <ModalBoxes index={modal.id_front} onSuccess={transformDataToBox} id={modal.id} onClose={closeModal} />
                 </Modal>
             )}
         </div >

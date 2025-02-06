@@ -1,24 +1,33 @@
-# Logs
-logs
+# Ignorar caché de Python
+__pycache__/
+
+# Ignorar archivos de entorno virtual
+venv/
+env/
+
+# Ignorar archivos de configuración sensibles (si aplican)
+config.py
+default.py
+controlador_bd.py
+web.config
+.vscode
+# Ignorar dependencias (si las instalas en una carpeta local)
+requirements.txt
+
+# Ignorar logs y archivos temporales
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+*.tmp
 
-node_modules
-dist
-dist-ssr
-*.local
+# Ignorar archivos compilados de Python
+*.pyc
+*.pyo
+*.pyd
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+# Si necesitas incluir archivos específicos dentro de las carpetas ignoradas
+!controllers/.gitkeep
+!routes/.gitkeep
+!static/.gitkeep
+!templates/.gitkeep
+
+
+

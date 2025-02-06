@@ -12,6 +12,7 @@ import { getUserSession, getUserSessionDTO } from "../logic/user";
 import { ScrollContainer } from "./logic/ScrollContainer";
 import { domain } from "../config/domain";
 import { ButtonLogout } from "./buttons/ButtonLogout";
+import { LuFileSpreadsheet } from "react-icons/lu";
 
 interface NavItemProps {
     title: string;
@@ -44,6 +45,11 @@ const menuOwner = [
         title: "Obj. Olvidados",
         icon: <RiExchangeLine />,
         route: "/objetos_olvidados",
+    },
+    {
+        title: "Instructivo",
+        icon: <LuFileSpreadsheet />,
+        route: "/instructivo",
     },
     {
         title: "Novedades",

@@ -4,7 +4,7 @@ import { ListClientsRegister } from "./ListClientsRegister";
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
-export function ClientsMobile() {
+export function Clients() {
     const isDesktop = useMediaQuery({ minWidth: 1024 })
     const [dni, setDni] = useState<string | number>('')
 

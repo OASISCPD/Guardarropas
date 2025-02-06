@@ -1,7 +1,7 @@
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { ScrollContainer } from "../logic/ScrollContainer";
 import { useEffect, useState } from "react";
-import { PiCoatHanger } from "react-icons/pi";
+import { SlUmbrella } from "react-icons/sl";
 import { GetTypeDTO } from "../../types/places";
 import { getPlacesByType, getPlacesClass } from "../../logic/places";
 import { LuLoader2 } from "react-icons/lu";
@@ -10,24 +10,23 @@ import { Modal } from "../logic/Modal";
 import { transformDataStorage } from "../mod/ModalBoxesForm";
 import { TypeModal } from "../../types/modal";
 import { FaTrash } from "react-icons/fa";
-import { typeStorage } from "./HomeMobile";
-import { ModalHangers } from "../mod/ModalHangersForm";
+import { typeStorage } from "./Home";
+import { ModalUmbrellas } from "../mod/ModalUmbrellasForm";
 import { useMediaQuery } from "react-responsive";
 
-
 interface CardHangersProps {
-    setDataHanger: React.Dispatch<React.SetStateAction<typeStorage[]>>;
+    setDataUmbrella: React.Dispatch<React.SetStateAction<typeStorage[]>>;
 
 }
 
-export function CardHangers({ setDataHanger }: CardHangersProps) {
+export function CardUmbrellas({ setDataUmbrella }: CardHangersProps) {
     const isDesktop = useMediaQuery({ minWidth: 1024 })
     //constate que almacena la data del box que se agrego
     const [arrayDataHanger, setArrayDataHanger] = useState<transformDataStorage[]>()
     //booleano
     const [isOpen, setIsOpen] = useState<boolean>(isDesktop ? true : false)
     //constante que almacena la data de los boxes
-    const [hangers, setHangers] = useState<GetTypeDTO[]>([]);
+    const [umbrellas, setUmbrellas] = useState<GetTypeDTO[]>([]);
     //loading para la carga de datos
     const [loading, setLoading] = useState<boolean>(true); // Estado para indicar si la carga está en progreso
     //modal que maneja el formulario para agregar 
@@ -38,9 +37,9 @@ export function CardHangers({ setDataHanger }: CardHangersProps) {
         setLoading(true)
         try {
             // Realizar la solicitud Fetch
-            const data = await getPlacesByType({ type: 'percha' })
+            const data = await getPlacesByType({ type: 'paraguas' })
             // Actualizar el estado con los datos recibidos
-            setHangers(data);
+            setUmbrellas(data);
         } catch (error) {
             console.error(error);
         } finally {
@@ -53,11 +52,11 @@ export function CardHangers({ setDataHanger }: CardHangersProps) {
     function openModal(id: number, state: string, index: number) {
         /* toast(`${id} estado: ${state}`) */
         if (state.toUpperCase() === "OCUPADO") {
-            toast.error(`Percha ${state}, retirar el registro para utilizar esta Percha `)
+            toast.error(`Paraguas ${state}, retirar el registro para utilizar esta Paraguas `)
             return
         }
         if (state.toUpperCase() === "OLVIDADO") {
-            toast.warning(`Percha ${state}, Pasar el registro a OLVIDADO para utilizar esta Percha `)
+            toast.warning(`Paraguas ${state}, Pasar el registro a OLVIDADO para utilizar esta Paraguas `)
             return
         }
         setModal({ id: id, state: true, id_front: index })
@@ -72,7 +71,7 @@ export function CardHangers({ setDataHanger }: CardHangersProps) {
     function transformDataToHanger(data: transformDataStorage[]) {
         console.log("DATA A ENVIAR DESDE EL FORMULARIO", data)
         setArrayDataHanger((prevData = []) => [...prevData, ...data]);
-        setDataHanger((prevData = []) => [...prevData, ...data])
+        setDataUmbrella((prevData = []) => [...prevData, ...data])
         setModal({ id: 0, state: false, id_front: 0 })
         toast.success('Se agrego el objeto correctamente')
     }
@@ -85,7 +84,7 @@ export function CardHangers({ setDataHanger }: CardHangersProps) {
         }
         const updatedArray = arrayDataHanger.filter((_, index) => index !== indexToDelete);
         setArrayDataHanger(updatedArray);
-        setDataHanger(updatedArray)
+        setDataUmbrella(updatedArray)
         toast.success('Se elimino correctamente')
     };
 
@@ -97,14 +96,13 @@ export function CardHangers({ setDataHanger }: CardHangersProps) {
         <div className='mb-2 bg-colorGray rounded-md p-4'>
             <div className=' flex justify-between mb-4 items-center '>
                 <div className="flex justify-center items-center mr-auto">
-                    <PiCoatHanger className="text-colorOrange" size={32} />
-                    <h2 className="text-lg mx-2 tracking-widest  "> PERCHA</h2>
+                    <SlUmbrella className="text-colorOrange" size={32} />
+                    <h2 className="text-lg mx-2 tracking-widest  "> PARAGUAS</h2>
                 </div>
                 {!isOpen ? (
-
-                    <IoIosArrowDown className="cursor-pointer" onClick={() => setIsOpen(!isOpen)} size={32} />
+                    <IoIosArrowDown className={"cursor-pointer"} onClick={() => setIsOpen(!isOpen)} size={32} />
                 ) : (
-                    <IoIosArrowUp className="cursor-pointer" onClick={() => setIsOpen(!isOpen)} size={32} />
+                    <IoIosArrowUp className={"cursor-pointer"} onClick={() => setIsOpen(!isOpen)} size={32} />
                 )}
             </div>
             <div
@@ -127,11 +125,11 @@ export function CardHangers({ setDataHanger }: CardHangersProps) {
                 ) : (
                     <ScrollContainer maxHeight="400px">
                         <div className="grid grid-cols-6 sm:grid-cols-12 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-12 gap-2 pt-4 lg:overflow-x-hidden">
-                            {hangers.map((hanger, i) => (
+                            {umbrellas.map((umbrella, i) => (
                                 <button
-                                    onClick={() => openModal(hanger.id_lugar, hanger.estado, (i + 1))}
-                                    key={hanger.id_lugar}
-                                    className={`${getPlacesClass(hanger.estado)}  aspect-square lg:aspect-video  rounded flex items-center justify-center text-lg lg:text-base    transition-colors`}
+                                    onClick={() => openModal(umbrella.id_lugar, umbrella.estado, (i + 1))}
+                                    key={umbrella.id_lugar}
+                                    className={`${getPlacesClass(umbrella.estado)}  aspect-square lg:aspect-video  rounded flex items-center justify-center text-lg lg:text-base    transition-colors`}
                                 >
                                     {i + 1}
                                 </button>
@@ -145,7 +143,7 @@ export function CardHangers({ setDataHanger }: CardHangersProps) {
                 <div className="p-4 ">
                     {arrayDataHanger.map((data, index) => (
                         <div key={index} className="border text-sm my-2 rounded-sm border-colorWhiteShadow border-opacity-50  flex items-center justify-around  gap-4">
-                            <h1>Percha: {data.id_front} </h1>
+                            <h1>Paraguas: {data.id_front} </h1>
                             <h1 >{data.prenda}</h1>
                             <FaTrash onClick={() => deleteByIndex(index)} className="cursor-pointer text-colorRed hover:text-red-600" />
                         </div>
@@ -155,7 +153,7 @@ export function CardHangers({ setDataHanger }: CardHangersProps) {
             )}
             {modal && modal.state && (
                 <Modal isOpen={true} onClose={closeModal}>
-                    <ModalHangers index={modal.id_front} onSuccess={transformDataToHanger} id={modal.id} onClose={closeModal} />
+                    <ModalUmbrellas index={modal.id_front} onSuccess={transformDataToHanger} id={modal.id} onClose={closeModal} />
                 </Modal>
             )}
         </div >
