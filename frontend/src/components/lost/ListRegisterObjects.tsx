@@ -7,6 +7,7 @@ import { Modal } from "../logic/Modal";
 import { getTextColorForState } from "../../logic/colors";
 import { ModalChangedStateObjectLost } from "../mod/ModalChangedStateObjectLost";
 import { CardNoData } from "../cards/CardNoData";
+import { BiPrinter, BiImageAlt } from "react-icons/bi";
 
 interface propList {
     name: string
@@ -41,6 +42,21 @@ export function ListRegisterObjects({ name, state }: propList) {
         }
     }
 
+    const handlePrint = (register: RegisterObjectLostDTO) => {
+        sessionStorage.setItem("lostObjectToPrint", JSON.stringify(register));
+        window.open("/printTicketLost", "_blank");
+    };
+
+    const handleViewImage = (register: RegisterObjectLostDTO) => {
+        // Aquí puedes implementar la lógica para mostrar la imagen
+        // Por ahora, abrimos una nueva ventana con la imagen si existe
+        if (register.imagen_url) {
+            window.open(register.imagen_url, "_blank");
+        } else {
+            alert("No hay imagen asociada a este objeto");
+        }
+    };
+
     useEffect(() => {
         if (name.toString() === '') {
             return
@@ -60,6 +76,7 @@ export function ListRegisterObjects({ name, state }: propList) {
     function closeModal() {
         setModal({ id: 0, state: false, stateObject: '' })
     }
+
 
     useEffect(() => {
         setLoading(true)
@@ -86,19 +103,20 @@ export function ListRegisterObjects({ name, state }: propList) {
                     <table className="min-w-full text-center">
                         <thead>
                             <tr className="uppercase text-xs">
-                                <td className="py-4 px-4 whitespace-nowrap">ID</td>
-                                <td className="py-4 px-4 whitespace-nowrap">Objeto</td>
-                                <td className="py-2 px-4">Detalle</td>
-                                <td className="py-4 px-4 whitespace-nowrap">Marca</td>
-                                <td className="py-4 px-4 whitespace-nowrap">Color</td>
-                                <td className="py-4 px-4 whitespace-nowrap">Fecha encontrada</td>
-                                <td className="py-4 px-4 whitespace-nowrap">Lugar encontrado</td>
-                                <td className="py-4 px-4 whitespace-nowrap">Responsable</td>
-                                <td className="py-4 px-4 whitespace-nowrap">Sector</td>
-                                <td className="py-4 px-4 whitespace-nowrap">Estado</td>
+                                <td className="p-4 whitespace-nowrap">ID</td>
+                                <td className="p-4 whitespace-nowrap">Objeto</td>
+                                <td className="p-4 whitespace-nowrap">Detalle</td>
+                                <td className="p-4 whitespace-nowrap">Marca</td>
+                                <td className="p-4 whitespace-nowrap">Color</td>
+                                <td className="p-4 whitespace-nowrap">Fecha encontrada</td>
+                                <td className="p-4 whitespace-nowrap">Lugar encontrado</td>
+                                <td className="p-4 whitespace-nowrap">Responsable</td>
+                                <td className="p-4 whitespace-nowrap">Sector</td>
+                                <td className="p-4 whitespace-nowrap">Estado</td>
+                                <td className="p-4 whitespace-nowrap">Acción</td>
                             </tr>
                         </thead>
-                        <tbody className="bg-colorGray rounded-md text-xs uppercase">
+                        <tbody className="bg-colorBlueComponents rounded-md text-xs uppercase">
                             {registers.map((register) => (
                                 <tr key={register.id_objeto_perdido}>
                                     <td className="py-2 px-4">{register.id_objeto_perdido}</td>
@@ -119,13 +137,31 @@ export function ListRegisterObjects({ name, state }: propList) {
                                     <td className="py-2 px-4">
                                         <button onClick={() => openModal(register.id_objeto_perdido, register.estado)} className={`${getTextColorForState(register.estado)}  cursor-pointer `}>{register.estado}</button>
                                     </td>
+                                    <td className="py-2 px-4">
+                                        <div className="flex items-center gap-2">
+                                            <button
+                                                onClick={() => handleViewImage(register)}
+                                                className="text-green-600 hover:text-green-800 transition-colors duration-200"
+                                                title="Ver imagen"
+                                            >
+                                                <BiImageAlt className="w-4 h-4 text-green-600" />
+                                            </button>
+                                            <button
+                                                onClick={() => handlePrint(register)}
+                                                className="text-blue-600 hover:text-blue-800 transition-colors duration-200"
+                                                title="Imprimir ticket"
+                                            >
+                                                <BiPrinter className="w-4 h-4 text-cyan-600" />
+                                            </button>
+                                        </div>
+                                    </td>
+
                                 </tr>
                             ))}
                         </tbody>
-
                     </table>
                 ) : (
-                    <CardNoData type="lost"/>
+                    <CardNoData type="lost" />
                 )
                 }
             </div>

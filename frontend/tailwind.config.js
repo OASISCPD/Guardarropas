@@ -9,11 +9,12 @@ export default {
       colors: {
         colorOrange: '#FF4200',
         colorGray: '#393838',
+        colorBlueComponents: '#1e293b',
         colorGreen: '#2e8c36',
         colorBlue: '#183DFF',
         colorRed: '#fc0d18',
         colorYellow: '#ffc444',
-        colorGrayLight: '#f6f3f3',
+        colorBlueComponentsLight: '#f6f3f3',
         colorWhiteShadow: '#cac9c9',
         colorExportsGreen: '#1d9d22',
         colorMsjYellow: '#fbc609',

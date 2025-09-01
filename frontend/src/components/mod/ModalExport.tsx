@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { BaseUrl } from "../../logic/api";
+import { inputStyle } from "../../utils/style";
 
 interface propModal {
     onClose: () => void
@@ -28,7 +29,7 @@ export function ModalExport({ onClose }: propModal) {
     return (
         <section className="fixed top-0 left-0 w-full h-full flex items-center justify-center  z-500">
             <div className="rounded-xl shadow-xl max-w-md w-full mx-4 md:mx-auto ">
-                <div className=" bg-colorGray text-sm  rounded-md shadow min-h-60 ">
+                <div className=" bg-colorBlueComponents text-sm  rounded-md shadow min-h-60 ">
                     <div className="flex items-center justify-between p-4">
                         <button className="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-md  h-8 w-8 ms-auto inline-flex justify-center items-center " onClick={onClose}>
                             <IoMdClose size={40} />
@@ -38,11 +39,11 @@ export function ModalExport({ onClose }: propModal) {
                         <div className="text-white">
                             <div className="mb-5">
                                 <label className="block mb-2    ">Fecha Desde</label>
-                                <input type="date" name="desde" id="desde_pacientes" defaultValue={desde} onChange={(e) => setDesde(e.target.value)} className="bg-zinc-700 bg-opacity-80  border border-colorWhiteShadow   rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="name@flowbite.com" required />
+                                <input type="date" name="desde" id="desde_pacientes" defaultValue={desde} onChange={(e) => setDesde(e.target.value)} className={inputStyle} placeholder="name@flowbite.com" required />
                             </div>
                             <div className="mb-5">
                                 <label className="block mb-2    ">Fecha Hasta</label>
-                                <input type="date" name="hasta" id="hasta_pacientes" defaultValue={hasta} onChange={(e) => setHasta(e.target.value)} placeholder="Desde DD-MM-AAAA" className="bg-zinc-700 bg-opacity-80  border border-colorWhiteShadow   rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
+                                <input type="date" name="hasta" id="hasta_pacientes" defaultValue={hasta} onChange={(e) => setHasta(e.target.value)} placeholder="Desde DD-MM-AAAA" className={inputStyle} required />
                             </div>
                             {error && <div className='text-red-500 mb-3 '>{error}</div>}
                             <div className="modal-footer mt-3 flex justify-center">

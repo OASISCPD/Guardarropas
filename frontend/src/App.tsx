@@ -13,7 +13,6 @@ function App() {
         <Router>
           <RoutesContainer />
         </Router>
-
       </SideBarContex>
     </main>
   )

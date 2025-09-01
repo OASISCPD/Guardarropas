@@ -1,5 +1,4 @@
 import { FaSearch } from "react-icons/fa";
-import { Navbar } from "../Navbar";
 import { BsUpcScan } from "react-icons/bs";
 import { ListRegister } from "./ListRegister";
 import { ExportHistorial } from "../buttons/ExportHistorial";
@@ -7,10 +6,11 @@ import { useState } from "react";
 import { sendDataClient } from "../../types/client";
 import { RiFileHistoryLine } from "react-icons/ri";
 import { stringProccess } from "../../logic/clients";
-import { useMediaQuery } from "react-responsive";
+import { StyleInputScan, StyleInputSearch } from "../../utils/style";
+
+
 
 export function History() {
-    const isDesktop = useMediaQuery({ minWidth: 1024 })
     const [dni, setDni] = useState<string | number>('')
 
     function handleScanChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -37,41 +37,46 @@ export function History() {
         }
     }
 
+
     return (
         <div>
-            {!isDesktop && (
-                < Navbar />
-            )}
-            <div className=" p-4 text-sm">
-                <div className="flex items-center gap-2">
-                    <RiFileHistoryLine className="text-colorOrange" size={20} />
-                    <h1 className="text-xl uppercase tracking-widest">HISTORIAL</h1>
+            <div className="p-4 text-sm">
+                <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center">
+                        <RiFileHistoryLine className="text-colorOrange" size={20} />
+                    </div>
+                    <div>
+                        <h1 className="text-xl font-medium text-slate-100 uppercase tracking-wide">Historial</h1>
+                        <p className="text-xs text-slate-400">Consulta registros históricos por DNI</p>
+                    </div>
                 </div>
-                <div className="flex justify-between lg:justify-start  gap-2 mt-3 mb-2 ">
-                    <div className="flex relative sm:w-1/2 lg:w-1/4">
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+                    <div className="flex relative group">
                         <input
                             autoComplete="off"
                             id="scan"
                             name="scan"
                             type="text"
                             placeholder="Escanear DNI"
-                            className="w-full px-4 py-2 lg:py-1 placeholder:text-white  rounded-md flex items-center gap-2 bg-colorBlue "
+                            className={StyleInputScan}
                             onChange={handleScanChange}
                         />
-                        <BsUpcScan size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-white" />
+                        <BsUpcScan size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-colorOrange transition-colors duration-200" />
                     </div>
-                    <div className="flex relative sm:w-1/2 lg:w-1/4">
+
+                    <div className="flex relative group">
                         <input
                             autoComplete="off"
                             id="dni"
                             name="dni"
                             value={dni}
                             type="text"
-                            placeholder="Buscar DNI"
-                            className="w-full px-4 py-2 lg:py-1 rounded-md flex items-center gap-2 bg-white text-gray-900 "
+                            placeholder="Buscar DNI manualmente"
+                            className={StyleInputSearch}
                             onChange={handleInputChange}
                         />
-                        <FaSearch size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500" />
+                        <FaSearch size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors duration-200" />
                     </div>
                 </div>
             </div>

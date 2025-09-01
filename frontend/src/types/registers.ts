@@ -29,6 +29,7 @@ export interface RegisterObjectLostDTO {
     persona_que_encontro: string; // Persona que encontró el objeto, en este caso "limpieza"
     sector: string; // El sector donde se encontró el objeto, en este caso "ATC"
     tipo_objeto: string; // Tipo de objeto, en este caso "ANTEOJOS"
+    imagen_url?:string;
 }
 //interface para los registros de los objetos olvidados
 export interface RegisterObjectForgottenDTO {

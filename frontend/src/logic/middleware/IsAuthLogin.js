@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { BaseUrl } from '../../logic/api'
 const IsAuthLogin = ({ children, route }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
     const checkSession = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:2000/check_session", {
+        const response = await fetch(`${BaseUrl}/check_session`, {
           credentials: "include",
         });
         if (response.status === 200) {

@@ -40,7 +40,6 @@ export function Home() {
     //funcion que me limpia todo el modulo y me llama a lo que tenga que consumir para q no se recargue la pagina
 
     function clearModule() {
-        window.location.reload()
         setBoxes([])
         setUmbrella([])
         setHangers([])
@@ -50,7 +49,6 @@ export function Home() {
     async function send() {
         setLoading(true)
         console.log('DATA A JUNTAR EN OTRO FORMATO: ', hangers, boxes, umbrella)
-
         const body: any[] = [
             ...hangers,
             ...boxes,
@@ -59,7 +57,6 @@ export function Home() {
         //aca iria la validacion de si la combinacion de la fusion de mis 3 arrays en su punto leng es menor que 0 entonces no hay nada cargado aun 
         const garment = removeIdFront(body)
         console.log('data del storage a enviar', garment)
-
         console.log(userSelect)
         if (userSelect && userSelect.dni !== '' && userSelect.client !== '') {
             if (garment.length <= 0) {
@@ -83,12 +80,11 @@ export function Home() {
                 toast.success("Registro Agregado Correctamente")
                 setTimeout(() => {
                     window.open(`/printTicket`, "_blank");
-                }, 1500);
+                }, 500);
+                clearModule()
                 setTimeout(() => {
-                    clearModule()
-                }, 1700);
-
-
+                    window.location.reload()
+                }, 550);
             } catch (error) {
                 console.error(error)
                 toast.error(`${error}`)
@@ -100,7 +96,6 @@ export function Home() {
         console.log('debe seleccionar un cliente')
         toast.error('Debes seleccionar un cliente...')
         setLoading(false)
-
     }
 
     return (
@@ -108,10 +103,6 @@ export function Home() {
             {loading && (
                 <LoaderRegisterHoverMobile />
             )}
-            {!isDesktop && (
-                < Navbar />
-            )}
-
             {/* CARD SEARCH */}
             <CardSearch setUserSelect={setUserSelect} />
             {userSelect !== null && userSelect !== undefined && userSelect.dni !== '' && (
@@ -130,58 +121,10 @@ export function Home() {
                 </div>
             </div>
             {/* BUTTON QUE ENVIA EL FORM CON TODOS LOS VALORES YA ESTABLECIDOS */}
-            <ButtonSendForm send={send} />
+            <ButtonSendForm loading={loading} send={send} />
             {/* LISTA DE REGISTROS */}
             <Registers />
         </div>
     )
 }
-
-{/*   <div className="mb-2 bg-colorGray rounded-md p-4">
-                    <h2 className="text-lg font-semibold mb-3">📦 BOXES</h2>
-                    <ScrollContainer maxHeight='400px'>
-                        <div className="grid grid-cols-6  gap-2">
-                            {[...Array(90)].map((_, i) => (
-                                <button
-                                    key={i}
-                                    className="aspect-square bg-colorGreen rounded flex items-center justify-center text-xl font-medium hover:bg-green-600 transition-colors"
-                                >
-                                    {i + 1}
-                                </button>
-                            ))}
-                        </div>
-                    </ScrollContainer>
-                </div>
-                <div className='bg-colorGray rounded-md p-4 mb-2'>
-                    <h2 className="text-lg font-semibold mb-3">👔 PERCHAS</h2>
-                    <ScrollContainer maxHeight='400px'>
-                        <div className="grid grid-cols-6  gap-2">
-                            {[...Array(50)].map((_, i) => (
-                                <button
-                                    key={i}
-                                    className="aspect-square bg-colorGreen rounded flex items-center justify-center text-xl font-medium hover:bg-green-600 transition-colors"
-                                >
-                                    {i + 1}
-                                </button>
-                            ))}
-                        </div>
-                    </ScrollContainer>
-
-                </div>
-
-                <div className='bg-colorGray rounded-md p-4 mb-2'>
-                    <h2 className="text-lg font-semibold mb-3">👔 PARAGUAS</h2>
-                    <ScrollContainer maxHeight='400px'>
-                        <div className="grid grid-cols-6  gap-2">
-                            {[...Array(80)].map((_, i) => (
-                                <button
-                                    key={i}
-                                    className="aspect-square bg-colorGreen rounded flex items-center justify-center text-xl font-medium hover:bg-green-600 transition-colors"
-                                >
-                                    {i + 1}
-                                </button>
-                            ))}
-                        </div>
-                    </ScrollContainer>
-                </div> */}
 

@@ -7,8 +7,8 @@ export function Navbar() {
     const [nav, setNav] = useState<boolean>(false)
 
     return (
-        < nav className="bg-colorGray px-4 py-3" >
-            <MdOutlineReorder onClick={() => setNav(!nav)} className='ml-auto' size={40} />
+        < nav className="bg-colorBlueComponents px-4 py-3" >
+            <MdOutlineReorder onClick={() => setNav(!nav)} className='ml-auto text-xl' />
             {nav && (
                 <NavMenu onClose={() => setNav(false)} />
             )}

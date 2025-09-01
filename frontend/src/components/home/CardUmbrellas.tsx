@@ -93,7 +93,7 @@ export function CardUmbrellas({ setDataUmbrella }: CardHangersProps) {
     }, [])
 
     return (
-        <div className='mb-2 bg-colorGray rounded-md p-4'>
+        <div className='mb-2 bg-colorBlueComponents rounded-md p-4'>
             <div className=' flex justify-between mb-4 items-center '>
                 <div className="flex justify-center items-center mr-auto">
                     <SlUmbrella className="text-colorOrange" size={32} />
@@ -115,7 +115,7 @@ export function CardUmbrellas({ setDataUmbrella }: CardHangersProps) {
                             {[...Array(50)].map((_, i) => (
                                 <button
                                     key={i}
-                                    className="aspect-square animate-pulse bg-colorGrayLight rounded flex items-center justify-center text-xl  text-black  transition-colors"
+                                    className="aspect-square animate-pulse bg-colorBlueComponentsLight rounded flex items-center justify-center text-xl  text-black  transition-colors"
                                 >
                                     <LuLoader2 size={20} className="animate-spin" />
                                 </button>

@@ -29,9 +29,6 @@ export function ObjectsLost() {
 
     return (
         <div>
-            {!isDesktop && (
-                <Navbar />
-            )}
             <div className="p-4 text-xs">
                 {/*  HEADER*/}
                 <div className="flex items-center gap-2 my-2">

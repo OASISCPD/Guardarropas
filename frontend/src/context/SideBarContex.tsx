@@ -10,6 +10,8 @@ const SidebarContext = createContext<SidebarContextType | undefined>(undefined);
 export const SideBarContex: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [selectedLink, setSelectedLink] = useState<string | null>(null);
     // Retornamos el proveedor de contexto con los valores de estado
+    console.log("SELECCIONADO",selectedLink);
+    
     return (
         <SidebarContext.Provider value={{ selectedLink, setSelectedLink }}>
             {children}

@@ -50,7 +50,7 @@ export function ListNewsRegister({ date, boolean }: propComponent) {
                 ) :
                     news && news.length > 0 ? (
                         news.map((item, index) => (
-                            <div key={index} className="p-4 my-2 bg-colorGray rounded-md shadow-sm">
+                            <div key={index} className="p-4 my-2 bg-colorBlueComponents rounded-md shadow-sm">
                                 <div className="mb-2">
                                     <h1 className="flex items-center">
                                         Ingresado por:

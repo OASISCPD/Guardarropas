@@ -1,29 +1,25 @@
-import { useMediaQuery } from "react-responsive";
+import { Navbar } from "../Navbar";
 import { Sidebar } from "../sidebars/Sidebar";
 
 export interface ResolutionsDto {
-    MobileComponent?: React.ComponentType;
-    TabletComponent?: React.ComponentType;
-    DesktopComponent?: React.ComponentType;
+    Component: React.ComponentType;
 }
 
-export function RedirectScreen({ MobileComponent, TabletComponent, DesktopComponent }: ResolutionsDto) {
-
-    const isMobile = useMediaQuery({ maxWidth: 639 }); //hasta sm
-    const isTablet = useMediaQuery({ minWidth: 640, maxWidth: 1023 })// desde sm hasta md
-    const isDesktop = useMediaQuery({ minWidth: 1024 })
-
+export function RedirectScreen({ Component }: ResolutionsDto) {
     return (
         <>
-
-            {isMobile && MobileComponent && <MobileComponent />}
-            {isTablet && TabletComponent && <TabletComponent />}
-            {isDesktop && DesktopComponent && <div className="">
+            {/* Layout desktop - usando CSS Grid */}
+            <div className="hidden lg:grid lg:grid-cols-[256px_1fr] min-h-screen">
                 <Sidebar />
-                <div className="flex-1 ml-64">
-                    <DesktopComponent />
+                <div className="overflow-x-auto">
+                    <Component />
                 </div>
-            </div>}
+            </div>
+            {/* Layout mobile */}
+            <div className="block lg:hidden">
+                <Navbar />
+                <Component />
+            </div>
         </>
     );
 }

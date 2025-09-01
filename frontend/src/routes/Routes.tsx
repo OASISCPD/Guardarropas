@@ -9,19 +9,21 @@ import { ObjectsLost } from "../components/lost/ObjectsLost";
 import { ObjectsForgotten } from "../components/forgotten/ObjectsForgotten";
 import { PrintTicket } from "../components/ticket/PrintTicket";
 import { Instructive } from "../pages/instructive/Page";
+import { PrintTicketLost } from "../components/ticket/PrintTicketLost";
 
 export const RoutesContainer = () => {
     return (
         <Routes>
             <Route path="/" element={<Login />} />
-            <Route path="/home" element={<RedirectScreen MobileComponent={Home} TabletComponent={Home} DesktopComponent={Home} />} />
-            <Route path="/historial" element={<RedirectScreen MobileComponent={History} TabletComponent={History} DesktopComponent={History} />} />
-            <Route path="/abm_clientes" element={<RedirectScreen MobileComponent={Clients} TabletComponent={Clients} DesktopComponent={Clients} />} />
-            <Route path="/novedades" element={<RedirectScreen MobileComponent={NewsMobile} TabletComponent={NewsMobile} DesktopComponent={NewsMobile} />} />
-            <Route path="/objetos_perdidos" element={<RedirectScreen MobileComponent={ObjectsLost} TabletComponent={ObjectsLost} DesktopComponent={ObjectsLost} />} />
-            <Route path="/objetos_olvidados" element={<RedirectScreen MobileComponent={ObjectsForgotten} TabletComponent={ObjectsForgotten} DesktopComponent={ObjectsForgotten} />} />
-            <Route path="/instructive" element={<RedirectScreen MobileComponent={Instructive} TabletComponent={Instructive} DesktopComponent={Instructive} />} />
+            <Route path="/home" element={<RedirectScreen Component={Home} />} />
+            <Route path="/historial" element={<RedirectScreen Component={History} />} />
+            <Route path="/abm_clientes" element={<RedirectScreen Component={Clients} />} />
+            <Route path="/novedades" element={<RedirectScreen Component={NewsMobile} />} />
+            <Route path="/objetos_perdidos" element={<RedirectScreen Component={ObjectsLost} />} />
+            <Route path="/objetos_olvidados" element={<RedirectScreen Component={ObjectsForgotten} />} />
+            <Route path="/instructivo" element={<RedirectScreen Component={Instructive} />} />
             <Route path="/printTicket" element={<PrintTicket />} />
+            <Route path="/printTicketLost" element={<PrintTicketLost />} />
         </Routes>
     )
 }

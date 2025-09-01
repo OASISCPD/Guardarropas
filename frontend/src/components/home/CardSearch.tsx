@@ -93,7 +93,7 @@ export function CardSearch({ setUserSelect }: propCard) {
 
     return (
         <div className="p-4">
-            <div className="bg-colorGray rounded-md p-4 lg:flex lg:flex-wrap lg:justify-between lg:items-center">
+            <div className="bg-colorBlueComponents rounded-md p-4 lg:flex lg:flex-wrap lg:justify-between lg:items-center">
                 <h1 className="text-xl ">Asignar cliente</h1>
                 <div className="flex justify-between 2xl:w-1/2  gap-2 mt-3 mb-2 text-sm">
                     <div className="flex lg:flex-col items-center relative w-full">

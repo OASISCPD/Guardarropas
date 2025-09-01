@@ -52,7 +52,7 @@ export function ClientTable({ clickClient, body }: propTable) {
         console.log('Buscando datos de ', body)
 
         try {
-            const response = await fetch(`${BaseUrl}/traer_datos_nosis2?dni=${body.n_documento}`, { credentials: 'include' as RequestCredentials })
+            const response = await fetch(`${BaseUrl}/traer_datos_nosis?dni=${body.n_documento}`, { credentials: 'include' as RequestCredentials })
             if (!response.ok) {
                 //contemplar q no pudo obtener por alguna razon y completar con lo del scaner
                 await autoCompleteByScaner()
@@ -172,7 +172,7 @@ export function ClientTable({ clickClient, body }: propTable) {
                                         <button
                                             disabled={loadingFetch}
                                             onClick={getValuesByDni}
-                                            className={`${!loadingFetch ? 'bg-colorBlue' : 'bg-colorGray'} text-white p-2  rounded-md lg:mt-8 2xl:mt-4  cursor-pointer hover:scale-105 duration-300 px-4 py-2 my-4   hover:text-white shadow-2xl mx-auto`}
+                                            className={`${!loadingFetch ? 'bg-colorBlue' : 'bg-colorBlueComponents'} text-white p-2  rounded-md lg:mt-8 2xl:mt-4  cursor-pointer hover:scale-105 duration-300 px-4 py-2 my-4   hover:text-white shadow-2xl mx-auto`}
                                         >
                                             {!loadingFetch ? <h1>Agregar Cliente</h1> : <h1 className="flex items-center">Cargando <span className="animate-spin ml-4 duration-100"><LuLoader2 size={20} /></span>
                                             </h1>}

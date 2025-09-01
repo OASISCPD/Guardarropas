@@ -82,42 +82,85 @@ export function PrintTicket() {
         }
         fetchData(data.id_registro);
     }, [data]);
+
+    // Formatear fecha
+    const formatearFecha = (fecha: string) => {
+        const [dia, mes, anioHora] = fecha.split("/");
+        const [anio, hora] = anioHora.split(" ");
+        const fechaISO = `${anio}-${mes}-${dia}T${hora}`;
+        const date = new Date(fechaISO);
+
+        return date.toLocaleDateString("es-AR", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+    };
+
     return (
-        <>
-            {condition ? (
-                <div className="ticket text-black">
-                    <img
-                        className="logo mx-auto max-w-90 h-auto mt-2 mb-1"
-                        src={image}
-                        alt="Logo"
-                        style={{ maxWidth: "80%", width: "125px" }}
-                    />
-                    <div className="text-center text-base  mb-10">
-                        Bienvenido/a{" "}
-                        <span id="nombre_apellido">{response?.nombre_apellido}</span>
-                    </div>
-                    <div className="contenido  text-center text-xs">
-                        DNI: <span id="numDocumento">{response?.numDocumento}</span>
-                        <br />
-                        <span id="box">{response?.box}</span>
-                        <br />
-                        <span id="percha">{response?.percha}</span>
-                        <br />
-                        <span id="paraguas">{response?.paraguas}</span>
-                        <br />
-                        <br />
-                        <div className="text-right">
-                            <span id="fecha_ingreso" className="text-xs">
-                                {response?.fecha_ingreso}
-                            </span>
-                        </div>
-                        <br />
-                        <hr />
+        <div className={`bg-white text-black p-4 font-mono text-sm mx-auto flex flex-col items-center justify-center leading-tight ${!condition ? 'hidden' : ''}`} style={{ width: '58mm', minHeight: '100mm' }}>
+            {/* Header */}
+            <div className="text-center mb-2 border-b border-black pb-2">
+                <img
+                    className="logo mx-auto max-w-90 h-auto -mt-4 mb-1"
+                    src={image}
+                    alt="Logo"
+                    style={{ maxWidth: "80%", width: "125px" }}
+                />
+                <div className="font-bold text-sm">TICKET DE INGRESO</div>
+                <div className="text-center text-xs font-bold">Bienvenido/a</div>
+            </div>
+
+            {/* Cliente */}
+            <div className="mb-4 w-full">
+                <div className="font-bold text-xs mb-2 text-center">DATOS DEL CLIENTE</div>
+                <div className="text-center text-base font-bold border-2 border-black p-2 mb-2">
+                    {response?.nombre_apellido || 'Cargando...'}
+                </div>
+                <div className="text-center">
+                    <span className="font-bold text-xs">DNI:</span>
+                    <div className="border-b border-dotted border-black pb-1 text-center font-bold">
+                        {response?.numDocumento || 'Cargando...'}
                     </div>
                 </div>
-            ) : (
-                <></>
-            )}
-        </>
+            </div>
+
+            {/* Información del servicio */}
+            <div className="mb-4 w-full">
+                <div className="font-bold text-xs mb-2 text-center">SERVICIOS ASIGNADOS</div>
+                <div className="grid grid-cols-1 gap-1 text-xs">
+                    <div>
+                        <span className="font-bold">Box:</span>
+                        <div className="border-b border-dotted border-black pb-1">{response?.box || 'Cargando...'}</div>
+                    </div>
+                    <div>
+                        <span className="font-bold">Percha:</span>
+                        <div className="border-b border-dotted border-black pb-1">{response?.percha || 'Cargando...'}</div>
+                    </div>
+                    <div>
+                        <span className="font-bold">Paraguas:</span>
+                        <div className="border-b border-dotted border-black pb-1">{response?.paraguas || 'Cargando...'}</div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Fecha y hora */}
+            <div className="mb-2 w-full">
+                <div className="text-center text-xs">
+                    <div className="font-bold mb-1">FECHA Y HORA DE INGRESO</div>
+                    <div className="border-b border-dotted border-black pb-1">
+                        {response?.fecha_ingreso ? formatearFecha(response.fecha_ingreso) : 'Cargando...'}
+                    </div>
+                </div>
+            </div>
+
+            {/* Footer */}
+            <div className="text-center mt-4 text-xs border-t border-black pt-2">
+                <div>Sistema Guardarropas</div>
+                <div>{new Date().toLocaleDateString('es-AR')}</div>
+            </div>
+        </div>
     );
 }

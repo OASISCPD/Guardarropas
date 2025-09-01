@@ -8,9 +8,6 @@ export const Instructive = () => {
 
     return (
         <div className="w-full">
-            {!isDesktop && (
-                < Navbar />
-            )}
             <div className=" p-4 text-sm">
                 <div className="flex items-center gap-2">
                     <LuFileSpreadsheet className="text-colorOrange" size={20} />

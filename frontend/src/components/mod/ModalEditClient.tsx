@@ -99,7 +99,7 @@ export function ModalEditClient({ success, onClose, body }: propForm) {
     return (
         <section className="fixed top-0 left-0 w-full h-full flex items-center justify-center  z-500">
             <div className="rounded-xl shadow-xl max-w-md w-full mx-4 md:mx-auto ">
-                <div className=" bg-colorGray  rounded-md shadow min-h-60 ">
+                <div className=" bg-colorBlueComponents  rounded-md shadow min-h-60 ">
                     <div className="flex items-center justify-between p-4">
                         <h3 className="text-xl strokeWidth text-gray-900"></h3>
                         <button className="text-white bg-transparent  hover:text-gray-900 rounded-md text-sm h-8 w-8 ms-auto inline-flex justify-center items-center " onClick={onClose}>

@@ -8,7 +8,7 @@ interface propModal {
 export function ModalConfirm({ onClose, onCloseOk, text }: propModal) {
     return (
         <section className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50 ">
-            <div className="rounded-md shadow-xl max-w-sm sm:max-w-md w-full bg-colorGray">
+            <div className="rounded-md shadow-xl max-w-sm sm:max-w-md w-full bg-colorBlueComponents">
                 <div className="rounded-md shadow min-h-60 p-6">
                     <div className="flex items-center justify-between mb-2">
                         <button onClick={onClose} className="text-white   hover:text-zinc-200 rounded-md text-sm h-8 w-8 ms-auto inline-flex justify-center items-center">

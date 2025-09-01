@@ -16,7 +16,7 @@ export function CardNoData({ type }: CardNoDataProps) {
     const getTextByType = (type: string): string => typeTextMap[type] || '';
 
     return (
-        <div className="p-4 my-2 bg-colorGray rounded-md shadow-sm flex flex-col items-center justify-center">
+        <div className="p-4 my-2 bg-colorBlueComponents rounded-md shadow-sm flex flex-col items-center justify-center">
             <h1 className="text-lg text-colorRed">Sin datos disponibles</h1>
             <p className="text-white mt-2">No se encontraron {getTextByType(type)}</p>
             <svg

@@ -107,7 +107,7 @@ export function ListRegisterObjectsForgotten({ dni, state }: propList) {
                                 <td className="py-4 px-4 whitespace-nowrap">Estado</td>
                             </tr>
                         </thead>
-                        <tbody className="bg-colorGray rounded-md text-xs uppercase">
+                        <tbody className="bg-colorBlueComponents rounded-md text-xs uppercase">
                             {registers.map((register) => (
                                 <tr key={register.id_registro_olvidado}>
                                     <td className="py-2 px-4">{register.id_registro_olvidado}</td>

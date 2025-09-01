@@ -17,7 +17,7 @@ export function CardClientSelect({ dni, name, phone, setUserSelect }: propCard) 
 
     return (
         <div className="p-4">
-            <div className=" bg-colorGray lg:bg-colorGray/0 rounded-md  p-4 lg:p-0 text-xs ">
+            <div className=" bg-colorBlueComponents lg:bg-colorBlueComponents/0 rounded-md  p-4 lg:p-0 text-xs ">
                 {/* Mobile view - Stack vertically */}
                 <div className="block lg:hidden">
                     <div className="p-4 space-y-4">
@@ -40,7 +40,7 @@ export function CardClientSelect({ dni, name, phone, setUserSelect }: propCard) 
                 </div>
                 <div className="hidden lg:block">
                     <div className="max-w-lg  mr-auto">
-                        <div className="bg-colorGray rounded-md shadow-2xl p-4">
+                        <div className="bg-colorBlueComponents rounded-md shadow-2xl p-4">
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
                                     <label className="block text-gray-400 text-xs mb-1">NOMBRE</label>

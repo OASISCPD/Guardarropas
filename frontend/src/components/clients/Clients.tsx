@@ -22,9 +22,7 @@ export function Clients() {
     }
     return (
         <div className="min-h-screen text-white">
-            {!isDesktop && (
-                < Navbar />
-            )}
+            
             <div className="p-4">
                 {/* HEADER */}
                 <div className="flex items-center gap-2">

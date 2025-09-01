@@ -136,6 +136,7 @@ export function ModalActionHome({ onClose, id, action, onSuccess }: propForm) {
         }
 
     }
+
     //functino que me retira la prenda una por unapor id prenda no por el registro en general 
     async function removeGarmentById(id_prenda: number) {
         setLoadingFetch(true)
@@ -159,7 +160,7 @@ export function ModalActionHome({ onClose, id, action, onSuccess }: propForm) {
             toast.success("Se ha retirado la prenda/objeto con exito")
             getData()
             closeModal()
-            /*  onSuccess() */
+            onSuccess()
         } catch (error) {
             console.error(error)
             toast.error('Error al retirar la prenda/objeto')
@@ -167,6 +168,7 @@ export function ModalActionHome({ onClose, id, action, onSuccess }: propForm) {
             setLoadingFetch(false)
         }
     }
+
     //funcion que me habilita un modal para la confirmacion del retiro por cada uno de los objetos en  particular para el estado de action que sea edit
     function openModal(id: number) {
         setModal({ id: id, state: true })
@@ -176,8 +178,6 @@ export function ModalActionHome({ onClose, id, action, onSuccess }: propForm) {
     }
     async function closeModalSuccess() {
         await removeGarmentById(modal.id)
-
-
     }
     //use effect iniizaliza la funcion que me trae el movimiento del registro de ese id
     useEffect(() => {
@@ -191,7 +191,7 @@ export function ModalActionHome({ onClose, id, action, onSuccess }: propForm) {
                     <LoaderRegisterHoverMobile />
                 )}
                 {loading ? (
-                    <div className=" bg-colorGray  rounded-md shadow min-h-60 ">
+                    <div className=" bg-colorBlueComponents  rounded-md shadow min-h-60 ">
                         <div className="flex items-center justify-between p-4">
                             {/* <h3 className="text-xl strokeWidth text-gray-900">{action}</h3> */}
                             <button className="text-white bg-transparent  hover:text-gray-900 rounded-md text-sm h-8 w-8 ms-auto inline-flex justify-center items-center " onClick={onClose}>
@@ -201,7 +201,7 @@ export function ModalActionHome({ onClose, id, action, onSuccess }: propForm) {
                         <ModalLoadingTemplate />
                     </div>
                 ) : (
-                    <div className=" bg-colorGray  rounded-md shadow min-h-60 ">
+                    <div className=" bg-colorBlueComponents  rounded-md shadow min-h-60 ">
 
                         <div className="flex items-center justify-between p-4">
                             {/* <h3 className="text-xl strokeWidth text-gray-900">{action}</h3> */}
