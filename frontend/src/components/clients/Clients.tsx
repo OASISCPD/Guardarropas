@@ -3,6 +3,7 @@ import { Navbar } from "../Navbar";
 import { ListClientsRegister } from "./ListClientsRegister";
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
+import { StyleInputSearch } from "../../utils/style";
 
 export function Clients() {
     const isDesktop = useMediaQuery({ minWidth: 1024 })
@@ -22,7 +23,7 @@ export function Clients() {
     }
     return (
         <div className="min-h-screen text-white">
-            
+
             <div className="p-4">
                 {/* HEADER */}
                 <div className="flex items-center gap-2">
@@ -39,7 +40,7 @@ export function Clients() {
                             value={dni}
                             type="text"
                             placeholder="Buscar por DNI"
-                            className="w-full px-4 py-2 lg:py-1 rounded-md flex items-center gap-2 bg-white text-gray-900 "
+                            className={StyleInputSearch}
                             onChange={handleInputChange}
                         />
                         <FaSearch size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500" />
