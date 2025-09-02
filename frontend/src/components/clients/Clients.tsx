@@ -1,12 +1,9 @@
 import { FaRegUser, FaSearch } from "react-icons/fa";
-import { Navbar } from "../Navbar";
 import { ListClientsRegister } from "./ListClientsRegister";
 import { useState } from "react";
-import { useMediaQuery } from "react-responsive";
 import { StyleInputSearch } from "../../utils/style";
 
 export function Clients() {
-    const isDesktop = useMediaQuery({ minWidth: 1024 })
     const [dni, setDni] = useState<string | number>('')
 
     function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -21,6 +18,7 @@ export function Clients() {
             setDni('')
         }
     }
+    
     return (
         <div className="min-h-screen text-white">
 

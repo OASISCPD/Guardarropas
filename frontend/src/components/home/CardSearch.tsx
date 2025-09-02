@@ -8,8 +8,8 @@ import { ClientSelectDTO, ScanerDTO, sendDataClient } from "../../types/client";
 import { stringProccess } from "../../logic/clients";
 import { useMediaQuery } from "react-responsive";
 import { toast } from "react-toastify";
-/* import { useMediaQuery } from "react-responsive";
- */
+import {  StyleInputScan, StyleInputSearch } from "../../utils/style";
+
 type SearchDTO = {
     scan: string
     dni: string | number
@@ -104,7 +104,7 @@ export function CardSearch({ setUserSelect }: propCard) {
                             name="scan"
                             type="text"
                             placeholder="Escanear DNI"
-                            className="w-full px-4 py-2 lg:py-1 placeholder:text-white  rounded-md flex items-center gap-2 bg-colorBlue "
+                            className={StyleInputScan}
                             onChange={handleScanChange}
                         />
                         <BsUpcScan size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-white" />
@@ -116,7 +116,7 @@ export function CardSearch({ setUserSelect }: propCard) {
                             name="dni"
                             type="text"
                             placeholder="Buscar DNI"
-                            className="w-full px-4 py-2 lg:py-1 rounded-md flex items-center gap-2 bg-white text-gray-900 "
+                            className={StyleInputSearch}
                             onChange={handleDniChange}
                         />
                         <FaSearch size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500" />

@@ -8,6 +8,7 @@ import { useState } from "react";
 import { LoaderRegisterHoverMobile } from "../loaders/LoaderRegister";
 import { getClientById } from "../../logic/clients";
 import { GetClientDTO } from "../../types/client";
+import { inputStyle } from "../../utils/style";
 
 export interface FormDataDTO {
     n_documento: number | string
@@ -100,7 +101,7 @@ export function ModalForm({ onClose, body, onSuccess }: propForm) {
     return (
         <section className="fixed top-0 left-0 w-full h-full flex items-center justify-center  z-500">
             <div className="rounded-xl shadow-xl max-w-md w-full mx-4 md:mx-auto ">
-                <div className=" bg-colorBlueComponents  rounded-md shadow min-h-60 ">
+                <div className=" bg-slate-900  rounded-md shadow min-h-60 ">
                     {loading && (
                         <LoaderRegisterHoverMobile />
                     )}
@@ -124,7 +125,7 @@ export function ModalForm({ onClose, body, onSuccess }: propForm) {
                                             id='n_documento'
                                             required
                                             defaultValue={body.n_documento}
-                                            className="w-full px-4 py-2 border border-gray-300  rounded-md"
+                                            className={inputStyle}
                                         />
                                     </div>
                                     <div className="mb-4">
@@ -135,7 +136,7 @@ export function ModalForm({ onClose, body, onSuccess }: propForm) {
                                             name="tipo_documento"
                                             id='tipo_documento'
                                             defaultValue={body.tipo_documento || ""}
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                                            className={inputStyle}
                                         >
                                             <option value="" disabled>Elegir Opción</option>
                                             <option value="DNI">DNI</option>
@@ -153,7 +154,7 @@ export function ModalForm({ onClose, body, onSuccess }: propForm) {
                                             id='nombre'
                                             required
                                             defaultValue={body.nombre}
-                                            className="w-full px-4 py-2 border border-gray-300  rounded-md"
+                                            className={inputStyle}
                                         />
                                     </div>
                                     <div className="mb-4">
@@ -166,12 +167,12 @@ export function ModalForm({ onClose, body, onSuccess }: propForm) {
                                             id='apellido'
                                             required
                                             defaultValue={body.apellido}
-                                            className="w-full px-4 py-2 border border-gray-300  rounded-md"
+                                            className={inputStyle}
                                         />
                                     </div>
                                     <div className="mb-4">
                                         <label className="block mb-2   text-white ">Fecha de nacimiento</label>
-                                        <input {...register('fecha_nacimiento')} type="date" name="fecha_nacimiento" id="fecha_nacimiento" defaultValue={body.fecha_nacimiento} placeholder="Desde DD-MM-AAAA" className="bg-gray-50 border border-gray-300 text-gray-900  rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
+                                        <input {...register('fecha_nacimiento')} type="date" name="fecha_nacimiento" id="fecha_nacimiento" defaultValue={body.fecha_nacimiento} placeholder="Desde DD-MM-AAAA" className={inputStyle} required />
                                     </div>
                                     <div className="mb-4">
                                         <label className="block text-white">Genero</label>
@@ -181,7 +182,7 @@ export function ModalForm({ onClose, body, onSuccess }: propForm) {
                                             name="genero"
                                             id='genero'
                                             defaultValue={body.genero || ""}
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                                            className={inputStyle}
                                         >
                                             <option value="" disabled>Elegir Opción</option>
                                             <option value="F">FEMENINO</option>
@@ -197,7 +198,7 @@ export function ModalForm({ onClose, body, onSuccess }: propForm) {
                                             name="provincia"
                                             id='provincia'
                                             defaultValue={body.provincia}
-                                            className="w-full px-4 py-2 border border-gray-300  rounded-md"
+                                            className={inputStyle}
                                         />
                                     </div>
                                     <div className="mb-4">
@@ -209,7 +210,7 @@ export function ModalForm({ onClose, body, onSuccess }: propForm) {
                                             name="localidad"
                                             id='localidad'
                                             defaultValue={body.localidad}
-                                            className="w-full px-4 py-2 border border-gray-300  rounded-md"
+                                            className={inputStyle}
                                         />
                                     </div>
                                     <div className="mb-4">
@@ -221,7 +222,7 @@ export function ModalForm({ onClose, body, onSuccess }: propForm) {
                                             name="direccion"
                                             id='direccion'
                                             defaultValue={body.direccion}
-                                            className="w-full px-4 py-2 border border-gray-300  rounded-md"
+                                            className={inputStyle}
                                         />
                                     </div>
                                     <div className="mb-4">
@@ -232,8 +233,9 @@ export function ModalForm({ onClose, body, onSuccess }: propForm) {
                                             autoComplete='off'
                                             name="celular"
                                             id='celular'
+                                            placeholder="00000000"
                                             defaultValue={''}
-                                            className="w-full px-4 py-2 border border-gray-300  rounded-md"
+                                            className={inputStyle}
                                         />
                                     </div>
                                 </div>

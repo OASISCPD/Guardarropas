@@ -110,76 +110,123 @@ export function ClientTable({ clickClient, body }: propTable) {
 
     return (
         <>
-            <ul className={`z-20 text-xs lg:absolute lg:top-8 w-full text-black  rounded-md shadow-2xl`}>
+            <div className="z-20 text-xs lg:absolute lg:top-8 w-full rounded-lg shadow-2xl border border-slate-600 bg-slate-800/95 backdrop-blur-sm">
                 {loading ? (
                     <ScrollContainer maxHeight="400px">
-                        {/* Simulación de tabla cargando */}
-                        <table className="w-full border-collapse lg:border border-colorBlue max-w-xl mx-auto">
-                            <thead>
-                                <tr className="bg-slate-800 text-center text-white">
-                                    <td className="py-2 px-2 border">Nombre</td>
-                                    <td className="py-2 px-2 border">DNI</td>
-                                    <td className="py-2 px-2 border">Telefono</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {/* Fila de carga */}
-                                {[...Array(8)].map((_, index) => (
-                                    <tr key={index} className="bg-zinc-100 text-center border-b animate-pulse">
-                                        <td className="py-2 border px-4 bg-gray-400">...</td>
-                                        <td className="py-2 border px-4 bg-gray-400">...</td>
-                                        <td className="py-2 border px-4 bg-gray-400">...</td>
+                        {/* Loading State */}
+                        <div className="overflow-hidden rounded-lg">
+                            <table className="w-full border-collapse">
+                                <thead>
+                                    <tr className="bg-slate-900 text-center">
+                                        <th className="py-3 px-4 text-slate-200 font-medium text-sm border-b border-slate-700">Nombre</th>
+                                        <th className="py-3 px-4 text-slate-200 font-medium text-sm border-b border-slate-700">DNI</th>
+                                        <th className="py-3 px-4 text-slate-200 font-medium text-sm border-b border-slate-700">Teléfono</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {[...Array(8)].map((_, index) => (
+                                        <tr key={index} className="bg-slate-800 border-b border-slate-700">
+                                            <td className="py-3 px-4">
+                                                <div className="h-4 bg-slate-600 rounded animate-pulse"></div>
+                                            </td>
+                                            <td className="py-3 px-4">
+                                                <div className="h-4 bg-slate-600 rounded animate-pulse"></div>
+                                            </td>
+                                            <td className="py-3 px-4">
+                                                <div className="h-4 bg-slate-600 rounded animate-pulse"></div>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
                     </ScrollContainer>
                 ) : (
                     clients && clients.length > 0 ? (
                         <ScrollContainer maxHeight="400px">
-                            < table className="w-full border-collapse lg:border border-colorBlue  lg:max-w-full mx-auto ">
-                                <thead>
-                                    <tr className="bg-slate-800 text-center text-white">
-                                        <td className="py-2 px-2 border">Nombre</td>
-                                        <td className="py-2 px-2 border">DNI</td>
-                                        <td className="py-2 px-2 border">Telefono</td>
-                                    </tr >
-                                </thead >
-                                <tbody>
-                                    {clients?.map((client, index) => (
-                                        <tr onClick={() => clickClient(client.n_documento, client.apellido, client.nombre, client.celular, client.id_cliente, client.id_usuario)}
-                                            key={index}
-                                            className="bg-zinc-100 border-b cursor-pointer border-blue-500 hover:bg-zinc-200"
-                                        >
-                                            <td className="py-2 border px-4">
-                                                {client.apellido}, {client.nombre}
-                                            </td>
-                                            <td className="py-2 border px-4">{client.n_documento}</td>
-                                            <td className="py-2 border px-4">{client.celular ? client.celular : <h1 className="text-colorRed">{'-----------'}</h1>}</td>
+                            <div className=" rounded-lg">
+                                <table className="w-full border-collapse">
+                                    <thead>
+                                        <tr className="bg-slate-900 text-center">
+                                            <th className="py-3 px-4 text-slate-200 font-medium text-sm border-b border-slate-700">Nombre</th>
+                                            <th className="py-3 px-4 text-slate-200 font-medium text-sm border-b border-slate-700">DNI</th>
+                                            <th className="py-3 px-4 text-slate-200 font-medium text-sm border-b border-slate-700">Teléfono</th>
                                         </tr>
-                                    ))}
-                                </tbody>
-                            </table >
-                        </ScrollContainer >
+                                    </thead>
+                                    <tbody>
+                                        {clients?.map((client, index) => (
+                                            <tr
+                                                onClick={() => clickClient(client.n_documento, client.apellido, client.nombre, client.celular, client.id_cliente, client.id_usuario)}
+                                                key={index}
+                                                className="bg-slate-800 border-b border-slate-700 cursor-pointer hover:bg-slate-700 transition-colors duration-200 group"
+                                            >
+                                                <td className="py-3 px-4 text-slate-200 group-hover:text-slate-100">
+                                                    <span className="font-medium">{client.apellido}</span>, <span className="text-slate-300">{client.nombre}</span>
+                                                </td>
+                                                <td className="py-3 px-4 text-slate-200 group-hover:text-slate-100">
+                                                    <span className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-blue-900/50 text-blue-200 border border-blue-700">
+                                                        {client.n_documento}
+                                                    </span>
+                                                </td>
+                                                <td className="py-3 px-4 text-slate-200 group-hover:text-slate-100">
+                                                    {client.celular ? (
+                                                        <span className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-green-900/50 text-green-200 border border-green-700">
+                                                            {client.celular}
+                                                        </span>
+                                                    ) : (
+                                                        <span className="text-slate-500 italic">Sin teléfono</span>
+                                                    )}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </ScrollContainer>
                     ) : (
-                        <div className="w-full overflow-x-auto border border-blue-600 rounded-md shadow-xl bg-white">
-                            <table className="w-full ">
-                                <ScrollContainer maxHeight="400px">
-                                    <div className="bg-slate-800 text-white">
-                                        <h1 className="py-2 px-4 flex justify-center items-center lg:flex-col 2xl:flex-row ">DNI no encontrado: <span className="border-2 p-1 mx-2 border-colorMsjYellow text-colorRed"> {body.n_documento}</span></h1>
+                        <div className="rounded-lg overflow-hidden bg-slate-800">
+                            <ScrollContainer maxHeight="400px">
+                                {/* Header - DNI no encontrado */}
+                                <div className="bg-slate-900 px-4 py-3 border-b border-slate-700">
+                                    <div className="flex flex-col lg:flex-row items-center justify-center gap-2">
+                                        <span className="text-slate-300 text-sm">DNI no encontrado:</span>
+                                        <span className="inline-flex items-center px-3 py-1 rounded-lg text-sm font-medium bg-red-900/50 text-red-200 border border-red-700">
+                                            {body.n_documento}
+                                        </span>
                                     </div>
-                                    <div className="flex lg:flex-col 2xl:flex-row  items-center h-24 justify-center gap-4">
+                                </div>
+
+                                {/* Content - Agregar cliente */}
+                                <div className="p-6">
+                                    <div className="flex flex-col lg:flex-row 2xl:flex-row items-center justify-center gap-6">
+                                        {/* Botón Agregar Cliente */}
                                         <button
                                             disabled={loadingFetch}
                                             onClick={getValuesByDni}
-                                            className={`${!loadingFetch ? 'bg-colorBlue' : 'bg-colorBlueComponents'} text-white p-2  rounded-md lg:mt-8 2xl:mt-4  cursor-pointer hover:scale-105 duration-300 px-4 py-2 my-4   hover:text-white shadow-2xl mx-auto`}
+                                            className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:scale-105 shadow-lg ${!loadingFetch
+                                                    ? 'bg-colorOrange hover:bg-orange-600 text-white border border-orange-500'
+                                                    : 'bg-slate-600 text-slate-300 border border-slate-500 cursor-not-allowed'
+                                                }`}
                                         >
-                                            {!loadingFetch ? <h1>Agregar Cliente</h1> : <h1 className="flex items-center">Cargando <span className="animate-spin ml-4 duration-100"><LuLoader2 size={20} /></span>
-                                            </h1>}
+                                            {!loadingFetch ? (
+                                                <>
+                                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                                    </svg>
+                                                    Agregar Cliente
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <LuLoader2 size={16} className="animate-spin" />
+                                                    Cargando...
+                                                </>
+                                            )}
                                         </button>
-                                        <div className="mx-auto">
-                                            <label className="col-span-full mt-4" htmlFor="">¿Es Extranjero?</label>
-                                            <div className="flex items-center justify-start">
+
+                                        {/* Toggle Extranjero */}
+                                        <div className="flex flex-col items-center gap-2">
+                                            <label className="text-sm font-medium text-slate-300">¿Es Extranjero?</label>
+                                            <div className="flex items-center gap-3">
                                                 <label className="relative inline-flex items-center cursor-pointer">
                                                     <input
                                                         type="checkbox"
@@ -187,21 +234,20 @@ export function ClientTable({ clickClient, body }: propTable) {
                                                         onChange={() => setIsForeign(!isForeign)}
                                                         className="sr-only peer"
                                                     />
-                                                    <div className="w-12 h-6 sm:w-14 sm:h-8 bg-gray-300 peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer peer-checked:after:translate-x-5 sm:peer-checked:after:translate-x-6 peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border after:border-gray-300 after:rounded-full after:h-5 sm:after:h-7 after:w-5 sm:after:w-7 after:transition-all peer-checked:bg-blue-600"></div>
-                                                    <span className="ml-2   text-gray-900">
-                                                        {isForeign ? 'Si' : 'No'}
-                                                    </span>
+                                                    <div className="w-12 h-6 bg-slate-600 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-colorOrange rounded-full peer peer-checked:after:translate-x-6 peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border after:border-slate-300 after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-colorOrange"></div>
                                                 </label>
+                                                <span className="text-sm font-medium text-slate-300">
+                                                    {isForeign ? 'Sí' : 'No'}
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
-                                </ScrollContainer>
-                            </table>
+                                </div>
+                            </ScrollContainer>
                         </div>
                     )
-                )
-                }
-            </ul >
+                )}
+            </div>
             {modalForm && bodyClient && (
                 <Modal isOpen={true} onClose={closeForm}>
                     <ModalForm onSuccess={onSuccessRegister} body={bodyClient} onClose={closeForm} />

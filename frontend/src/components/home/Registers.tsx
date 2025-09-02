@@ -13,6 +13,7 @@ import { Modal } from "../logic/Modal"
 import { typeModalHome } from "../../types/modal"
 import { ModalActionHome } from "../mod/ModalActionHome"
 import { MdCreditCard } from "react-icons/md"
+import { inputStyle, StyleInputScan, StyleInputSearch } from "../../utils/style"
 
 
 
@@ -130,10 +131,13 @@ export default function Registers() {
             <header className=" p-4">
                 <div className="flex items-center gap-2 text-white mb-4">
                     <LuLock size={16} className=" text-colorOrange" />
-                    <h1 className="text-sm lg:text-base tracking-widest">REGISTROS</h1>
+                    <h1 className="text-sm lg:text-base tracking-widest">
+                        REGISTROS <span className="text-colorOrange">
+                            ({loading ? <span className="animate-pulse text-slate-200">...</span> : registers && registers.length > 0 ? registers.length : 0})
+                        </span>
+                    </h1>
                 </div>
                 <div className="flex justify-between lg:justify-start gap-2 my-3 text-sm">
-
                     <div className="flex relative w-full lg:w-1/4">
                         <input
                             onChange={handleScanChange}
@@ -142,7 +146,7 @@ export default function Registers() {
                             name="scan"
                             autoComplete="off"
                             placeholder="Escanear DNI"
-                            className="w-full px-4 py-2 lg:py-1 placeholder:text-white  rounded-md flex items-center gap-2 bg-colorBlue "
+                            className={StyleInputScan}
                         />
                         <BsUpcScan size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-white" />
                     </div>
@@ -155,7 +159,7 @@ export default function Registers() {
                             type="text"
                             autoComplete="off"
                             placeholder="Buscar DNI"
-                            className="w-full px-4 py-2 lg:py-1 rounded-md flex items-center gap-2 bg-white text-gray-900 "
+                            className={StyleInputSearch}
                         />
                         <FaSearch size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500" />
                     </div>
@@ -257,17 +261,7 @@ export default function Registers() {
                                                     </span>
                                                 </td>
                                                 <td className="py-4 px-4">
-                                                    <div className="flex items-center justify-center gap-1">
-                                                        <button
-                                                            onClick={() => openModal({ action: 'edit', id: register.id_registro, state: true })}
-                                                            className="inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-md bg-blue-600 hover:bg-blue-700 text-white border border-blue-500 hover:border-blue-600 transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md"
-                                                            title="Editar registro"
-                                                        >
-                                                            <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                                            </svg>
-                                                            Editar
-                                                        </button>
+                                                    <div className="flex items-center justify-center gap-2">
                                                         <button
                                                             onClick={() => openModal({ action: 'withdraw', id: register.id_registro, state: true })}
                                                             className="inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-md bg-red-600 hover:bg-red-700 text-white border border-red-500 hover:border-red-600 transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md"
@@ -277,6 +271,16 @@ export default function Registers() {
                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                                                             </svg>
                                                             Retirar
+                                                        </button>
+                                                        <button
+                                                            onClick={() => openModal({ action: 'edit', id: register.id_registro, state: true })}
+                                                            className="inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-md bg-blue-600 hover:bg-blue-700 text-white border border-blue-500 hover:border-blue-600 transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md"
+                                                            title="Editar registro"
+                                                        >
+                                                            <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                                            </svg>
+                                                            Editar
                                                         </button>
                                                         <button
                                                             onClick={() => openModal({ action: 'forgotten', id: register.id_registro, state: true })}
@@ -368,15 +372,6 @@ export default function Registers() {
                                         <div className="bg-slate-800 px-4 py-3 border-t border-slate-700">
                                             <div className="flex flex-wrap gap-2">
                                                 <button
-                                                    onClick={() => openModal({ action: 'edit', id: register.id_registro, state: true })}
-                                                    className="flex-1 inline-flex items-center justify-center px-3 py-2 text-xs font-medium rounded-md bg-blue-600 hover:bg-blue-700 text-white border border-blue-500 hover:border-blue-600 transition-all duration-200 min-w-0"
-                                                >
-                                                    <svg className="w-3 h-3 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                                    </svg>
-                                                    Editar
-                                                </button>
-                                                <button
                                                     onClick={() => openModal({ action: 'withdraw', id: register.id_registro, state: true })}
                                                     className="flex-1 inline-flex items-center justify-center px-3 py-2 text-xs font-medium rounded-md bg-red-600 hover:bg-red-700 text-white border border-red-500 hover:border-red-600 transition-all duration-200 min-w-0"
                                                 >
@@ -384,6 +379,15 @@ export default function Registers() {
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                                                     </svg>
                                                     Retirar
+                                                </button>
+                                                <button
+                                                    onClick={() => openModal({ action: 'edit', id: register.id_registro, state: true })}
+                                                    className="flex-1 inline-flex items-center justify-center px-3 py-2 text-xs font-medium rounded-md bg-blue-600 hover:bg-blue-700 text-white border border-blue-500 hover:border-blue-600 transition-all duration-200 min-w-0"
+                                                >
+                                                    <svg className="w-3 h-3 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                                    </svg>
+                                                    Editar
                                                 </button>
                                                 <button
                                                     onClick={() => openModal({ action: 'forgotten', id: register.id_registro, state: true })}

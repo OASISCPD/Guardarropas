@@ -118,7 +118,7 @@ export function CardBoxes({ setDataBox }: CardBoxesProps) {
                             {[...Array(50)].map((_, i) => (
                                 <button
                                     key={i}
-                                    className="aspect-square animate-pulse bg-colorBlueComponentsLight rounded flex items-center justify-center text-xl  text-black  transition-colors"
+                                    className="aspect-square animate-pulse bg-colorGrayLight rounded flex items-center justify-center text-xl  text-black  transition-colors"
                                 >
                                     <LuLoader2 size={20} className="animate-spin" />
                                 </button>

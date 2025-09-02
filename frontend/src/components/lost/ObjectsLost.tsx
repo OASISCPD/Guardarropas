@@ -5,6 +5,7 @@ import { FiFilter, FiCheckCircle, FiXCircle } from "react-icons/fi";
 import { ListRegisterObjects } from "./ListRegisterObjects";
 import { useEffect, useState } from "react";
 import { ReloadPageButton } from "../buttons/ReloadPage";
+import { inputStyle } from "../../utils/style";
 
 export function ObjectsLost() {
 
@@ -57,7 +58,7 @@ export function ObjectsLost() {
                                     value={name}
                                     type="text"
                                     placeholder="Nombre del objeto..."
-                                    className="w-full px-4 py-2 rounded-lg bg-slate-700 border border-slate-600 text-slate-100 placeholder-slate-400 focus:outline-none focus:border-colorOrange focus:ring-1 focus:ring-colorOrange transition-colors"
+                                    className={inputStyle}
                                     onChange={handleInputChange}
                                 />
                                 <FaSearch size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400" />
@@ -80,8 +81,8 @@ export function ObjectsLost() {
                             <button
                                 onClick={() => setFilter(true)}
                                 className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${filter
-                                        ? 'bg-green-600 text-white border border-green-500 shadow-lg scale-105'
-                                        : 'bg-slate-700 text-slate-300 border border-slate-600 hover:bg-slate-600 hover:text-slate-200'
+                                    ? 'bg-green-600 text-white border border-green-500 shadow-lg scale-105'
+                                    : 'bg-slate-700 text-slate-300 border border-slate-600 hover:bg-slate-600 hover:text-slate-200'
                                     }`}
                             >
                                 <FiCheckCircle className="w-4 h-4" />
@@ -94,8 +95,8 @@ export function ObjectsLost() {
                             <button
                                 onClick={() => setFilter(false)}
                                 className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${!filter
-                                        ? 'bg-red-600 text-white border border-red-500 shadow-lg scale-105'
-                                        : 'bg-slate-700 text-slate-300 border border-slate-600 hover:bg-slate-600 hover:text-slate-200'
+                                    ? 'bg-red-600 text-white border border-red-500 shadow-lg scale-105'
+                                    : 'bg-slate-700 text-slate-300 border border-slate-600 hover:bg-slate-600 hover:text-slate-200'
                                     }`}
                             >
                                 <FiXCircle className="w-4 h-4" />
