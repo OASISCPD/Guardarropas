@@ -201,7 +201,7 @@ export const InputEmpleadoModal: React.FC<InputEmpleadoModalProps> = ({
                         value={query}
                         onChange={handleInputChange}
                         placeholder={placeholder}
-                        className={`w-full px-3 py-2 border border-slate-600 rounded bg-slate-900 focus:outline-none placeholder:text-slate-400 text-slate-100 focus:ring-2 focus:ring-slate-500 transition-all duration-200 ${showDropdown ? 'rounded-b-none border-slate-500' : ''
+                        className={`w-full px-3 py-2 border border-slate-600 rounded bg-slate-800 focus:outline-none placeholder:text-slate-400 text-slate-100 focus:ring-2 focus:ring-slate-500 transition-all duration-200 ${showDropdown ? 'rounded-b-none border-slate-500' : ''
                             } ${error ? 'border-red-400 focus:ring-red-400' : ''
                             }`}
                         autoComplete="off"

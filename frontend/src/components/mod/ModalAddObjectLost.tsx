@@ -418,33 +418,6 @@ export function ModalAddObjectLost({ onClose, success }: propModal) {
                                             className={inputStyle}
                                         />
                                     </div>
-                                    {/* <div className="flex flex-wrap items-center justify-between">
-                                        <label className="mb-1 text-white" htmlFor="">COLOR</label>
-                                        <div className="flex bg-zinc-50 rounded-md mb-2 justify-between items-center mx-auto w-full">
-                                            <label htmlFor="color" className="mx-2 text-zinc-500">{'Selecciona el color --->'}</label>
-                                            <div
-                                                className="w-8 h-8 rounded-full border border-black mx-2 my-2 cursor-pointer"
-                                                style={{ backgroundColor: watch('color') || '#000000' }} // Usa watch para obtener el color actual
-                                                onClick={() => setIsTableColors(!isTableColors)}
-                                            />
-                                        </div>
-
-                                        {isTableColors && (
-                                            <div className="flex flex-wrap justify-center bg-zinc-100 -mt-3 rounded-b-md shadow-xl ">
-                                                {colors.map((color, index) => (
-                                                    <div
-                                                        key={index}
-                                                        className="w-8 h-8 rounded-full border border-black cursor-pointer mx-3 my-4"
-                                                        style={{ backgroundColor: color }}
-                                                        onClick={() => {
-                                                            onChangeColor(color);
-                                                            setIsTableColors(false);
-                                                        }}
-                                                    />
-                                                ))}
-                                            </div>
-                                        )}
-                                    </div> */}
                                     {/* COLOIRES */}
                                     <div className="mb-4">
                                         <label className="block mb-2 text-white font-medium">Color del Objeto</label>
@@ -452,7 +425,7 @@ export function ModalAddObjectLost({ onClose, success }: propModal) {
                                         {/* Selector principal con tema slate */}
                                         <div className="relative">
                                             <div
-                                                className="flex items-center justify-between bg-slate-900 border border-slate-600 rounded p-3 cursor-pointer hover:border-slate-500 focus:ring-2 focus:ring-slate-500 transition-all duration-200"
+                                                className="flex items-center justify-between bg-slate-800 border border-slate-600 rounded p-3 cursor-pointer hover:border-slate-500 focus:ring-2 focus:ring-slate-500 transition-all duration-200"
                                                 onClick={() => setIsTableColors(!isTableColors)}
                                             >
                                                 <div className="flex items-center space-x-3">
@@ -476,7 +449,7 @@ export function ModalAddObjectLost({ onClose, success }: propModal) {
 
                                             {/* Paleta de colores con tema slate */}
                                             {isTableColors && (
-                                                <div className="absolute top-full left-0 right-0 z-50 mt-1 bg-slate-900 border border-slate-600 rounded-lg shadow-2xl p-4">
+                                                <div className="absolute top-full left-0 right-0 z-50 mt-1 bg-slate-800 border border-slate-600 rounded-lg shadow-2xl p-4">
                                                     <div className="grid grid-cols-5 gap-3">
                                                         {colors.map((color, index) => {
                                                             const isSelected = watch('color') === color.hex;
@@ -657,7 +630,7 @@ export function ModalAddObjectLost({ onClose, success }: propModal) {
                                 </div>
                             </ScrollContainer>
                             <div className="  mt-4 flex justify-center">
-                                <button type="submit" className="bg-colorRed hover:scale-105 duration-100 rounded-md mx-auto  py-2 w-1/2 text-center  shadow-xl  flex justify-center items-center text-white" >Guardar</button>
+                                <button type="submit" className="bg-gradient-to-r from-colorOrange to-orange-600 hover:from-orange-600 hover:to-orange-700 hover:scale-105 duration-100 rounded-md mx-auto  py-2 w-1/2 text-center  shadow-xl  flex justify-center items-center text-white" >Guardar</button>
                             </div>
                         </form>
                     </div>

@@ -33,7 +33,7 @@ function ButtonSingOut() {
         }
     };
     return (
-        <button onClick={handleLogout} className="bg-colorRed w-full py-2 rounded-md mx-auto text-white shadow-xl hover:scale-105 duration-150">
+        <button onClick={handleLogout} className="bg-gradient-to-r from-colorOrange to-orange-600 hover:from-orange-600 hover:to-orange-700 w-full py-2 rounded-md mx-auto text-white shadow-xl hover:scale-105 duration-150">
             Salir
         </button>
     );

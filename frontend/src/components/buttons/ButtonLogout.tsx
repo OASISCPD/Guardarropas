@@ -37,7 +37,7 @@ export function ButtonLogout() {
             )}
             <button
                 onClick={logoutSession}
-                className="bg-colorRed hover:scale-105 duration-100 px-4 py-3 2xl:py-2.5 w-full rounded-md text-xs sm:text-sm shadow-xl"
+                className="bg-gradient-to-r from-colorOrange to-orange-600 hover:from-orange-600 hover:to-orange-700 hover:scale-105 duration-100 px-4 py-3 2xl:py-2.5 w-full rounded-md text-xs sm:text-sm shadow-xl"
             >
                 Salir
             </button>

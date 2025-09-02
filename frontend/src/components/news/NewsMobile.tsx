@@ -5,6 +5,8 @@ import { useState } from "react";
 import { ButtonAddNew } from "./ButtonAddNew";
 import { ReloadPageButton } from "../buttons/ReloadPage";
 import { useMediaQuery } from "react-responsive";
+import { StyleInputSearch } from "../../utils/style";
+import { FiCalendar } from "react-icons/fi";
 
 export function NewsMobile() {
     //resolution
@@ -17,38 +19,54 @@ export function NewsMobile() {
     }
 
     function successMsj() {
-        /* setTimeout(() => {
-            window.location.reload()
-        }, 2000); */
         setBooleanFetch(!booleanFetch)
     }
 
     return (
         <div className="">
             {/* NAVBAR */}
-         
-            <div className="p-4 text-xs">
+            <div className=" text-xs">
                 {/*  HEADER*/}
-                <div className="flex items-center gap-2 my-2">
-                    <RiErrorWarningLine className="text-colorOrange" size={20} />
-                    <h1 className="text-xl uppercase tracking-widest">NOVEDADES</h1>
+                <div className="flex items-center gap-3 mb-6 p-4">
+                    <div className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center">
+                        <RiErrorWarningLine className="text-colorOrange" size={20} />
+                    </div>
+                    <div>
+                        <h1 className="text-xl font-medium text-slate-100 uppercase tracking-wide">Novedades</h1>
+                        <p className="text-xs text-slate-400">Gestión de mensajes y comunicados</p>
+                    </div>
                 </div>
-                {/* SEARCH BY DATE AND LOAD NEW NEWS */}
-                <h1 className="mb-2 text-sm">Buscar por fecha</h1>
-                <div className="grid grid-cols-3 gap-3 mb-4">
-                    <input
-                        autoComplete="off"
-                        id="dni"
-                        name="dni"
 
-                        type="date"
-                        placeholder="Buscar DNI"
-                        className="px-4 py-2 lg:py-1 col-span-2 lg:col-span-1  rounded-md flex items-center gap-2 bg-white text-gray-900 "
-                        onChange={handleInputChange}
-                    />
-                    <ButtonAddNew success={successMsj} />
+                {/* SEARCH AND ACTIONS SECTION */}
+                <div className="bg-slate-800/30 rounded-lg border border-slate-700 p-4 m-4">
+                    <div className="flex items-center gap-2 mb-3">
+                        <FiCalendar className="w-4 h-4 text-slate-400" />
+                        <h2 className="text-sm font-medium text-slate-300">Buscar por fecha</h2>
+                    </div>
+
+                    {/* Responsive Layout - Flex en mobile, Grid en desktop */}
+                    <div className="flex flex-col sm:flex-row gap-3 mb-4">
+                        <div className="flex-1 min-w-0">
+                            <input
+                                autoComplete="off"
+                                id="dni"
+                                name="dni"
+                                type="date"
+                                placeholder="Buscar DNI"
+                                className={StyleInputSearch}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="flex-shrink-0 sm:w-auto w-full">
+                            <ButtonAddNew success={successMsj} />
+                        </div>
+                    </div>
+
+                    {/* Reload Button */}
+                    <div className="pt-2 border-t border-slate-700">
+                        <ReloadPageButton />
+                    </div>
                 </div>
-                <ReloadPageButton />
                 {/* LIST */}
                 <ListNewsRegister boolean={booleanFetch} date={date} />
             </div>
